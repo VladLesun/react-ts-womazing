@@ -1,0 +1,52 @@
+@use '../../../styles/variables' as *;
+@use '../../../styles/mixins' as *;
+@use '../../../styles/media' as *;
+
+.link {
+}
+
+.image {
+	margin-bottom: 24px;
+}
+
+.title {
+	margin-bottom: 7px;
+	font-weight: 500;
+	font-size: 20px;
+	line-height: 140%;
+	letter-spacing: 0.02em;
+	text-align: center;
+}
+
+.price {
+	color: $gray;
+	font-weight: 500;
+	font-size: 15px;
+	line-height: 140%;
+	letter-spacing: 0.02em;
+	text-align: center;
+}
+
+.sale {
+	margin-right: 10px;
+	text-decoration: line-through;
+}
+
+@include tablet {
+	.image {
+		margin-bottom: 15px;
+	}
+	.title {
+		margin-bottom: 5px;
+		font-size: 18px;
+	}
+	.price {
+		font-size: 15px;
+	}
+	.sale {
+		margin-right: 5px;
+	}
+}
+
+@include mobile {
+}

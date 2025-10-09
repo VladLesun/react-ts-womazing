@@ -1,0 +1,19 @@
+@use '../../../../styles/variables' as *;
+
+.btns {
+	display: flex;
+	align-items: center;
+	gap: 12px;
+	width: 114px;
+	height: 4px;
+}
+
+.btn {
+	width: 30px;
+	height: inherit;
+	background-color: $gray;
+
+	&_active {
+		background-color: $black;
+	}
+}

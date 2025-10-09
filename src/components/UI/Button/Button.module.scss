@@ -1,0 +1,17 @@
+@use '../../../styles/variables' as *;
+@use '../../../styles/mixins' as *;
+
+.btn {
+	@include button;
+
+	&_primary {
+		color: $white;
+		background-color: $cta;
+	}
+
+	&_secondary {
+		color: $cta;
+		background-color: transparent;
+		border: 1px solid $cta;
+	}
+}

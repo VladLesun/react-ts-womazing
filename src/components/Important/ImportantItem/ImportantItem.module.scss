@@ -1,0 +1,60 @@
+@use '../../../styles/variables' as *;
+@use '../../../styles/mixins' as *;
+@use '../../../styles/media' as *;
+
+.article {
+	max-width: 305px;
+}
+
+.image {
+	width: 61px;
+	height: 61px;
+	margin-bottom: 37px;
+}
+
+.title {
+	margin-bottom: 24px;
+	font-weight: 500;
+	font-size: 25px;
+	line-height: 140%;
+	letter-spacing: 0.02em;
+}
+
+.desc {
+	font-weight: 500;
+	font-size: 17px;
+	line-height: 140%;
+	letter-spacing: 0.02em;
+}
+
+@include laptop {
+	.image {
+		margin-bottom: 25px;
+	}
+	.title {
+		margin-bottom: 15px;
+	}
+}
+
+@include tablet {
+	.image {
+		width: 40px;
+		height: 40px;
+		margin-bottom: 20px;
+	}
+	.title {
+		margin-bottom: 15px;
+		font-size: 18px;
+	}
+	.desc {
+		font-size: 15px;
+	}
+}
+
+@include mobile-lg {
+	.image {
+		width: 61px;
+		height: 61px;
+		margin-bottom: 20px;
+	}
+}

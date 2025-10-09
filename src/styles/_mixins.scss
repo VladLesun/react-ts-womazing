@@ -1,0 +1,46 @@
+@use './variables' as *;
+@use './media' as *;
+
+@mixin disable-mob-hover {
+	@media (any-hover: hover) {
+		&:hover {
+			@content;
+		}
+	}
+}
+
+@mixin main-page-title {
+	margin-bottom: 92px;
+	font-weight: 500;
+	font-size: 40px;
+	line-height: 110%;
+	letter-spacing: 0.02em;
+
+	@include laptop {
+		margin-bottom: 60px;
+		font-size: 35px;
+	}
+
+	@include tablet {
+		margin-bottom: 30px;
+		font-size: 25px;
+	}
+}
+
+@mixin button {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	flex-shrink: 0;
+	width: 243px;
+	height: 68px;
+	font-weight: 400;
+	font-size: 17px;
+	line-height: 139%;
+	letter-spacing: 0.02em;
+
+	@include laptop {
+		width: 200px;
+		font-size: 15px;
+	}
+}
