@@ -1,23 +1,23 @@
-import Collections from './components/Collections/Collections';
+import { Route, Routes } from 'react-router';
+
 import Footer from './components/Footer/Footer';
 import Header from './components/Header/Header';
-import Hero from './components/Hero/Hero';
-import Important from './components/Important/Important';
-import Team from './components/Team/Team';
+import AboutBrand from './pages/AboutBrand/AboutBrand';
+import Home from './pages/Home';
+import NotFound from './pages/NotFound';
 
 function App() {
 	return (
 		<>
 			<Header />
 
-			<h1 className='visually-hidden'>
-				Womazing - магазин стильной женской одежды
-			</h1>
-
-			<Hero />
-			<Collections />
-			<Important />
-			<Team />
+			<main>
+				<Routes>
+					<Route path='/' element={<Home />} />
+					<Route path='/about-brand' element={<AboutBrand />} />
+					<Route path='*' element={<NotFound />} />
+				</Routes>
+			</main>
 
 			<Footer />
 		</>

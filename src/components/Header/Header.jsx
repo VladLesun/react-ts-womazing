@@ -16,7 +16,7 @@ function Header() {
 						<span className={cn(s.line, s.line_middle)}></span>
 						<span className={cn(s.line, s.line_bottom)}></span>
 					</button>
-					
+
 					<button className={s.call} aria-label='обратный звонок'>
 						<svg
 							width='27'

@@ -13,14 +13,22 @@ html {
 }
 
 body {
-	position: relative;
 	background-color: $white;
 	color: $black;
 	font-family: $font-family;
 }
 
 #root {
+	position: relative;
+	display: flex;
+	flex-direction: column;
+	justify-content: space-between;
 	min-width: 320px;
+	min-height: 100vh;
+}
+
+main {
+	flex-shrink: 0;
 }
 
 img,
