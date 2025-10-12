@@ -42,7 +42,7 @@ function Collections() {
 					children='Открыть магазин'
 					href='/shop'
 					variant='secondary'
-					className={s.btn}
+					className={s.link}
 				/>
 			</div>
 		</section>

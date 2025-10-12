@@ -7,7 +7,7 @@
 	align-items: center;
 	justify-content: center;
 	flex-shrink: 0;
-	padding: 22px 50px;
+	padding: 22px 20px;
 	border: 1px solid transparent;
 	font-weight: 400;
 	font-size: 17px;
@@ -18,7 +18,7 @@
 	transition-timing-function: ease;
 
 	@include laptop {
-		padding: 22px 30px;
+		padding: 22px 10px;
 		font-size: 15px;
 	}
 
@@ -43,7 +43,6 @@
 	}
 
 	&_white {
-		padding: 22px 65px;
 		color: $black;
 		background-color: transparent;
 		border-color: $black;
@@ -52,14 +51,10 @@
 			color: $white;
 			background-color: $black;
 		}
-
-		@include laptop {
-			padding: 22px 45px;
-		}
 	}
 
 	&_pagination {
-		padding: 9px 16px;
+		padding: 8px 5px;
 		border-color: $black;
 
 		@include disable-mob-hover {
