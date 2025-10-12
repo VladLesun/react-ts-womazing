@@ -1,4 +1,5 @@
 import cn from 'classnames';
+import { Link } from 'react-router';
 import Logo from '../UI/Logo/Logo';
 import Navigation from '../UI/Navigation/Navigation';
 import s from './Header.module.scss';
@@ -35,7 +36,7 @@ function Header() {
 						+7 (495) 823-54-12
 					</a>
 
-					<a href='/cart' className={s.cart}>
+					<Link to='/cart' className={s.cart}>
 						<svg
 							width='24'
 							height='24'
@@ -48,7 +49,7 @@ function Header() {
 							<path d='M7.55803 15.0354C7.88514 15.0354 8.1503 14.7702 8.1503 14.4431V12.6663C8.1503 12.3392 7.88514 12.074 7.55803 12.074C7.23092 12.074 6.96576 12.3392 6.96576 12.6663V14.4431C6.96576 14.7702 7.23092 15.0354 7.55803 15.0354Z' />
 						</svg>
 						<span className={s.count}>10</span>
-					</a>
+					</Link>
 				</div>
 			</div>
 		</header>

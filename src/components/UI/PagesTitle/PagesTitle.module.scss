@@ -1,0 +1,20 @@
+@use '../../../styles/media' as *;
+
+.title {
+	font-weight: 500;
+	font-size: 55px;
+	line-height: 110%;
+	letter-spacing: 0.02em;
+
+	@include laptop-lg {
+		font-size: 45px;
+	}
+
+	@include laptop {
+		font-size: 30px;
+	}
+
+	@include tablet {
+		font-size: 25px;
+	}
+}

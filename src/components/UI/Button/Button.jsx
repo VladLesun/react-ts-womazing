@@ -1,4 +1,5 @@
 import cn from 'classnames';
+import { Link } from 'react-router';
 import s from './Button.module.scss';
 
 function Button({ children, href, onClick, variant = 'primary', className }) {
@@ -6,9 +7,9 @@ function Button({ children, href, onClick, variant = 'primary', className }) {
 
 	if (href) {
 		return (
-			<a href='/shop' className={classes}>
+			<Link to={href} className={classes}>
 				{children}
-			</a>
+			</Link>
 		);
 	}
 
