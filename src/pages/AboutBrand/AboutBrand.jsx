@@ -1,11 +1,11 @@
 import Button from '../../components/UI/Button/Button';
 import PageTitleContent from '../../components/UI/PageTitleContent/PageTitleContent';
-import PagesWrap from '../../components/UI/PagesWrap/PagesWrap';
+import PageWrap from '../../components/UI/PageWrap/PageWrap';
 import s from './AboutBrand.module.scss';
 
 function AboutBrand() {
 	return (
-		<PagesWrap>
+		<PageWrap>
 			<div className='container'>
 				<PageTitleContent children='О бренде' />
 				<div>
@@ -67,7 +67,7 @@ function AboutBrand() {
 					/>
 				</div>
 			</div>
-		</PagesWrap>
+		</PageWrap>
 	);
 }
 
