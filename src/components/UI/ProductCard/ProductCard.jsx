@@ -1,9 +1,10 @@
-import s from './CollectionItem.module.scss';
+import { Link } from 'react-router';
+import s from './ProductCard.module.scss';
 
-function CollectionItem({ imgUrl, title, price, sale }) {
+function ProductCard({ imgUrl, title, price, sale }) {
 	return (
-		<li>
-			<a className={s.link} href='#!'>
+		<li className={s.link}>
+			<Link to='/product'>
 				<article>
 					<img className={s.image} src={imgUrl} alt={title} />
 					<h3 className={s.title}>{title}</h3>
@@ -15,9 +16,9 @@ function CollectionItem({ imgUrl, title, price, sale }) {
 						<p className={s.price}>${price}</p>
 					)}
 				</article>
-			</a>
+			</Link>
 		</li>
 	);
 }
 
-export default CollectionItem;
+export default ProductCard;

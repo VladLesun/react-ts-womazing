@@ -42,7 +42,8 @@
 		}
 	}
 
-	&_white {
+	&_category {
+		padding: 22px 65px;
 		color: $black;
 		background-color: transparent;
 		border-color: $black;
@@ -54,17 +55,14 @@
 	}
 
 	&_pagination {
-		padding: 8px 5px;
+		width: 41px;
+		height: 41px;
+		padding: 8px;
 		border-color: $black;
 
 		@include disable-mob-hover {
 			color: $white;
 			background-color: $black;
 		}
-	}
-
-	&_active {
-		color: $white;
-		background-color: $black;
 	}
 }

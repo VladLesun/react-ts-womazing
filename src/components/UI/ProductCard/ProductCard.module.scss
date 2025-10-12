@@ -3,6 +3,8 @@
 @use '../../../styles/media' as *;
 
 .link {
+	display: block;
+	max-width: 350px;
 }
 
 .image {
@@ -19,7 +21,7 @@
 }
 
 .price {
-	color: $gray;
+	color: $price;
 	font-weight: 500;
 	font-size: 15px;
 	line-height: 140%;
@@ -30,6 +32,7 @@
 .sale {
 	margin-right: 10px;
 	text-decoration: line-through;
+	color: $price-gray;
 }
 
 @include tablet {

@@ -1,5 +1,5 @@
 import Button from '../UI/Button/Button';
-import CollectionItem from './CollectionItem/CollectionItem';
+import ProductCard from '../UI/ProductCard/ProductCard';
 import s from './Collections.module.scss';
 
 function Collections() {
@@ -28,7 +28,7 @@ function Collections() {
 
 				<ul className={s.list}>
 					{collectionItems.map(item => (
-						<CollectionItem
+						<ProductCard
 							key={item.title}
 							imgUrl={item.imgUrl}
 							title={item.title}
