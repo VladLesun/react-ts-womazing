@@ -1,5 +1,5 @@
 import Button from '../../components/UI/Button/Button';
-import PagesTitle from '../../components/UI/PagesTitle/PagesTitle';
+import PageTitleContent from '../../components/UI/PageTitleContent/PageTitleContent';
 import PagesWrap from '../../components/UI/PagesWrap/PagesWrap';
 import s from './AboutBrand.module.scss';
 
@@ -7,8 +7,7 @@ function AboutBrand() {
 	return (
 		<PagesWrap>
 			<div className='container'>
-				<PagesTitle children='О бренде' />
-				<div>Breadcrumbs</div>
+				<PageTitleContent children='О бренде' />
 				<div>
 					<ul className={s.list}>
 						<li className={s.item}>
