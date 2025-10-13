@@ -1,10 +1,10 @@
 import { Link } from 'react-router';
 import s from './ProductCard.module.scss';
 
-function ProductCard({ imgUrl, title, price, sale }) {
+function ProductCard({ id,imgUrl, title, price, sale }) {
 	return (
 		<li className={s.link}>
-			<Link to='/product'>
+			<Link to={`product/${id}`}>
 				<article>
 					<img className={s.image} src={imgUrl} alt={title} />
 					<h3 className={s.title}>{title}</h3>

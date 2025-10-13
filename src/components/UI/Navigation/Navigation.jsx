@@ -1,5 +1,5 @@
 import cn from 'classnames';
-import { Link, useLocation } from 'react-router';
+import { NavLink } from 'react-router';
 import s from './Navigation.module.scss';
 
 const categories = [
@@ -10,21 +10,16 @@ const categories = [
 ];
 
 function Navigation({ className }) {
-	const location = useLocation();
-
 	return (
 		<ul className={cn(s.list, className)}>
 			{categories?.map(({ href, title }) => (
 				<li key={title}>
-					<Link
+					<NavLink
 						to={href}
-						className={cn(
-							s.item,
-							location.pathname === href ? s.item_active : ''
-						)}
+						className={({ isActive }) => cn(s.item, isActive && s.item_active)}
 					>
 						{title}
-					</Link>
+					</NavLink>
 				</li>
 			))}
 		</ul>
