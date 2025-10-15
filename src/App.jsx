@@ -11,6 +11,7 @@ import Shop from './pages/Shop/Shop';
 import img1 from './assets/img/products/img1.png';
 import img2 from './assets/img/products/img2.png';
 import img3 from './assets/img/products/img3.png';
+import Contacts from './pages/Contacts';
 
 const collectionItems = [
 	{
@@ -56,7 +57,7 @@ function App() {
 						element={<Product collectionItems={collectionItems} />}
 					/>
 					<Route path='/about-brand' element={<AboutBrand />} />
-					{/* <Route path='/contacts' element={<Contacts />} /> */}
+					<Route path='/contacts' element={<Contacts />} />
 					<Route path='*' element={<NotFound />} />
 				</Routes>
 			</main>

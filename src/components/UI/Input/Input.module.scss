@@ -57,9 +57,46 @@
 .count {
 	width: 68px;
 	height: 68px;
+	border: 1px solid $black;
 	font-weight: 400;
 	font-size: 20px;
 	line-height: 140%;
 	letter-spacing: 0.02em;
 	text-align: center;
+}
+
+.input {
+	width: 350px;
+	height: 40px;
+}
+
+.textarea {
+	width: 445px;
+	height: 135px;
+	resize: none;
+
+	@include mobile-lg {
+		width: 350px;
+	}
+}
+
+.input,
+.textarea {
+	border-bottom: 1px solid $black;
+	font-weight: 500;
+	font-size: 17px;
+	line-height: 140%;
+	letter-spacing: 0.02em;
+
+	@include mobile {
+		width: 290px;
+	}
+
+	&::placeholder {
+		transition: opacity 0.5s ease;
+	}
+
+	&:focus::placeholder {
+		opacity: 0;
+	}
 }

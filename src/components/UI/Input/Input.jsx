@@ -1,9 +1,6 @@
-import cn from 'classnames';
 import s from './Input.module.scss';
 
-function Input({ onChange, className, type, variant, value }) {
-	const classes = cn(s.input, s[`input_${variant}`]);
-
+function Input({ onChange, className, type, variant, value, placeholder }) {
 	if (type === 'radio') {
 		return (
 			<label className={s.label}>
@@ -39,7 +36,24 @@ function Input({ onChange, className, type, variant, value }) {
 		return <input className={s.count} type={type} value={value} />;
 	}
 
-	return <input className={classes} type={type} value={value} />;
+	if (variant === 'textarea') {
+		return (
+			<textarea
+				className={s.textarea}
+				value={value}
+				placeholder={placeholder}
+			></textarea>
+		);
+	}
+
+	return (
+		<input
+			className={s.input}
+			type={type}
+			value={value}
+			placeholder={placeholder}
+		/>
+	);
 }
 
 export default Input;

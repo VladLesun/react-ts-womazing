@@ -1,0 +1,49 @@
+@use '../../styles/media' as *;
+
+.list {
+	max-width: 945px;
+	display: flex;
+	flex-wrap: wrap;
+	align-items: center;
+	justify-content: space-between;
+	gap: 20px;
+	margin-bottom: 130px;
+
+	@include laptop {
+		flex-direction: column;
+		align-items: start;
+	}
+}
+
+.item {
+}
+
+.title {
+	margin-bottom: 20px;
+	font-weight: 500;
+	font-size: 17px;
+	line-height: 140%;
+	letter-spacing: 0.02em;
+}
+
+.link {
+	font-weight: 500;
+	font-size: 20px;
+	line-height: 140%;
+	letter-spacing: 0.02em;
+}
+
+@include tablet {
+	.list {
+		margin-bottom: 65px;
+	}
+	.title {
+		margin-bottom: 5px;
+	}
+}
+
+@include mobile {
+	.list {
+		margin-bottom: 30px;
+	}
+}
