@@ -1,0 +1,65 @@
+@use '../../../styles/variables' as *;
+@use '../../../styles/media' as *;
+@use '../../../styles/mixins' as *;
+
+.label {
+	position: relative;
+	display: inline-block;
+	cursor: pointer;
+}
+
+.inputHide {
+	position: absolute;
+	opacity: 0;
+	pointer-events: none;
+}
+
+.radioCheckSize,
+.radioCheckColor {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	width: 41px;
+	height: 41px;
+	border: 1px solid transparent;
+}
+
+.radioCheckSize {
+	border-color: $black;
+	transition: background-color 0.5s ease, color 0.5s ease;
+
+	@include disable-mob-hover {
+		background-color: $black;
+		color: $white;
+	}
+}
+
+.inputHide:checked + .radioCheckSize {
+	background-color: $black;
+	color: $white;
+}
+
+.radioCheckColor {
+	border-radius: 100px;
+	transition: border-color 0.5s ease, box-shadow 0.5s ease;
+
+	@include disable-mob-hover {
+		padding: 5px;
+		border-color: $black;
+	}
+}
+
+.inputHide:checked + .radioCheckColor {
+	border-color: $black;
+	box-shadow: 0 0 0 2px #fff, 0 0 0 3px #000;
+}
+
+.count {
+	width: 68px;
+	height: 68px;
+	font-weight: 400;
+	font-size: 20px;
+	line-height: 140%;
+	letter-spacing: 0.02em;
+	text-align: center;
+}

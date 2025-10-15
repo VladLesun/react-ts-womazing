@@ -9,29 +9,8 @@ import ShopPagination from '../../components/UI/ShopPagination/ShopPagination';
 import s from './Shop.module.scss';
 
 const categories = ['Все', 'Пальто', 'Свитшоты', 'Кардиганы', 'Толстовки'];
-const collectionItems = [
-	{
-		id: 1,
-		imgUrl: './img/collections/img1.png',
-		title: 'Футболка USA',
-		price: 229,
-		sale: 129,
-	},
-	{
-		id: 2,
-		imgUrl: './img/collections/img2.png',
-		title: 'Купальник Glow',
-		price: 129,
-	},
-	{
-		id: 3,
-		imgUrl: './img/collections/img3.png',
-		title: 'Свитшот Sweet Shot',
-		price: 129,
-	},
-];
 
-function Shop() {
+function Shop({ collectionItems }) {
 	const [activeCategory, setActiveCategory] = useState(0);
 
 	return (
@@ -54,14 +33,14 @@ function Shop() {
 				<ShopCountProducts />
 
 				<ul className={s.list}>
-					{collectionItems?.map(item => (
+					{collectionItems?.map(product => (
 						<ProductCard
-							key={item.id}
-							id={item.id}
-							imgUrl={item.imgUrl}
-							title={item.title}
-							price={item.price}
-							sale={item?.sale}
+							key={product.id}
+							id={product.id}
+							imgUrl={product.imgUrl}
+							title={product.title}
+							price={product.price}
+							sale={product?.sale}
 						/>
 					))}
 				</ul>
