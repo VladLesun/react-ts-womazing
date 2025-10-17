@@ -1,5 +1,5 @@
 import cn from 'classnames';
-import paymentImg from '../../assets/img/logo.svg';
+import paymentImg from '../../assets/img/payment-cards.png';
 import Logo from '../UI/Logo/Logo';
 import Navigation from '../UI/Navigation/Navigation';
 import s from './Footer.module.scss';
