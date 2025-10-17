@@ -1,4 +1,5 @@
 import cn from 'classnames';
+import paymentImg from '../../assets/img/logo.svg';
 import Logo from '../UI/Logo/Logo';
 import Navigation from '../UI/Navigation/Navigation';
 import s from './Footer.module.scss';
@@ -103,7 +104,7 @@ function Footer() {
 
 				<img
 					className={s.payment}
-					src='./img/payment-cards.png'
+					src={paymentImg}
 					alt='Оплата картами Visa и MasterCard'
 				/>
 			</div>
