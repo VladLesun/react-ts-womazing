@@ -12,7 +12,7 @@ function RelatedProducts({ products }) {
 						key={product.id}
 						id={product.id}
 						imgUrl={product.imgUrl}
-						title={product.title}
+						name={product.name}
 						price={product.price}
 						sale={product?.sale}
 					/>

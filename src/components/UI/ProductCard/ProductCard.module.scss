@@ -8,10 +8,12 @@
 }
 
 .image {
+	aspect-ratio: 3/4;
 	margin-bottom: 24px;
+	object-fit: cover;
 }
 
-.title {
+.name {
 	margin-bottom: 7px;
 	font-weight: 500;
 	font-size: 20px;

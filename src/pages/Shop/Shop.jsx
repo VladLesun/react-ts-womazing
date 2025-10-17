@@ -1,5 +1,8 @@
-import { useState } from 'react';
+import { collection, getDocs, query } from 'firebase/firestore';
+import { useEffect, useState } from 'react';
 import { Outlet } from 'react-router';
+
+import { db } from '../../API/fireBase';
 import Button from '../../components/UI/Button/Button';
 import PageTitleContent from '../../components/UI/PageTitleContent/PageTitleContent';
 import PageWrap from '../../components/UI/PageWrap/PageWrap';
@@ -8,22 +11,39 @@ import ShopCountProducts from '../../components/UI/ShopCountProducts/ShopCountPr
 import ShopPagination from '../../components/UI/ShopPagination/ShopPagination';
 import s from './Shop.module.scss';
 
-const categories = ['Все', 'Пальто', 'Свитшоты', 'Кардиганы', 'Толстовки'];
+// const categories = ['Все', 'Пальто', 'Свитшоты', 'Кардиганы', 'Толстовки'];
 
-function Shop({ collectionItems }) {
-	const [activeCategory, setActiveCategory] = useState(0);
+function Shop({ collectionProducts }) {
+	const [categories, setCategories] = useState(null);
+	const [activeCategory, setActiveCategory] = useState('all');
+
+	useEffect(() => {
+		(async () => {
+			const qCategories = query(collection(db, 'categories'));
+			const snapshot = await getDocs(qCategories);
+
+			const categories = snapshot.docs.map(doc => ({
+				id: doc.id,
+				name: doc.data().name,
+			}));
+
+			setCategories(categories);
+		})();
+	}, []);
+
+	
 
 	return (
 		<PageWrap>
 			<PageTitleContent children='Магазин' />
 
 			<ul className={s.categories}>
-				{categories?.map((category, index) => (
+				{categories?.map(category => (
 					<Button
-						key={index}
-						children={category}
-						onClick={() => setActiveCategory(index)}
-						className={activeCategory === index ? s._active : ''}
+						key={category.id}
+						children={category.name}
+						onClick={() => setActiveCategory(category.id)}
+						className={activeCategory === category.id ? s._active : ''}
 						variant='category'
 					/>
 				))}
@@ -33,12 +53,12 @@ function Shop({ collectionItems }) {
 				<ShopCountProducts />
 
 				<ul className={s.list}>
-					{collectionItems?.map(product => (
+					{collectionProducts?.map(product => (
 						<ProductCard
 							key={product.id}
 							id={product.id}
 							imgUrl={product.imgUrl}
-							title={product.title}
+							name={product.name}
 							price={product.price}
 							sale={product?.sale}
 						/>

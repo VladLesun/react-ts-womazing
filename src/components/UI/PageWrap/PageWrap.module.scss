@@ -5,10 +5,10 @@
 .wrap {
 	padding: 130px 0;
 
-	@include laptop {
-	}
 	@include tablet {
+		padding: 65px 0;
 	}
 	@include mobile {
+		padding: 30px 0;
 	}
 }

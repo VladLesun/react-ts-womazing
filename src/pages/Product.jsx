@@ -4,12 +4,10 @@ import ProductForm from '../components/UI/Forms/ProductForm/ProductForm';
 import PageTitleContent from '../components/UI/PageTitleContent/PageTitleContent';
 import PageWrap from '../components/UI/PageWrap/PageWrap';
 
-function Product({ collectionItems }) {
+function Product({ collectionProducts }) {
 	const { id } = useParams();
-	const product = collectionItems.find(item => item.id === Number(id));
-	const relatedProducts = collectionItems.filter(
-		item => item.id !== Number(id)
-	);
+	const product = collectionProducts?.find(item => item.id === id);
+	const relatedProducts = collectionProducts?.filter(item => item.id !== id);
 
 	if (!product) {
 		return (
@@ -21,7 +19,7 @@ function Product({ collectionItems }) {
 
 	return (
 		<PageWrap>
-			<PageTitleContent children={product.title} />
+			<PageTitleContent children={product.name} />
 
 			<ProductForm
 				{...product}

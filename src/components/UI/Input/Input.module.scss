@@ -25,6 +25,7 @@
 }
 
 .radioCheckSize {
+	text-transform: uppercase;
 	border-color: $black;
 	transition: background-color 0.5s ease, color 0.5s ease;
 
@@ -40,6 +41,7 @@
 }
 
 .radioCheckColor {
+	border-color: $black;
 	border-radius: 100px;
 	transition: border-color 0.5s ease, box-shadow 0.5s ease;
 

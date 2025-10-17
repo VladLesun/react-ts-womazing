@@ -1,3 +1,5 @@
+import { collection, getDocs, query } from 'firebase/firestore';
+import { useEffect, useState } from 'react';
 import { Route, Routes } from 'react-router';
 
 import Footer from './components/Footer/Footer';
@@ -8,6 +10,7 @@ import NotFound from './pages/NotFound';
 import Product from './pages/Product';
 import Shop from './pages/Shop/Shop';
 
+import { db } from './API/fireBase';
 import img1 from './assets/img/products/img1.png';
 import img2 from './assets/img/products/img2.png';
 import img3 from './assets/img/products/img3.png';
@@ -42,6 +45,21 @@ const collectionItems = [
 ];
 
 function App() {
+	const [collectionProducts, setCollectionProducts] = useState(null);
+	useEffect(() => {
+		(async () => {
+			const qProducts = query(collection(db, 'products'));
+			const snapshot = await getDocs(qProducts);
+
+			const products = snapshot.docs.map(doc => ({
+				id: doc.id,
+				...doc.data(),
+			}));
+
+			setCollectionProducts(products);
+		})();
+	}, []);
+
 	return (
 		<>
 			<Header />
@@ -50,11 +68,11 @@ function App() {
 					<Route path='/' element={<Home />} />
 					<Route
 						path='/shop'
-						element={<Shop collectionItems={collectionItems} />}
+						element={<Shop collectionProducts={collectionProducts} />}
 					/>
 					<Route
 						path='/shop/product/:id'
-						element={<Product collectionItems={collectionItems} />}
+						element={<Product collectionProducts={collectionProducts} />}
 					/>
 					<Route path='/about-brand' element={<AboutBrand />} />
 					<Route path='/contacts' element={<Contacts />} />
