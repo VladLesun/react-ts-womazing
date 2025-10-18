@@ -9,6 +9,7 @@ import PageWrap from '../../components/UI/PageWrap/PageWrap';
 import ProductCard from '../../components/UI/ProductCard/ProductCard';
 import ShopCountProducts from '../../components/UI/ShopCountProducts/ShopCountProducts';
 import ShopPagination from '../../components/UI/ShopPagination/ShopPagination';
+import ProductsSkeleton from '../../components/UI/Skeletons/ProductsSkeleton/ProductsSkeleton';
 import s from './Shop.module.scss';
 
 // const categories = ['Все', 'Пальто', 'Свитшоты', 'Кардиганы', 'Толстовки'];
@@ -31,8 +32,6 @@ function Shop({ collectionProducts }) {
 		})();
 	}, []);
 
-	
-
 	return (
 		<PageWrap>
 			<PageTitleContent children='Магазин' />
@@ -53,16 +52,20 @@ function Shop({ collectionProducts }) {
 				<ShopCountProducts />
 
 				<ul className={s.list}>
-					{collectionProducts?.map(product => (
-						<ProductCard
-							key={product.id}
-							id={product.id}
-							imgUrl={product.imgUrl}
-							name={product.name}
-							price={product.price}
-							sale={product?.sale}
-						/>
-					))}
+					{!collectionProducts ? (
+						<ProductsSkeleton count={6} />
+					) : (
+						collectionProducts?.map(product => (
+							<ProductCard
+								key={product.id}
+								id={product.id}
+								imgUrl={product.imgUrl}
+								name={product.name}
+								price={product.price}
+								sale={product?.sale}
+							/>
+						))
+					)}
 				</ul>
 
 				<ShopCountProducts />

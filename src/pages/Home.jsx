@@ -3,7 +3,7 @@ import Hero from '../components/Hero/Hero';
 import Important from '../components/Important/Important';
 import Team from '../components/Team/Team';
 
-function Home() {
+function Home({collectionProducts}) {
 	return (
 		<>
 			<h1 className='visually-hidden'>
@@ -11,7 +11,7 @@ function Home() {
 			</h1>
 
 			<Hero />
-			<Collections />
+			<Collections products={collectionProducts} />
 			<Important />
 			<Team />
 		</>

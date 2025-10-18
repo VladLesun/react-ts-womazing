@@ -65,7 +65,7 @@ function App() {
 			<Header />
 			<main>
 				<Routes>
-					<Route path='/' element={<Home />} />
+					<Route path='/' element={<Home collectionProducts={collectionProducts} />} />
 					<Route
 						path='/shop'
 						element={<Shop collectionProducts={collectionProducts} />}

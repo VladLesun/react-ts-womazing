@@ -1,41 +1,37 @@
+import { useMemo } from 'react';
+import shuffle from '../../util/shuffle';
 import Button from '../UI/Button/Button';
 import ProductCard from '../UI/ProductCard/ProductCard';
+import ProductsSkeleton from '../UI/Skeletons/ProductsSkeleton/ProductsSkeleton';
 import s from './Collections.module.scss';
 
-function Collections() {
-	const collectionItems = [
-		{
-			imgUrl: './img/collections/img1.png',
-			title: 'Футболка USA',
-			price: 229,
-			sale: 129,
-		},
-		{
-			imgUrl: './img/collections/img2.png',
-			title: 'Купальник Glow',
-			price: 129,
-		},
-		{
-			imgUrl: './img/collections/img3.png',
-			title: 'Свитшот Sweet Shot',
-			price: 129,
-		},
-	];
+function Collections({ products }) {
+	const newCollectionProducts = useMemo(() => {
+		if (!products) return [];
+		return shuffle(products).slice(0, 3);
+	}, [products]);
+	console.log('newCollectionProducts: ', newCollectionProducts);
+
 	return (
 		<section className={s.collections}>
 			<div className='container'>
 				<h2 className={s.title}>Новая коллекция</h2>
 
 				<ul className={s.list}>
-					{collectionItems.map(item => (
-						<ProductCard
-							key={item.title}
-							imgUrl={item.imgUrl}
-							title={item.title}
-							price={item.price}
-							sale={item?.sale}
-						/>
-					))}
+					{!products ? (
+						<ProductsSkeleton count={3} />
+					) : (
+						newCollectionProducts.map(product => (
+							<ProductCard
+								key={product.id}
+								id={product.id}
+								imgUrl={product.imgUrl}
+								name={product.name}
+								price={product.price}
+								sale={product?.sale}
+							/>
+						))
+					)}
 				</ul>
 
 				<Button
