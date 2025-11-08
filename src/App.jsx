@@ -1,5 +1,3 @@
-import { collection, getDocs, query } from 'firebase/firestore';
-import { useEffect, useState } from 'react';
 import { Route, Routes } from 'react-router';
 
 import Footer from './components/Footer/Footer';
@@ -10,10 +8,12 @@ import NotFound from './pages/NotFound';
 import Product from './pages/Product';
 import Shop from './pages/Shop/Shop';
 
-import { db } from './API/fireBase';
 import img1 from './assets/img/products/img1.png';
 import img2 from './assets/img/products/img2.png';
 import img3 from './assets/img/products/img3.png';
+import { CategoriesProvider } from './context/CategoriesContext';
+import { ProductsProvider } from './context/ProductsContext';
+import Cart from './pages/Cart';
 import Contacts from './pages/Contacts';
 
 const collectionItems = [
@@ -45,41 +45,25 @@ const collectionItems = [
 ];
 
 function App() {
-	const [collectionProducts, setCollectionProducts] = useState(null);
-	useEffect(() => {
-		(async () => {
-			const qProducts = query(collection(db, 'products'));
-			const snapshot = await getDocs(qProducts);
-
-			const products = snapshot.docs.map(doc => ({
-				id: doc.id,
-				...doc.data(),
-			}));
-
-			setCollectionProducts(products);
-		})();
-	}, []);
-
 	return (
 		<>
-			<Header />
-			<main>
-				<Routes>
-					<Route path='/' element={<Home collectionProducts={collectionProducts} />} />
-					<Route
-						path='/shop'
-						element={<Shop collectionProducts={collectionProducts} />}
-					/>
-					<Route
-						path='/shop/product/:id'
-						element={<Product collectionProducts={collectionProducts} />}
-					/>
-					<Route path='/about-brand' element={<AboutBrand />} />
-					<Route path='/contacts' element={<Contacts />} />
-					<Route path='*' element={<NotFound />} />
-				</Routes>
-			</main>
-			<Footer />
+			<CategoriesProvider>
+				<ProductsProvider>
+					<Header />
+					<main>
+						<Routes>
+							<Route path='/' element={<Home />} />
+							<Route path='/shop' element={<Shop />} />
+							<Route path='/shop/product/:id' element={<Product />} />
+							<Route path='/about-brand' element={<AboutBrand />} />
+							<Route path='/contacts' element={<Contacts />} />
+							<Route path='/cart' element={<Cart />} />
+							<Route path='*' element={<NotFound />} />
+						</Routes>
+					</main>
+					<Footer />
+				</ProductsProvider>
+			</CategoriesProvider>
 		</>
 	);
 }

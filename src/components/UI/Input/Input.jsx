@@ -1,3 +1,5 @@
+import cn from 'classnames';
+
 import s from './Input.module.scss';
 
 function Input({ onChange, className, type, variant, value, placeholder }) {
@@ -33,7 +35,9 @@ function Input({ onChange, className, type, variant, value, placeholder }) {
 	}
 
 	if (variant === 'count') {
-		return <input className={s.count} type={type} value={value} />;
+		return (
+			<input className={cn(s.count, className)} type={type} value={value} />
+		);
 	}
 
 	if (variant === 'textarea') {

@@ -1,9 +1,9 @@
 import s from './ShopCountProducts.module.scss';
 
-function ShopCountProducts() {
+function ShopCountProducts({ productLength }) {
 	return (
 		<p className={s.desc}>
-			Показано: <span>9</span> из <span>12</span> товаров
+			Показано: <span>{productLength}</span> из <span>12</span> товаров
 		</p>
 	);
 }

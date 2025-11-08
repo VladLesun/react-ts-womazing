@@ -1,16 +1,18 @@
 import { useMemo } from 'react';
+import { useProducts } from '../../context/ProductsContext';
 import shuffle from '../../util/shuffle';
 import Button from '../UI/Button/Button';
 import ProductCard from '../UI/ProductCard/ProductCard';
 import ProductsSkeleton from '../UI/Skeletons/ProductsSkeleton/ProductsSkeleton';
 import s from './Collections.module.scss';
 
-function Collections({ products }) {
+function Collections() {
+	const { products } = useProducts();
+
 	const newCollectionProducts = useMemo(() => {
 		if (!products) return [];
 		return shuffle(products).slice(0, 3);
 	}, [products]);
-	console.log('newCollectionProducts: ', newCollectionProducts);
 
 	return (
 		<section className={s.collections}>

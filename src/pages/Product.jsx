@@ -3,11 +3,13 @@ import RelatedProducts from '../components/RelatedProducts/RelatedProducts';
 import ProductForm from '../components/UI/Forms/ProductForm/ProductForm';
 import PageTitleContent from '../components/UI/PageTitleContent/PageTitleContent';
 import PageWrap from '../components/UI/PageWrap/PageWrap';
+import { useProducts } from '../context/ProductsContext';
 
-function Product({ collectionProducts }) {
+function Product() {
+	const { products } = useProducts();
 	const { id } = useParams();
-	const product = collectionProducts?.find(item => item.id === id);
-	const relatedProducts = collectionProducts?.filter(item => item.id !== id);
+	const product = products?.find(item => item.id === id);
+	const relatedProducts = products?.filter(item => item.id !== id);
 
 	if (!product) {
 		return (
