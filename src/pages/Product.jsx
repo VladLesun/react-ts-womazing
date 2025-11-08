@@ -7,6 +7,7 @@ import { useProducts } from '../context/ProductsContext';
 
 function Product() {
 	const { products } = useProducts();
+	console.log('products: ', products); //! убрать после добавления продуктов в редакс
 	const { id } = useParams();
 	const product = products?.find(item => item.id === id);
 	const productRelated = products?.filter(item => item.id !== id);
