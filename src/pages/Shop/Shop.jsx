@@ -45,7 +45,7 @@ function Shop() {
 
 	const fetchProducts = async () => {
 		setIsLoading(true);
-
+		//
 		try {
 			let qProducts;
 
