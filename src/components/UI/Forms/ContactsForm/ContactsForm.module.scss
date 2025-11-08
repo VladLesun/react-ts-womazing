@@ -1,0 +1,26 @@
+@use '../../../../styles/media' as *;
+
+.form {
+}
+
+.title {
+	margin-bottom: 60px;
+	font-weight: 500;
+	font-size: 25px;
+	line-height: 140%;
+	letter-spacing: 0.02em;
+
+	@include mobile {
+		margin-bottom: 20px;
+	}
+}
+
+.fieldset {
+	display: flex;
+	flex-direction: column;
+	gap: 35px;
+}
+
+.btn {
+	width: 190px;
+}

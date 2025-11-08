@@ -54,7 +54,7 @@ function HeroSlider() {
 						/>
 					</svg>
 				</a>
-				<Button children='Открыть магазин' href='/shop' />
+				<Button children='Открыть магазин' href='/shop' className={s.link} />
 			</div>
 
 			<SliderBar

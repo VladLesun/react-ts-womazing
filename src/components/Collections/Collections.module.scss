@@ -16,7 +16,8 @@
 	margin-bottom: 65px;
 }
 
-.btn {
+.link {
+	width: 260px;
 	margin: 0 auto;
 }
 
@@ -47,5 +48,8 @@
 	.list {
 		gap: 20px;
 		margin-bottom: 20px;
+	}
+	.link {
+		width: 100%;
 	}
 }

@@ -1,0 +1,27 @@
+@use '../../styles/media' as *;
+@use '../../styles/variables' as *;
+@use '../../styles/mixins' as *;
+
+.list {
+	display: grid;
+	grid-template-columns: repeat(3, 1fr);
+	gap: 65px 30px;
+	margin-bottom: 65px;
+}
+
+@include tablet {
+	.list {
+		grid-template-columns: repeat(2, 1fr);
+		gap: 45px 20px;
+		margin-bottom: 45px;
+	}
+}
+
+@include mobile {
+	.list {
+		grid-template-columns: 1fr;
+		gap: 30px;
+		margin-bottom: 30px;
+		justify-self: center;
+	}
+}

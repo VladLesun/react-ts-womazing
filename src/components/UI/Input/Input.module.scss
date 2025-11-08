@@ -1,0 +1,104 @@
+@use '../../../styles/variables' as *;
+@use '../../../styles/media' as *;
+@use '../../../styles/mixins' as *;
+
+.label {
+	position: relative;
+	display: inline-block;
+	cursor: pointer;
+}
+
+.inputHide {
+	position: absolute;
+	opacity: 0;
+	pointer-events: none;
+}
+
+.radioCheckSize,
+.radioCheckColor {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	width: 41px;
+	height: 41px;
+	border: 1px solid transparent;
+}
+
+.radioCheckSize {
+	text-transform: uppercase;
+	border-color: $black;
+	transition: background-color 0.5s ease, color 0.5s ease;
+
+	@include disable-mob-hover {
+		background-color: $black;
+		color: $white;
+	}
+}
+
+.inputHide:checked + .radioCheckSize {
+	background-color: $black;
+	color: $white;
+}
+
+.radioCheckColor {
+	border-color: $black;
+	border-radius: 100px;
+	transition: border-color 0.5s ease, box-shadow 0.5s ease;
+
+	@include disable-mob-hover {
+		padding: 5px;
+		border-color: $black;
+	}
+}
+
+.inputHide:checked + .radioCheckColor {
+	border-color: $black;
+	box-shadow: 0 0 0 2px #fff, 0 0 0 3px #000;
+}
+
+.count {
+	width: 68px;
+	height: 68px;
+	border: 1px solid $black;
+	font-weight: 400;
+	font-size: 20px;
+	line-height: 140%;
+	letter-spacing: 0.02em;
+	text-align: center;
+}
+
+.input {
+	width: 350px;
+	height: 40px;
+}
+
+.textarea {
+	width: 445px;
+	height: 135px;
+	resize: none;
+
+	@include mobile-lg {
+		width: 350px;
+	}
+}
+
+.input,
+.textarea {
+	border-bottom: 1px solid $black;
+	font-weight: 500;
+	font-size: 17px;
+	line-height: 140%;
+	letter-spacing: 0.02em;
+
+	@include mobile {
+		width: 290px;
+	}
+
+	&::placeholder {
+		transition: opacity 0.5s ease;
+	}
+
+	&:focus::placeholder {
+		opacity: 0;
+	}
+}

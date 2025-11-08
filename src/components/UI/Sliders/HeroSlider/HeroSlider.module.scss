@@ -52,6 +52,10 @@
 	color: $cta;
 }
 
+.link {
+	width: 260px;
+}
+
 .btns {
 	margin-left: 270px;
 }
@@ -110,6 +114,9 @@
 	.actions {
 		margin-left: 0;
 		margin-bottom: 30px;
+	}
+	.link {
+		width: 200px;
 	}
 	.btns {
 		margin: 0 auto;
