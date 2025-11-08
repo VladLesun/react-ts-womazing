@@ -1,10 +1,15 @@
 import cn from 'classnames';
+import { useSelector } from 'react-redux';
+import { Link } from 'react-router';
 import paymentImg from '../../assets/img/payment-cards.png';
+import { selectCategoriesArray } from '../../redux/filter/filter.select';
 import Logo from '../UI/Logo/Logo';
 import Navigation from '../UI/Navigation/Navigation';
 import s from './Footer.module.scss';
 
 function Footer() {
+	const categoriesArray = useSelector(selectCategoriesArray).slice(1);
+
 	return (
 		<footer className={s.footer}>
 			<div className={cn('container', s.container)}>
@@ -29,18 +34,11 @@ function Footer() {
 				</p>
 
 				<ul className={s.categories}>
-					<li>
-						<a href='#!'>Пальто</a>
-					</li>
-					<li>
-						<a href='#!'>Свитшоты</a>
-					</li>
-					<li>
-						<a href='#!'>Кардиганы</a>
-					</li>
-					<li>
-						<a href='#!'>Толстовки</a>
-					</li>
+					{categoriesArray.map(category => (
+						<li key={category.id}>
+							<Link to={`/shop?category=${category.id}`}>{category.name}</Link>
+						</li>
+					))}
 				</ul>
 
 				<ul className={s.socials}>

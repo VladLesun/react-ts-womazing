@@ -1,7 +1,7 @@
-import ProductCard from '../UI/ProductCard/ProductCard';
-import s from './RelatedProducts.module.scss';
+import ProductCard from '../ProductCard/ProductCard';
+import s from './ProductRelated.module.scss';
 
-function RelatedProducts({ products }) {
+function ProductRelated({ products }) {
 	return (
 		<div>
 			<h2 className={s.title}>Связанные товары</h2>
@@ -22,4 +22,4 @@ function RelatedProducts({ products }) {
 	);
 }
 
-export default RelatedProducts;
+export default ProductRelated;

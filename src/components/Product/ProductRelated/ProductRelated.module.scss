@@ -1,5 +1,5 @@
-@use '../../styles/media' as *;
-@use '../../styles/mixins' as *;
+@use '../../../styles/media' as *;
+@use '../../../styles/mixins' as *;
 
 .title {
 	@include main-page-title;

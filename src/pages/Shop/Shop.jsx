@@ -3,10 +3,10 @@ import { useEffect, useRef, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useNavigate, useSearchParams } from 'react-router';
 import { db } from '../../API/fireBase';
+import ProductCard from '../../components/Product/ProductCard/ProductCard';
 import ProductCategory from '../../components/Product/ProductCategory/ProductCategory';
 import PageTitleContent from '../../components/UI/PageTitleContent/PageTitleContent';
 import PageWrap from '../../components/UI/PageWrap/PageWrap';
-import ProductCard from '../../components/UI/ProductCard/ProductCard';
 import ShopCountProducts from '../../components/UI/ShopCountProducts/ShopCountProducts';
 import ShopPagination from '../../components/UI/ShopPagination/ShopPagination';
 import ProductsSkeleton from '../../components/UI/Skeletons/ProductsSkeleton/ProductsSkeleton';
@@ -71,20 +71,15 @@ function Shop() {
 			setIsError(error);
 		} finally {
 			setIsLoading(false);
-			isSearch.current = false;
 		}
 	};
 
 	useEffect(() => {
-		if (isMounted.current) {
-			const queryString = new URLSearchParams(buildParams()).toString();
+		const queryString = new URLSearchParams(buildParams()).toString();
 
-			if (window.location.search !== `?${queryString}`) {
-				navigate(`?${queryString}`);
-			}
+		if (window.location.search !== `?${queryString}`) {
+			navigate(`?${queryString}`);
 		}
-
-		isMounted.current = true;
 	}, [categoryObj]);
 
 	useEffect(() => {
@@ -99,17 +94,13 @@ function Shop() {
 					category,
 				})
 			);
-
-			isSearch.current = true;
 		}
 	}, [dispatch, searchParams, categoriesArray]);
 
 	useEffect(() => {
-		if (!isSearch.current) {
-			fetchProducts();
-		}
+		window.scrollTo(0, 0);
 
-		isSearch.current = false;
+		fetchProducts();
 	}, [categoryObj]);
 
 	return (

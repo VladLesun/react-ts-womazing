@@ -7,10 +7,10 @@ const initialState = {
 	},
 	categoriesArray: [
 		{ id: 'all', name: 'Все' },
-		{ id: 'cardigan', name: 'Кардиганы' },
 		{ id: 'coat', name: 'Пальто' },
-		{ id: 'hoodie', name: 'Толстовки' },
 		{ id: 'sweatshirt', name: 'Свитшоты' },
+		{ id: 'cardigan', name: 'Кардиганы' },
+		{ id: 'hoodie', name: 'Толстовки' },
 	],
 };
 

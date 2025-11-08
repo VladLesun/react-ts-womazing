@@ -1,8 +1,8 @@
 import { useMemo } from 'react';
 import { useProducts } from '../../context/ProductsContext';
 import shuffle from '../../util/shuffle';
+import ProductCard from '../Product/ProductCard/ProductCard';
 import Button from '../UI/Button/Button';
-import ProductCard from '../UI/ProductCard/ProductCard';
 import ProductsSkeleton from '../UI/Skeletons/ProductsSkeleton/ProductsSkeleton';
 import s from './Collections.module.scss';
 
