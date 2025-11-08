@@ -1,6 +1,6 @@
 import { collection, getDocs, query } from 'firebase/firestore';
 import { createContext, useContext, useEffect, useState } from 'react';
-import { db } from '../API/fireBase';
+import { db } from '../API/firebase';
 
 const CategoriesContext = createContext();
 

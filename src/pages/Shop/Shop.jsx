@@ -2,7 +2,7 @@ import { collection, getDocs, query, where } from 'firebase/firestore';
 import { useEffect, useRef, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useNavigate, useSearchParams } from 'react-router';
-import { db } from '../../API/fireBase';
+import { db } from '../../API/firebase.js';
 import ProductCard from '../../components/Product/ProductCard/ProductCard';
 import ProductCategory from '../../components/Product/ProductCategory/ProductCategory';
 import PageTitleContent from '../../components/UI/PageTitleContent/PageTitleContent';
