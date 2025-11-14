@@ -19,7 +19,7 @@ function ProductForm({ onClick, imgUrl, title, price, sale, size, color }) {
 				<div className={s.wrap}>
 					<p className={s.subtitle}>Выберите размер</p>
 					<ul className={s.list}>
-						{size.map(size => (
+						{size?.map(size => (
 							<li key={size}>
 								<Input type='radio' variant='size' value={size} />
 							</li>
@@ -30,7 +30,7 @@ function ProductForm({ onClick, imgUrl, title, price, sale, size, color }) {
 				<div className={s.wrap}>
 					<p className={s.subtitle}>Выберите цвет</p>
 					<ul className={s.list}>
-						{color.map(color => (
+						{color?.map(color => (
 							<li key={color}>
 								<Input type='radio' variant='color' value={color} />
 							</li>

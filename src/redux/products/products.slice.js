@@ -1,7 +1,8 @@
 import { createSlice } from '@reduxjs/toolkit';
-import { fetchProducts } from './products.action';
+import { fetchProduct, fetchProducts } from './products.action';
 
 const initialState = {
+	item: null,
 	items: [],
 	status: 'idle',
 };
@@ -27,6 +28,18 @@ const productsSlice = createSlice({
 			.addCase(fetchProducts.rejected, (state, action) => {
 				state.status = 'failed';
 				state.items = [];
+			})
+			.addCase(fetchProduct.pending, state => {
+				state.status = 'loading';
+				state.item = null;
+			})
+			.addCase(fetchProduct.fulfilled, (state, action) => {
+				state.status = 'succeeded';
+				state.item = action.payload;
+			})
+			.addCase(fetchProduct.rejected, (state, action) => {
+				state.status = 'failed';
+				state.item = null;
 			});
 	},
 });
