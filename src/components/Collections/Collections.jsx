@@ -1,6 +1,4 @@
-import ProductCard from '../Product/ProductCard/ProductCard';
 import Button from '../UI/Button/Button';
-import ProductsSkeleton from '../UI/Skeletons/ProductsSkeleton/ProductsSkeleton';
 import s from './Collections.module.scss';
 
 function Collections() {
@@ -17,7 +15,7 @@ function Collections() {
 				<h2 className={s.title}>Новая коллекция</h2>
 
 				<ul className={s.list}>
-					{!products ? (
+					{/* {!products ? (
 						<ProductsSkeleton count={3} />
 					) : (
 						newCollectionProducts.map(product => (
@@ -30,7 +28,7 @@ function Collections() {
 								sale={product?.sale}
 							/>
 						))
-					)}
+					)} */}
 				</ul>
 
 				<Button
