@@ -1,6 +1,6 @@
 import cn from 'classnames';
 import { useSelector } from 'react-redux';
-import { Link } from 'react-router';
+import { Link } from 'react-router-dom';
 import paymentImg from '../../assets/img/payment-cards.png';
 import { selectCategoriesArray } from '../../redux/filter/filter.select';
 import Logo from '../UI/Logo/Logo';

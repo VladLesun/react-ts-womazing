@@ -1,4 +1,4 @@
-import { Route, Routes } from 'react-router';
+import { Route, Routes } from 'react-router-dom';
 
 import Layout from './layouts/Layout';
 import AboutBrand from './pages/AboutBrand/AboutBrand';
@@ -12,8 +12,8 @@ import Shop from './pages/Shop/Shop';
 function App() {
 	return (
 		<Routes>
-			<Route element={<Layout />}>
-				<Route path='/' element={<Home />} />
+			<Route path='/' element={<Layout />}>
+				<Route index element={<Home />} />
 				<Route path='/shop' element={<Shop />} />
 				<Route path='/shop/product/:productId' element={<Product />} />
 				<Route path='/about-brand' element={<AboutBrand />} />

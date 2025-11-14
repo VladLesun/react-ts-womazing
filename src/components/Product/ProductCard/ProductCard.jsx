@@ -1,4 +1,4 @@
-import { Link } from 'react-router';
+import { Link } from 'react-router-dom';
 import s from './ProductCard.module.scss';
 
 function ProductCard({ id, imgUrl, name, price, sale }) {

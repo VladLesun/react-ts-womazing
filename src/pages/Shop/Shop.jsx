@@ -1,6 +1,6 @@
 import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { useNavigate, useSearchParams } from 'react-router';
+import { useNavigate, useSearchParams } from 'react-router-dom';
 import ProductCard from '../../components/Product/ProductCard/ProductCard';
 import ProductCategory from '../../components/Product/ProductCategory/ProductCategory';
 import PageTitleContent from '../../components/UI/PageTitleContent/PageTitleContent';
@@ -43,7 +43,7 @@ function Shop() {
 	};
 
 	const getProducts = () => {
-		dispatch(fetchProducts(categoryObj.id));
+		dispatch(fetchProducts(categoryObj));
 	};
 
 	useEffect(() => {

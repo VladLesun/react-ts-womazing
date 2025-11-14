@@ -1,5 +1,5 @@
 import cn from 'classnames';
-import { Link } from 'react-router';
+import { Link } from 'react-router-dom';
 import s from './Button.module.scss';
 
 function Button({ children, href, onClick, variant = 'primary', className }) {

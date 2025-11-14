@@ -1,5 +1,5 @@
 import cn from 'classnames';
-import { Link } from 'react-router';
+import { Link } from 'react-router-dom';
 import Logo from '../UI/Logo/Logo';
 import Navigation from '../UI/Navigation/Navigation';
 import s from './Header.module.scss';

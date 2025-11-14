@@ -4,13 +4,13 @@ import { db } from '../../API/firebase';
 
 export const fetchProducts = createAsyncThunk(
 	'products/fetchProducts',
-	async categoryId => {
+	async category => {
 		let qProducts;
 
-		if (categoryId && categoryId !== 'all') {
+		if (category?.id && category?.id !== 'all') {
 			qProducts = query(
 				collection(db, 'products'),
-				where('categoryId', '==', categoryId)
+				where('categoryId', '==', category?.id)
 			);
 		} else {
 			qProducts = query(collection(db, 'products'));
