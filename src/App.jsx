@@ -11,7 +11,6 @@ import Shop from './pages/Shop/Shop';
 import img1 from './assets/img/products/img1.png';
 import img2 from './assets/img/products/img2.png';
 import img3 from './assets/img/products/img3.png';
-import { CategoriesProvider } from './context/CategoriesContext';
 import { ProductsProvider } from './context/ProductsContext';
 import Cart from './pages/Cart';
 import Contacts from './pages/Contacts';
@@ -47,23 +46,21 @@ const collectionItems = [
 function App() {
 	return (
 		<>
-			<CategoriesProvider>
-				<ProductsProvider>
-					<Header />
-					<main>
-						<Routes>
-							<Route path='/' element={<Home />} />
-							<Route path='/shop' element={<Shop />} />
-							<Route path='/shop/product/:id' element={<Product />} />
-							<Route path='/about-brand' element={<AboutBrand />} />
-							<Route path='/contacts' element={<Contacts />} />
-							<Route path='/cart' element={<Cart />} />
-							<Route path='*' element={<NotFound />} />
-						</Routes>
-					</main>
-					<Footer />
-				</ProductsProvider>
-			</CategoriesProvider>
+			<ProductsProvider>
+				<Header />
+				<main>
+					<Routes>
+						<Route path='/' element={<Home />} />
+						<Route path='/shop' element={<Shop />} />
+						<Route path='/shop/product/:productId' element={<Product />} />
+						<Route path='/about-brand' element={<AboutBrand />} />
+						<Route path='/contacts' element={<Contacts />} />
+						<Route path='/cart' element={<Cart />} />
+						<Route path='*' element={<NotFound />} />
+					</Routes>
+				</main>
+				<Footer />
+			</ProductsProvider>
 		</>
 	);
 }
