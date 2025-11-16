@@ -14,10 +14,10 @@ export const fetchProducts = createAsyncThunk(
 	async category => {
 		let qProducts;
 
-		if (category?.id && category?.id !== 'all') {
+		if (category?.id && category.id !== 'all') {
 			qProducts = query(
 				collection(db, 'products'),
-				where('categoryId', '==', category?.id)
+				where('categoryId', '==', category.id)
 			);
 		} else {
 			qProducts = query(collection(db, 'products'));

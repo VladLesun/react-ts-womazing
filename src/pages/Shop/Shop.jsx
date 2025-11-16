@@ -61,11 +61,7 @@ function Shop() {
 				categoriesArray.find(category => category.id === params.category) ||
 				categoriesArray[0];
 
-			dispatch(
-				setFilters({
-					category,
-				})
-			);
+			dispatch(setFilters(category));
 		}
 	}, [dispatch, searchParams, categoriesArray]);
 

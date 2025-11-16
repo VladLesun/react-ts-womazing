@@ -22,8 +22,7 @@ const filterSlice = createSlice({
 			state.category = action.payload;
 		},
 		setFilters(state, action) {
-			const { category } = action.payload;
-			state.category = category;
+			state.category = action.payload;
 		},
 	},
 });

@@ -26,6 +26,7 @@ const productsSlice = createSlice({
 				state.items = action.payload;
 			})
 			.addCase(fetchProducts.rejected, (state, action) => {
+				console.error('fetchProducts error:', action.error);
 				state.status = 'failed';
 				state.items = [];
 			})
