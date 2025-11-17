@@ -1,10 +1,15 @@
 import cn from 'classnames';
+import { useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
+import { selectCartTotalQuantity } from '../../redux/cart/cart.select';
 import Logo from '../UI/Logo/Logo';
 import Navigation from '../UI/Navigation/Navigation';
 import s from './Header.module.scss';
 
 function Header() {
+	const cartTotalQuantity = useSelector(selectCartTotalQuantity);
+	console.log('cartTotalQuantity: ', cartTotalQuantity);
+
 	return (
 		<header className={s.header}>
 			<div className={cn('container', s.container)}>
@@ -48,7 +53,9 @@ function Header() {
 							<path d='M16.4421 15.0354C16.7692 15.0354 17.0343 14.7702 17.0343 14.4431V12.6663C17.0343 12.3392 16.7692 12.074 16.4421 12.074C16.1149 12.074 15.8498 12.3392 15.8498 12.6663V14.4431C15.8497 14.7702 16.1149 15.0354 16.4421 15.0354Z' />
 							<path d='M7.55803 15.0354C7.88514 15.0354 8.1503 14.7702 8.1503 14.4431V12.6663C8.1503 12.3392 7.88514 12.074 7.55803 12.074C7.23092 12.074 6.96576 12.3392 6.96576 12.6663V14.4431C6.96576 14.7702 7.23092 15.0354 7.55803 15.0354Z' />
 						</svg>
-						<span className={s.count}>10</span>
+						{cartTotalQuantity > 0 && (
+							<span className={s.count}>{cartTotalQuantity}</span>
+						)}
 					</Link>
 				</div>
 			</div>

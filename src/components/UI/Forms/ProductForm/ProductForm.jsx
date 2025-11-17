@@ -1,30 +1,50 @@
 import { useState } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import { selectUserId } from '../../../../redux/auth/auth.select';
+import { addToCart } from '../../../../redux/cart/cart.action';
 import Button from '../../Button/Button';
 import Input from '../../Input/Input';
 import s from './ProductForm.module.scss';
 
-function ProductForm({ onClick, id, imgUrl, title, price, sale, size, color }) {
+function ProductForm({ id, imgUrl, name, price, sale, size, color }) {
+	const dispatch = useDispatch();
+
+	const userId = useSelector(selectUserId);
+
 	const [itemSize, setItemSize] = useState(size[0]);
 	const [itemColor, setItemColor] = useState(color[0]);
 	const [itemQuantity, setItemQuantity] = useState(1);
 
 	const handleAddProduct = e => {
 		e.preventDefault();
-		// if() {}
+
+		if (!userId) {
+			console.warn('Нет userId — пользователь не авторизован');
+			return;
+		}
+		if (!itemSize || !itemColor || itemQuantity < 1) {
+			console.warn('Некорректные данные товара');
+			return;
+		}
+
 		const item = {
+			id,
 			imgUrl,
-			title,
+			name,
 			size: itemSize,
 			color: itemColor,
 			price: sale ? sale : price,
 			quantity: itemQuantity,
 		};
+
+		dispatch(addToCart({ userId, item }));
+
 		console.log(`Товар успешно добавлен в корзину!`, item);
 	};
 
 	return (
 		<form className={s.form}>
-			<img className={s.image} src={imgUrl} alt={title} />
+			<img className={s.image} src={imgUrl} alt={name} />
 			<div className={s.content}>
 				{sale ? (
 					<p className={s.price}>
