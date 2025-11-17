@@ -5,6 +5,7 @@ import ProductRelated from '../components/Product/ProductRelated/ProductRelated'
 import ProductForm from '../components/UI/Forms/ProductForm/ProductForm';
 import PageTitleContent from '../components/UI/PageTitleContent/PageTitleContent';
 import PageWrap from '../components/UI/PageWrap/PageWrap';
+import ProductSkeleton from '../components/UI/Skeletons/ProductSkeleton/ProductSkeleton';
 import { fetchProduct, fetchProducts } from '../redux/products/products.action';
 import {
 	selectProduct,
@@ -23,7 +24,7 @@ function Product() {
 
 	useEffect(() => {
 		dispatch(fetchProduct(productId));
-	}, [dispatch]);
+	}, [dispatch, productId]);
 
 	useEffect(() => {
 		if (product) {
@@ -34,7 +35,7 @@ function Product() {
 	let content = null;
 
 	if (productStatus === 'loading') {
-		content = 'Загрузка....';
+		content = <ProductSkeleton />;
 	}
 
 	if (productStatus === 'succeeded' && product) {
@@ -50,13 +51,7 @@ function Product() {
 			<>
 				<PageTitleContent children={product.name} />
 
-				<ProductForm
-					{...product}
-					onClick={e => {
-						e.preventDefault();
-						console.log('Продукт добавлен в корзину');
-					}}
-				/>
+				<ProductForm {...product} />
 
 				{productRelated.length > 0 && (
 					<ProductRelated products={productRelated} />

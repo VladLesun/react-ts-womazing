@@ -2,14 +2,24 @@ import cn from 'classnames';
 
 import s from './Input.module.scss';
 
-function Input({ onChange, className, type, variant, value, placeholder }) {
+function Input({
+	checked,
+	onChange,
+	className,
+	type,
+	variant,
+	value,
+	placeholder,
+}) {
 	if (type === 'radio') {
 		return (
 			<label className={s.label}>
 				<input
+					value={value}
+					onChange={onChange}
+					checked={checked}
 					className={s.inputHide}
 					type={type}
-					value={value}
 					name={
 						variant === 'size'
 							? 'size'
@@ -36,15 +46,23 @@ function Input({ onChange, className, type, variant, value, placeholder }) {
 
 	if (variant === 'count') {
 		return (
-			<input className={cn(s.count, className)} type={type} value={value} />
+			<input
+				value={value}
+				onChange={onChange}
+				className={cn(s.count, className)}
+				type={type}
+				max='99'
+				min='0'
+			/>
 		);
 	}
 
 	if (variant === 'textarea') {
 		return (
 			<textarea
-				className={s.textarea}
 				value={value}
+				onChange={onChange}
+				className={s.textarea}
 				placeholder={placeholder}
 			></textarea>
 		);
@@ -52,9 +70,10 @@ function Input({ onChange, className, type, variant, value, placeholder }) {
 
 	return (
 		<input
+			value={value}
+			onChange={onChange}
 			className={s.input}
 			type={type}
-			value={value}
 			placeholder={placeholder}
 		/>
 	);
