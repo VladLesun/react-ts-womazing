@@ -25,11 +25,10 @@ const productsSlice = createSlice({
 				state.status = 'succeeded';
 				state.items = action.payload;
 			})
-			// .addCase(fetchProducts.rejected, (state, action) => {
-			// 	console.error('fetchProducts error:', action.error);
-			// 	state.status = 'failed';
-			// 	state.items = [];
-			// })
+			.addCase(fetchProducts.rejected, state => {
+				state.status = 'failed';
+				state.items = [];
+			})
 			.addCase(fetchProduct.pending, state => {
 				state.status = 'loading';
 				state.item = null;
@@ -38,7 +37,7 @@ const productsSlice = createSlice({
 				state.status = 'succeeded';
 				state.item = action.payload;
 			})
-			.addCase(fetchProduct.rejected, (state, action) => {
+			.addCase(fetchProduct.rejected, state => {
 				state.status = 'failed';
 				state.item = null;
 			});
