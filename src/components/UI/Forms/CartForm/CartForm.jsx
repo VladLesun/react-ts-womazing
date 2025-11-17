@@ -1,6 +1,7 @@
 import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 
+import CartEmpty from '../../../../pages/CartEmpty/CartEmpty';
 import { selectUserId } from '../../../../redux/auth/auth.select';
 import { fetchCart } from '../../../../redux/cart/cart.action';
 import {
@@ -18,7 +19,6 @@ function CartForm() {
 
 	const userId = useSelector(selectUserId);
 	const cartItems = useSelector(selectCartItems);
-	console.log('cartItems: ', cartItems);
 	const cartTotalPrice = useSelector(selectTotalPrice);
 	const cartStatus = useSelector(selectCartStatus);
 
@@ -29,13 +29,13 @@ function CartForm() {
 	}, [dispatch, userId]);
 
 	if (!cartTotalPrice) {
-		// <CartEmpty />
+		return <CartEmpty />;
 	}
 
 	let content = null;
 
 	if (cartStatus === 'loading') {
-		content = <td>Loading...</td>;
+		content = <tr>Loading...</tr>;
 	}
 
 	if (cartStatus === 'succeeded' && cartItems.length) {
@@ -44,7 +44,7 @@ function CartForm() {
 
 	if (cartStatus === 'failed') {
 		content = (
-			<td className={s.errorMessage}>Произошла ошибка, попробуйте позже</td>
+			<tr className={s.errorMessage}>Произошла ошибка, попробуйте позже</tr>
 		);
 	}
 
