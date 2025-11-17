@@ -13,13 +13,14 @@ import Home from './pages/Home';
 import NotFound from './pages/NotFound';
 import Product from './pages/Product';
 import Shop from './pages/Shop/Shop';
+import { selectUserId } from './redux/auth/auth.select';
 import { setUser } from './redux/auth/auth.slice';
 import { setCartRealTime } from './redux/cart/cart.slice';
 
 function App() {
 	const dispatch = useDispatch();
 
-	const userId = useSelector(state => state.auth.userId);
+	const userId = useSelector(selectUserId);
 
 	useEffect(() => {
 		// создаём анонимного пользователя
@@ -43,7 +44,6 @@ function App() {
 		const cartRef = collection(doc(db, 'users', userId), 'cart');
 		const unsubCart = onSnapshot(cartRef, snapshot => {
 			const items = snapshot.docs.map(doc => ({ id: doc.id, ...doc.data() }));
-			console.log('items: ', items);
 			dispatch(setCartRealTime(items));
 
 			return () => unsubCart;

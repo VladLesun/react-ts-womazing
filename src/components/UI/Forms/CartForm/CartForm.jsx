@@ -1,12 +1,53 @@
-import cn from 'classnames';
+import { useEffect } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
 
+import { selectUserId } from '../../../../redux/auth/auth.select';
+import { fetchCart } from '../../../../redux/cart/cart.action';
+import {
+	selectCartItems,
+	selectCartStatus,
+	selectTotalPrice,
+} from '../../../../redux/cart/cart.select';
+import ProductCart from '../../../Product/ProductCart/ProductCart';
 import Button from '../../Button/Button';
 import Input from '../../Input/Input';
 import s from './CartForm.module.scss';
 
-import img1 from '../../../../assets/img/products/img1.png';
-
 function CartForm() {
+	const dispatch = useDispatch();
+
+	const userId = useSelector(selectUserId);
+	const cartItems = useSelector(selectCartItems);
+	console.log('cartItems: ', cartItems);
+	const cartTotalPrice = useSelector(selectTotalPrice);
+	const cartStatus = useSelector(selectCartStatus);
+
+	useEffect(() => {
+		if (userId) {
+			dispatch(fetchCart(userId));
+		}
+	}, [dispatch, userId]);
+
+	if (!cartTotalPrice) {
+		// <CartEmpty />
+	}
+
+	let content = null;
+
+	if (cartStatus === 'loading') {
+		content = <td>Loading...</td>;
+	}
+
+	if (cartStatus === 'succeeded' && cartItems.length) {
+		content = cartItems.map(item => <ProductCart key={item.id} {...item} />);
+	}
+
+	if (cartStatus === 'failed') {
+		content = (
+			<td className={s.errorMessage}>Произошла ошибка, попробуйте позже</td>
+		);
+	}
+
 	return (
 		<form className={s.form}>
 			<div className={s.tableMobile}>
@@ -19,64 +60,7 @@ function CartForm() {
 							<th className={s.th}>Всего</th>
 						</tr>
 					</thead>
-					<tbody>
-						<tr className={s.body}>
-							<td className={cn(s.td, s.td_first)}>
-								<button className={s.remove}>
-									<svg
-										width='14'
-										height='14'
-										viewBox='0 0 14 14'
-										stroke='currentColor'
-										xmlns='http://www.w3.org/2000/svg'
-									>
-										<path d='M1 1L13 13M13 1L1 13' />
-									</svg>
-								</button>
-
-								<img className={s.image} src={img1} alt='Product name' />
-
-								<p>Футболка USA</p>
-							</td>
-							<td className={s.td}>
-								<p>$129</p>
-							</td>
-							<td className={s.td}>
-								<Input variant='count' type='number' value={1} />
-							</td>
-							<td className={s.td}>
-								<p>$129</p>
-							</td>
-						</tr>
-						<tr className={s.body}>
-							<td className={cn(s.td, s.td_first)}>
-								<button className={s.remove}>
-									<svg
-										width='14'
-										height='14'
-										viewBox='0 0 14 14'
-										stroke='currentColor'
-										xmlns='http://www.w3.org/2000/svg'
-									>
-										<path d='M1 1L13 13M13 1L1 13' />
-									</svg>
-								</button>
-
-								<img className={s.image} src={img1} alt='Product name' />
-
-								<p>Футболка USA</p>
-							</td>
-							<td className={s.td}>
-								<p>$129</p>
-							</td>
-							<td className={s.td}>
-								<Input variant='count' type='number' value={1} />
-							</td>
-							<td className={s.td}>
-								<p>$129</p>
-							</td>
-						</tr>
-					</tbody>
+					<tbody>{content}</tbody>
 				</table>
 			</div>
 
@@ -91,7 +75,7 @@ function CartForm() {
 
 			<div className={s.order}>
 				<p className={s.total}>
-					Итого: <span className={s.totalPrice}>$129</span>
+					Итого: <span className={s.totalPrice}>${cartTotalPrice}</span>
 				</p>
 
 				<Button children='Оформить заказ' />
