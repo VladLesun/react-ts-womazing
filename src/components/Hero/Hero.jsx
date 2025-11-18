@@ -1,11 +1,11 @@
 import HeroSlider from '../UI/Sliders/HeroSlider/HeroSlider';
 import s from './Hero.module.scss';
 
-function Hero() {
+function Hero({ onClick }) {
 	return (
 		<section className={s.hero}>
 			<div className='container'>
-				<HeroSlider />
+				<HeroSlider onClick={onClick} />
 			</div>
 
 			<div className={s.imagesWrap}>

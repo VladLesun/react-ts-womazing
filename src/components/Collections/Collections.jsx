@@ -9,7 +9,7 @@ import Button from '../UI/Button/Button';
 import ProductsSkeleton from '../UI/Skeletons/ProductsSkeleton/ProductsSkeleton';
 import s from './Collections.module.scss';
 
-function Collections() {
+function Collections({ ref }) {
 	const dispatch = useDispatch();
 
 	const products = useSelector(selectProducts);
@@ -24,7 +24,7 @@ function Collections() {
 	}, [dispatch]);
 
 	return (
-		<section className={s.collections}>
+		<section className={s.collections} ref={ref}>
 			<div className='container'>
 				<h2 className={s.title}>Новая коллекция</h2>
 

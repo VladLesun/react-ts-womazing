@@ -19,7 +19,7 @@ const slides = [
 	},
 ];
 
-function HeroSlider() {
+function HeroSlider({ onClick }) {
 	const [activeId, setActiveId] = useState(0);
 	return (
 		<div className={s.slider}>
@@ -34,7 +34,7 @@ function HeroSlider() {
 			))}
 
 			<div className={s.actions}>
-				<a href='#!' className={s.anchor}>
+				<button onClick={onClick} className={s.anchor}>
 					<svg
 						width='67'
 						height='68'
@@ -53,7 +53,7 @@ function HeroSlider() {
 							stroke='#6E9C9F'
 						/>
 					</svg>
-				</a>
+				</button>
 				<Button children='Открыть магазин' href='/shop' className={s.link} />
 			</div>
 
