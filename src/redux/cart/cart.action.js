@@ -5,7 +5,9 @@ import {
 	deleteDoc,
 	doc,
 	getDocs,
+	query,
 	updateDoc,
+	where,
 } from 'firebase/firestore';
 import { db } from '../../API/firebase';
 
@@ -52,11 +54,11 @@ export const addToCart = createAsyncThunk(
 
 export const removeFromCart = createAsyncThunk(
 	'cart/removeFromCart',
-	async ({ userId, itemId }) => {
-		const itemRef = doc(db, 'users', userId, 'cart', itemId);
+	async ({ userId, id }) => {
+		const itemRef = doc(db, 'users', userId, 'cart', id);
 		await deleteDoc(itemRef);
 
-		return itemId;
+		return id;
 	}
 );
 

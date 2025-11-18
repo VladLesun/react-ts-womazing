@@ -45,9 +45,9 @@ function App() {
 		const unsubCart = onSnapshot(cartRef, snapshot => {
 			const items = snapshot.docs.map(doc => ({ id: doc.id, ...doc.data() }));
 			dispatch(setCartRealTime(items));
-
-			return () => unsubCart;
 		});
+
+		return () => unsubCart;
 	}, [dispatch, userId]);
 
 	return (
@@ -55,7 +55,7 @@ function App() {
 			<Route path='/' element={<Layout />}>
 				<Route index element={<Home />} />
 				<Route path='/shop' element={<Shop />} />
-				<Route path='/shop/product/:productId' element={<Product />} />
+				<Route path='/shop/:productId' element={<Product />} />
 				<Route path='/about-brand' element={<AboutBrand />} />
 				<Route path='/contacts' element={<Contacts />} />
 				<Route path='/cart' element={<Cart />} />

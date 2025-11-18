@@ -8,7 +8,6 @@ import s from './Header.module.scss';
 
 function Header() {
 	const cartTotalQuantity = useSelector(selectCartTotalQuantity);
-	console.log('cartTotalQuantity: ', cartTotalQuantity);
 
 	return (
 		<header className={s.header}>

@@ -1,15 +1,46 @@
 import cn from 'classnames';
-
+import { useCallback, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
+
 import { selectUserId } from '../../../redux/auth/auth.select';
-import { removeFromCart } from '../../../redux/cart/cart.action';
+import {
+	removeFromCart,
+	updateCartItemQuantity,
+} from '../../../redux/cart/cart.action';
+import { debounce } from '../../../util/debounce';
 import Input from '../../UI/Input/Input';
 import s from './ProductCart.module.scss';
 
-function ProductCart({ id, imgUrl, name, size, color, price, quantity }) {
+function ProductCart({
+	id,
+	productId,
+	imgUrl,
+	name,
+	size,
+	color,
+	price,
+	quantity,
+}) {
 	const dispatch = useDispatch();
 
 	const userId = useSelector(selectUserId);
+
+	const [productQuantity, setProductQuantity] = useState(quantity);
+
+	const updateProductQuantity = useCallback(
+		debounce(str => {
+			dispatch(updateCartItemQuantity({ userId, id, quantity: str }));
+		}, 1000),
+		[dispatch, userId, id]
+	);
+
+	const handleUpdateQuantity = e => {
+		const val = e.target.value === '' ? '' : Number(e.target.value);
+		setProductQuantity(val);
+		if (val !== '') {
+			updateProductQuantity(val);
+		}
+	};
 
 	const handleItemRemove = () => {
 		if (confirm('Ты действительно хочешь удалить товар из корзины ?')) {
@@ -50,7 +81,12 @@ function ProductCart({ id, imgUrl, name, size, color, price, quantity }) {
 				<p>$ {price}</p>
 			</td>
 			<td className={s.td}>
-				<Input variant='count' type='number' value={quantity} />
+				<Input
+					variant='count'
+					type='number'
+					value={productQuantity}
+					onChange={handleUpdateQuantity}
+				/>
 			</td>
 			<td className={s.td}>
 				<p>${quantity * price}</p>

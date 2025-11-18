@@ -4,7 +4,7 @@ import s from './ProductCard.module.scss';
 function ProductCard({ id, imgUrl, name, price, sale }) {
 	return (
 		<li className={s.link}>
-			<Link to={`/shop/product/${id}`}>
+			<Link to={`/shop/${id}`}>
 				<article>
 					<img className={s.image} src={imgUrl} alt={name} />
 					<h3 className={s.name}>{name}</h3>

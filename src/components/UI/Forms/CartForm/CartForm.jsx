@@ -28,23 +28,31 @@ function CartForm() {
 		}
 	}, [dispatch, userId]);
 
-	if (!cartTotalPrice) {
-		return <CartEmpty />;
-	}
-
 	let content = null;
 
 	if (cartStatus === 'loading') {
-		content = <tr>Loading...</tr>;
+		content = (
+			<tr>
+				<td colSpan={4}>Loading...</td>
+			</tr>
+		);
 	}
 
 	if (cartStatus === 'succeeded' && cartItems.length) {
 		content = cartItems.map(item => <ProductCart key={item.id} {...item} />);
 	}
 
+	if (cartStatus === 'succeeded' && !cartTotalPrice) {
+		return <CartEmpty />;
+	}
+
 	if (cartStatus === 'failed') {
 		content = (
-			<tr className={s.errorMessage}>Произошла ошибка, попробуйте позже</tr>
+			<tr>
+				<td colSpan={4} className={s.errorMessage}>
+					Произошла ошибка, попробуйте позже
+				</td>
+			</tr>
 		);
 	}
 

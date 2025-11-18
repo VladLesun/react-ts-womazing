@@ -28,7 +28,7 @@ function ProductForm({ id, imgUrl, name, price, sale, size, color }) {
 		}
 
 		const item = {
-			id,
+			productId: id,
 			imgUrl,
 			name,
 			size: itemSize,
