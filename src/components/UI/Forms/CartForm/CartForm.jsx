@@ -12,6 +12,7 @@ import {
 import ProductCart from '../../../Product/ProductCart/ProductCart';
 import Button from '../../Button/Button';
 import Input from '../../Input/Input';
+import CartSkeleton from '../../Skeletons/CartSkeleton/CartSkeleton';
 import s from './CartForm.module.scss';
 
 function CartForm() {
@@ -31,11 +32,7 @@ function CartForm() {
 	let content = null;
 
 	if (cartStatus === 'loading') {
-		content = (
-			<tr>
-				<td colSpan={4}>Loading...</td>
-			</tr>
-		);
+		content = <CartSkeleton />;
 	}
 
 	if (cartStatus === 'succeeded' && cartItems.length) {

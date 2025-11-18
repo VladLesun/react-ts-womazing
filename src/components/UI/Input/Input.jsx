@@ -51,8 +51,8 @@ function Input({
 				onChange={onChange}
 				className={cn(s.count, className)}
 				type={type}
-				max='99'
-				min='0'
+				min={1}
+				max={99}
 			/>
 		);
 	}

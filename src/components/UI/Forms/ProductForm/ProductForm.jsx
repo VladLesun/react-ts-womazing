@@ -39,7 +39,7 @@ function ProductForm({ id, imgUrl, name, price, sale, size, color }) {
 
 		dispatch(addToCart({ userId, item }));
 
-		console.log(`Товар успешно добавлен в корзину!`, item);
+		alert(`Вещь (${name}) успешно добавлена в козину`);
 	};
 
 	return (
