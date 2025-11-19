@@ -1,4 +1,4 @@
-import { useEffect } from 'react';
+import { useEffect, useMemo } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { Link, useParams } from 'react-router-dom';
 import ProductRelated from '../components/Product/ProductRelated/ProductRelated';
@@ -12,15 +12,35 @@ import {
 	selectProducts,
 	selectProductsStatus,
 } from '../redux/products/products.select';
+import shuffle from '../util/shuffle';
 
 function Product() {
 	const dispatch = useDispatch();
 
 	const product = useSelector(selectProduct);
 	const products = useSelector(selectProducts);
+
 	const productStatus = useSelector(selectProductsStatus);
 
 	const { productId } = useParams();
+
+	const newProducts = () => {
+		if (!products) return [];
+
+		const categoryProducts = products.filter(
+			item => item.categoryId === product.categoryId
+		);
+
+		const searchProducts = categoryProducts.filter(
+			item => item.id !== productId
+		);
+
+		return searchProducts;
+	};
+
+	const relatedProducts = useMemo(() => {
+		return shuffle(newProducts()).slice(0, 3);
+	}, [products]);
 
 	useEffect(() => {
 		dispatch(fetchProduct(productId));
@@ -39,22 +59,14 @@ function Product() {
 	}
 
 	if (productStatus === 'succeeded' && product) {
-		const categoryProducts = products?.filter(
-			item => item.categoryId === product.categoryId
-		);
-
-		const productRelated = categoryProducts?.filter(
-			item => item.id !== productId
-		);
-
 		content = (
 			<>
 				<PageTitleContent children={product.name} />
 
 				<ProductForm {...product} />
 
-				{productRelated.length > 0 && (
-					<ProductRelated products={productRelated} />
+				{newProducts().length > 0 && (
+					<ProductRelated products={relatedProducts} />
 				)}
 			</>
 		);

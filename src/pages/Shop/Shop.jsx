@@ -92,14 +92,16 @@ function Shop() {
 
 	if (productsStatus === 'succeeded' && !products.length) {
 		content = (
-			<li>
+			<li className={s.content}>
 				Товары в этом разделе скоро появятся, извините за временные неудобства
 			</li>
 		);
 	}
 
 	if (productsStatus === 'failed') {
-		content = <li>Произошла ошибка подключения товаров</li>;
+		content = (
+			<li className={s.content}>Произошла ошибка подключения товаров</li>
+		);
 	}
 
 	return (
