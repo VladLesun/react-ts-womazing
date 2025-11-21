@@ -21,6 +21,7 @@ function Product() {
 	const products = useSelector(selectProducts);
 
 	const productStatus = useSelector(selectProductsStatus);
+	console.log('productStatus: ', productStatus);
 
 	const { productId } = useParams();
 
@@ -28,7 +29,7 @@ function Product() {
 		if (!products) return [];
 
 		const categoryProducts = products.filter(
-			item => item.categoryId === product.categoryId
+			item => item.categoryId === product?.categoryId
 		);
 
 		const searchProducts = categoryProducts.filter(

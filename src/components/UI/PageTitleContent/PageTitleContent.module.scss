@@ -1,5 +1,6 @@
 @use '../../../styles/media' as *;
 @use '../../../styles/variables' as *;
+@use '../../../styles/mixins' as *;
 
 .wrap {
 	margin-bottom: 100px;
@@ -31,6 +32,18 @@
 			color: $black;
 		}
 	}
+}
+
+.link {
+	transition: color 0.5s ease;
+
+	@include disable-mob-hover {
+		color: $cta;
+	}
+}
+
+.label {
+	color: $gray;
 }
 
 @include laptop-lg {
