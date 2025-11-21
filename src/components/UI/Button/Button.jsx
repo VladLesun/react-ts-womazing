@@ -1,5 +1,5 @@
 import cn from 'classnames';
-import { Link } from 'react-router';
+import { Link } from 'react-router-dom';
 import s from './Button.module.scss';
 
 function Button({ children, href, onClick, variant = 'primary', className }) {
@@ -14,7 +14,7 @@ function Button({ children, href, onClick, variant = 'primary', className }) {
 	}
 
 	return (
-		<button onClick={onClick} className={classes}>
+		<button type='button' onClick={onClick} className={classes}>
 			{children}
 		</button>
 	);

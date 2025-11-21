@@ -1,40 +1,88 @@
-import { useParams } from 'react-router';
+import { useEffect, useMemo } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import { Link, useParams } from 'react-router-dom';
 import ProductRelated from '../components/Product/ProductRelated/ProductRelated';
 import ProductForm from '../components/UI/Forms/ProductForm/ProductForm';
 import PageTitleContent from '../components/UI/PageTitleContent/PageTitleContent';
 import PageWrap from '../components/UI/PageWrap/PageWrap';
-import { useProducts } from '../context/ProductsContext';
+import ProductSkeleton from '../components/UI/Skeletons/ProductSkeleton/ProductSkeleton';
+import { fetchProduct, fetchProducts } from '../redux/products/products.action';
+import {
+	selectProduct,
+	selectProducts,
+	selectProductsStatus,
+} from '../redux/products/products.select';
+import shuffle from '../util/shuffle';
 
 function Product() {
-	const { products } = useProducts();
-	console.log('products: ', products); //! убрать после добавления продуктов в редакс
-	const { id } = useParams();
-	const product = products?.find(item => item.id === id);
-	const productRelated = products?.filter(item => item.id !== id);
+	const dispatch = useDispatch();
 
-	if (!product) {
-		return (
-			<PageWrap>
-				<PageTitleContent children='Товар не найден' />
-			</PageWrap>
+	const product = useSelector(selectProduct);
+	const products = useSelector(selectProducts);
+
+	const productStatus = useSelector(selectProductsStatus);
+	console.log('productStatus: ', productStatus);
+
+	const { productId } = useParams();
+
+	const newProducts = () => {
+		if (!products) return [];
+
+		const categoryProducts = products.filter(
+			item => item.categoryId === product?.categoryId
+		);
+
+		const searchProducts = categoryProducts.filter(
+			item => item.id !== productId
+		);
+
+		return searchProducts;
+	};
+
+	const relatedProducts = useMemo(() => {
+		return shuffle(newProducts()).slice(0, 3);
+	}, [products]);
+
+	useEffect(() => {
+		dispatch(fetchProduct(productId));
+	}, [dispatch, productId]);
+
+	useEffect(() => {
+		if (product) {
+			dispatch(fetchProducts(product.categoryId));
+		}
+	}, [dispatch, product]);
+
+	let content = null;
+
+	if (productStatus === 'loading') {
+		content = <ProductSkeleton />;
+	}
+
+	if (productStatus === 'succeeded' && product) {
+		content = (
+			<>
+				<PageTitleContent children={product.name} />
+
+				<ProductForm {...product} />
+
+				{newProducts().length > 0 && (
+					<ProductRelated products={relatedProducts} />
+				)}
+			</>
 		);
 	}
 
-	return (
-		<PageWrap>
-			<PageTitleContent children={product.name} />
+	if (productStatus === 'failed') {
+		content = (
+			<>
+				<PageTitleContent children='Товар не найден' />
+				<Link to={'/shop'}>Вернуться назад</Link>
+			</>
+		);
+	}
 
-			<ProductForm
-				{...product}
-				onClick={e => {
-					e.preventDefault();
-					console.log('Продукт добавлен в корзину');
-				}}
-			/>
-
-			<ProductRelated products={productRelated} />
-		</PageWrap>
-	);
+	return <PageWrap>{content}</PageWrap>;
 }
 
 export default Product;

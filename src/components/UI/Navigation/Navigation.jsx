@@ -1,5 +1,5 @@
 import cn from 'classnames';
-import { NavLink } from 'react-router';
+import { NavLink } from 'react-router-dom';
 import s from './Navigation.module.scss';
 
 const categories = [

@@ -38,49 +38,6 @@
 	text-align: start;
 }
 
-.body {
-	position: relative;
-
-	&::after {
-		position: absolute;
-		bottom: 0;
-		left: 0;
-		content: '';
-		display: block;
-		width: 100%;
-		height: 1px;
-		background-color: $gray;
-	}
-}
-
-.td {
-	padding: 50px 10px;
-	font-weight: 500;
-	font-size: 17px;
-	line-height: 140%;
-	letter-spacing: 0.02em;
-	&_first {
-		display: flex;
-		align-items: center;
-		gap: 30px;
-	}
-}
-
-.remove {
-	color: $gray;
-	transition: color 0.5s ease;
-
-	@include disable-mob-hover {
-		color: $black;
-	}
-}
-
-.image {
-	width: 125px;
-	height: 180px;
-	object-fit: cover;
-}
-
 .promoWrap {
 	display: flex;
 	align-items: center;
