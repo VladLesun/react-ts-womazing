@@ -1,8 +1,8 @@
 import cn from 'classnames';
-import { useRef, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 
+import { useValidation } from '../../../../hooks/useValidation';
 import { selectUserId } from '../../../../redux/auth/auth.select';
 import { clearCart } from '../../../../redux/cart/cart.action';
 import {
@@ -25,132 +25,37 @@ function OrderForm() {
 	const cartStatus = useSelector(selectCartStatus);
 	const cartTotalPrice = useSelector(selectTotalPrice);
 
-	const inputRefs = {
-		name: useRef(null),
-		email: useRef(null),
-		phone: useRef(null),
-		country: useRef(null),
-		city: useRef(null),
-		street: useRef(null),
-		house: useRef(null),
-		comment: useRef(null),
-	};
-
-	const [orderData, setOrderData] = useState({
-		name: '',
-		email: '',
-		phone: '',
-		country: '',
-		city: '',
-		street: '',
-		house: '',
-		apartment: '',
-		comment: '',
-		payment: 'cash',
-	});
-	const [errors, setErrors] = useState({});
-
-	const handleSetOrderData = e => {
-		const { name, value } = e.target;
-
-		setOrderData(prev => ({
-			...prev,
-			[name]: value,
-		}));
-
-		// динамическая проверка поля
-		let errorMsg = '';
-
-		if (!value.trim()) {
-			errorMsg = 'Поле обязательно';
-		} else {
-			if (name === 'email') {
-				const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-				if (!emailRegex.test(value)) {
-					errorMsg = 'Введите корректный email';
-				}
-			}
-			if (name === 'phone') {
-				const phoneRegex = /^[0-9+()\-\s]{7,}$/;
-				if (!phoneRegex.test(value)) {
-					errorMsg = 'Введите корректный номер телефона';
-				}
-			}
-			if (
-				!['house', 'email', 'phone'].includes(name) &&
-				value.trim().length < 2
-			) {
-				errorMsg = 'Минимум 2 символа';
-			}
-		}
-
-		setErrors(prev => ({
-			...prev,
-			[name]: errorMsg,
-		}));
-	};
-
-	const validateForm = () => {
-		const newErrors = {};
-		const requiredFields = [
-			'name',
-			'email',
-			'phone',
-			'country',
-			'city',
-			'street',
-			'house',
-		];
-
-		requiredFields.forEach(field => {
-			const value = orderData[field]?.trim();
-
-			if (!value) {
-				newErrors[field] = 'Поле обязательно';
-				return;
-			}
-
-			if (field === 'email') {
-				const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-				if (!emailRegex.test(value)) {
-					newErrors[field] = 'Введите корректный email';
-				}
-			}
-
-			if (field === 'phone') {
-				const phoneRegex = /^[0-9+()\-\s]{7,}$/;
-				if (!phoneRegex.test(value)) {
-					newErrors[field] = 'Введите корректный номер телефона';
-				}
-			}
-
-			if (!['house', 'email', 'phone'].includes(field) && value.length < 2) {
-				newErrors[field] = 'Минимум 2 символа';
-			}
-		});
-
-		setErrors(newErrors);
-
-		// если есть ошибки → скроллим к первому
-		const firstErrorField = Object.keys(newErrors)[0];
-		if (firstErrorField && inputRefs[firstErrorField]?.current) {
-			inputRefs[firstErrorField].current.scrollIntoView({
-				behavior: 'smooth',
-				block: 'center',
-			});
-			inputRefs[firstErrorField].current.focus();
-		}
-
-		return Object.keys(newErrors).length === 0;
-	};
+	const {
+		values,
+		errors,
+		refs,
+		validate,
+		handleChange,
+		handleReset,
+		getCleanValues,
+	} = useValidation(
+		{
+			name: '',
+			email: '',
+			phone: '',
+			country: '',
+			city: '',
+			street: '',
+			house: '',
+			apartment: '',
+			comment: '',
+			payment: 'cash',
+		},
+		['name', 'email', 'phone', 'country', 'city', 'street', 'house']
+	);
 
 	const handleSendOrder = e => {
 		e.preventDefault();
 
-		if (!validateForm()) return;
+		if (!validate()) return;
 
 		const order = {
-			customer: orderData,
+			customer: getCleanValues(),
 			products: cartItems.map(item => ({
 				id: item.productId,
 				size: item.size,
@@ -165,18 +70,7 @@ function OrderForm() {
 			.then(() => {
 				dispatch(clearCart(userId));
 				navigate('/confirmed');
-				setOrderData({
-					name: '',
-					email: '',
-					phone: '',
-					country: '',
-					city: '',
-					street: '',
-					house: '',
-					apartment: '',
-					comment: '',
-					payment: 'cash',
-				});
+				handleReset();
 				console.log('Заказ успешно отправлен...', order);
 			})
 			.catch(e => {
@@ -193,11 +87,11 @@ function OrderForm() {
 					<fieldset className={s.inputs}>
 						<div>
 							<Input
-								ref={inputRefs.name}
+								ref={refs.name}
 								className={cn(s.input, errors.name ? s.error : '')}
 								name='name'
-								value={orderData.name}
-								onChange={handleSetOrderData}
+								value={values.name}
+								onChange={handleChange}
 								type='text'
 								placeholder='Имя'
 							/>
@@ -207,11 +101,11 @@ function OrderForm() {
 						</div>
 						<div>
 							<Input
-								ref={inputRefs.email}
+								ref={refs.email}
 								className={cn(s.input, errors.email ? s.error : '')}
 								name='email'
-								value={orderData.email}
-								onChange={handleSetOrderData}
+								value={values.email}
+								onChange={handleChange}
 								type='email'
 								placeholder='E-mail'
 							/>
@@ -221,11 +115,11 @@ function OrderForm() {
 						</div>
 						<div>
 							<Input
-								ref={inputRefs.phone}
+								ref={refs.phone}
 								className={cn(s.input, errors.phone ? s.error : '')}
 								name='phone'
-								value={orderData.phone}
-								onChange={handleSetOrderData}
+								value={values.phone}
+								onChange={handleChange}
 								type='tel'
 								placeholder='Телефон'
 							/>
@@ -241,11 +135,11 @@ function OrderForm() {
 					<fieldset className={s.inputs}>
 						<div>
 							<Input
-								ref={inputRefs.country}
+								ref={refs.country}
 								className={cn(s.input, errors.country ? s.error : '')}
 								name='country'
-								value={orderData.country}
-								onChange={handleSetOrderData}
+								value={values.country}
+								onChange={handleChange}
 								type='text'
 								placeholder='Страна'
 							/>
@@ -255,11 +149,11 @@ function OrderForm() {
 						</div>
 						<div>
 							<Input
-								ref={inputRefs.city}
+								ref={refs.city}
 								className={cn(s.input, errors.city ? s.error : '')}
 								name='city'
-								value={orderData.city}
-								onChange={handleSetOrderData}
+								value={values.city}
+								onChange={handleChange}
 								type='text'
 								placeholder='Город'
 							/>
@@ -269,11 +163,11 @@ function OrderForm() {
 						</div>
 						<div>
 							<Input
-								ref={inputRefs.street}
+								ref={refs.street}
 								className={cn(s.input, errors.street ? s.error : '')}
 								name='street'
-								value={orderData.street}
-								onChange={handleSetOrderData}
+								value={values.street}
+								onChange={handleChange}
 								type='text'
 								placeholder='Улица'
 							/>
@@ -283,11 +177,11 @@ function OrderForm() {
 						</div>
 						<div>
 							<Input
-								ref={inputRefs.house}
+								ref={refs.house}
 								className={cn(s.input, errors.house ? s.error : '')}
 								name='house'
-								value={orderData.house}
-								onChange={handleSetOrderData}
+								value={values.house}
+								onChange={handleChange}
 								type='number'
 								placeholder='Дом'
 							/>
@@ -298,8 +192,8 @@ function OrderForm() {
 						<Input
 							className={s.input}
 							name='apartment'
-							value={orderData.apartment}
-							onChange={handleSetOrderData}
+							value={values.apartment}
+							onChange={handleChange}
 							type='number'
 							placeholder='Квартира'
 						/>
@@ -312,8 +206,8 @@ function OrderForm() {
 						<Input
 							className={s.input}
 							name='comment'
-							value={orderData.comment}
-							onChange={handleSetOrderData}
+							value={values.comment}
+							onChange={handleChange}
 							variant='textarea'
 							placeholder='Ваш комментарий...'
 						/>
@@ -365,8 +259,8 @@ function OrderForm() {
 					<Input
 						name='payment'
 						value='cash'
-						onChange={handleSetOrderData}
-						checked={orderData.payment === 'cash'}
+						onChange={handleChange}
+						checked={values.payment === 'cash'}
 						type='radio'
 						variant='payment'
 						placeholder='Оплата наличными'
@@ -375,8 +269,8 @@ function OrderForm() {
 					<Input
 						name='payment'
 						value='card'
-						onChange={handleSetOrderData}
-						checked={orderData.payment === 'card'}
+						onChange={handleChange}
+						checked={values.payment === 'card'}
 						type='radio'
 						variant='payment'
 						placeholder='Оплата картой'
