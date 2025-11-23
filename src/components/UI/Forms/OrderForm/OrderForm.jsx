@@ -1,20 +1,26 @@
 import cn from 'classnames';
 import { useRef, useState } from 'react';
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 
+import { selectUserId } from '../../../../redux/auth/auth.select';
+import { clearCart } from '../../../../redux/cart/cart.action';
 import {
 	selectCartItems,
 	selectCartStatus,
 	selectTotalPrice,
 } from '../../../../redux/cart/cart.select';
+import { sendOrder } from '../../../../redux/order/order.action';
 import Button from '../../Button/Button';
 import Input from '../../Input/Input';
+import OrderSkeleton from '../../Skeletons/OrderSkeleton';
 import s from './OrderForm.module.scss';
 
 function OrderForm() {
 	const navigate = useNavigate();
+	const dispatch = useDispatch();
 
+	const userId = useSelector(selectUserId);
 	const cartItems = useSelector(selectCartItems);
 	const cartStatus = useSelector(selectCartStatus);
 	const cartTotalPrice = useSelector(selectTotalPrice);
@@ -27,7 +33,6 @@ function OrderForm() {
 		city: useRef(null),
 		street: useRef(null),
 		house: useRef(null),
-		apartment: useRef(null),
 		comment: useRef(null),
 	};
 
@@ -72,7 +77,7 @@ function OrderForm() {
 				}
 			}
 			if (
-				!['house', 'apartment', 'email', 'phone'].includes(name) &&
+				!['house', 'email', 'phone'].includes(name) &&
 				value.trim().length < 2
 			) {
 				errorMsg = 'Минимум 2 символа';
@@ -95,7 +100,6 @@ function OrderForm() {
 			'city',
 			'street',
 			'house',
-			'apartment',
 		];
 
 		requiredFields.forEach(field => {
@@ -120,10 +124,7 @@ function OrderForm() {
 				}
 			}
 
-			if (
-				!['house', 'apartment', 'email', 'phone'].includes(field) &&
-				value.length < 2
-			) {
+			if (!['house', 'email', 'phone'].includes(field) && value.length < 2) {
 				newErrors[field] = 'Минимум 2 символа';
 			}
 		});
@@ -159,9 +160,29 @@ function OrderForm() {
 			totalPrice: cartTotalPrice,
 		};
 
-		console.log('order: ', order);
-
-		navigate('/order/confirmed');
+		dispatch(sendOrder({ userId, order }))
+			.unwrap()
+			.then(() => {
+				dispatch(clearCart(userId));
+				navigate('/confirmed');
+				setOrderData({
+					name: '',
+					email: '',
+					phone: '',
+					country: '',
+					city: '',
+					street: '',
+					house: '',
+					apartment: '',
+					comment: '',
+					payment: 'cash',
+				});
+				console.log('Заказ успешно отправлен...', order);
+			})
+			.catch(e => {
+				console.log(e);
+				alert('Ошибка при отправке заказа');
+			});
 	};
 
 	return (
@@ -205,7 +226,7 @@ function OrderForm() {
 								name='phone'
 								value={orderData.phone}
 								onChange={handleSetOrderData}
-								type='phone'
+								type='tel'
 								placeholder='Телефон'
 							/>
 							{errors.phone && (
@@ -274,20 +295,14 @@ function OrderForm() {
 								<span className={s.errorText}>{errors.house}</span>
 							)}
 						</div>
-						<div>
-							<Input
-								ref={inputRefs.apartment}
-								className={cn(s.input, errors.apartment ? s.error : '')}
-								name='apartment'
-								value={orderData.apartment}
-								onChange={handleSetOrderData}
-								type='number'
-								placeholder='Квартира'
-							/>
-							{errors.apartment && (
-								<span className={s.errorText}>{errors.apartment}</span>
-							)}
-						</div>
+						<Input
+							className={s.input}
+							name='apartment'
+							value={orderData.apartment}
+							onChange={handleSetOrderData}
+							type='number'
+							placeholder='Квартира'
+						/>
 					</fieldset>
 				</fieldset>
 
@@ -313,28 +328,30 @@ function OrderForm() {
 							Товар<span>Всего</span>
 						</li>
 
-						{cartStatus === 'loading'
-							? '<OrderSkeleton />'
-							: cartItems.map(item => (
-									<li key={item.id} className={cn(s.item, s.cartItem)}>
-										<div className={s.itemContent}>
-											<p>{item.name}</p>
-											<p>
-												<strong>Размер:</strong>{' '}
-												<span className={s.size}>{item.size}</span>
-											</p>
-											<p>
-												<strong>Цвет:</strong>{' '}
-												<span
-													className={s.color}
-													style={{ backgroundColor: item.color }}
-												></span>
-											</p>
-										</div>
+						{cartStatus === 'loading' ? (
+							<OrderSkeleton />
+						) : (
+							cartItems.map(item => (
+								<li key={item.id} className={cn(s.item, s.cartItem)}>
+									<div className={s.itemContent}>
+										<p>{item.name}</p>
+										<p>
+											<strong>Размер:</strong>{' '}
+											<span className={s.size}>{item.size}</span>
+										</p>
+										<p>
+											<strong>Цвет:</strong>{' '}
+											<span
+												className={s.color}
+												style={{ backgroundColor: item.color }}
+											></span>
+										</p>
+									</div>
 
-										<p>${item.price * item.quantity}</p>
-									</li>
-							  ))}
+									<p>${item.price * item.quantity}</p>
+								</li>
+							))
+						)}
 					</ul>
 
 					<p className={s.totalOrder}>
