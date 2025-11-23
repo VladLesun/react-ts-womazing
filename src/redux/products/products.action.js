@@ -5,7 +5,7 @@ import {
 	getDoc,
 	getDocs,
 	query,
-	where,
+	where
 } from 'firebase/firestore';
 import { db } from '../../API/firebase';
 

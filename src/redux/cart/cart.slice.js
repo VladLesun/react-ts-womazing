@@ -1,6 +1,7 @@
 import { createSlice } from '@reduxjs/toolkit';
 import {
 	addToCart,
+	clearCart,
 	fetchCart,
 	removeFromCart,
 	updateCartItemQuantity,
@@ -62,6 +63,16 @@ const cartSlice = createSlice({
 				if (item) item.quantity = action.payload.quantity;
 			})
 			.addCase(updateCartItemQuantity.rejected, state => {
+				state.status = 'failed';
+			})
+			.addCase(clearCart.pending, state => {
+				state.status = 'loading';
+			})
+			.addCase(clearCart.fulfilled, state => {
+				state.status = 'succeeded';
+				state.items = [];
+			})
+			.addCase(clearCart.rejected, state => {
 				state.status = 'failed';
 			});
 	},

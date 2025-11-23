@@ -4,13 +4,13 @@ import s from './PageWrap.module.scss';
 
 function PageWrap({ children }) {
 	const wrapRef = useRef();
-	const { pathname } = useLocation();
+	const location = useLocation();
 
 	useEffect(() => {
 		if (wrapRef.current) {
 			wrapRef.current.scrollIntoView({ behavior: 'smooth' });
 		}
-	}, [pathname]);
+	}, [location]);
 
 	return (
 		<div ref={wrapRef} className={s.wrap}>

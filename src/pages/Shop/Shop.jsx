@@ -1,12 +1,10 @@
-import { useEffect } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useNavigate, useSearchParams } from 'react-router-dom';
 import ProductCard from '../../components/Product/ProductCard/ProductCard';
 import ProductCategory from '../../components/Product/ProductCategory/ProductCategory';
 import PageTitleContent from '../../components/UI/PageTitleContent/PageTitleContent';
 import PageWrap from '../../components/UI/PageWrap/PageWrap';
-import ShopCountProducts from '../../components/UI/ShopCountProducts/ShopCountProducts';
-import ShopPagination from '../../components/UI/ShopPagination/ShopPagination';
 import ProductsSkeleton from '../../components/UI/Skeletons/ProductsSkeleton/ProductsSkeleton';
 import {
 	selectCategoriesArray,
@@ -32,6 +30,10 @@ function Shop() {
 	const categoryObj = useSelector(selectCategory);
 	const categoriesArray = useSelector(selectCategoriesArray);
 
+	const [visibleCount, setVisibleCount] = useState(6);
+	const [countStep, setCountStep] = useState(6);
+	const loaderRef = useRef(null);
+
 	const buildParams = () => {
 		const params = {};
 
@@ -40,10 +42,6 @@ function Shop() {
 		}
 
 		return params;
-	};
-
-	const getProducts = () => {
-		dispatch(fetchProducts(categoryObj));
 	};
 
 	useEffect(() => {
@@ -66,28 +64,68 @@ function Shop() {
 	}, [dispatch, searchParams, categoriesArray]);
 
 	useEffect(() => {
-		getProducts();
-
-		// window.scrollTo(0, 0);
+		dispatch(fetchProducts(categoryObj));
 	}, [categoryObj]);
+
+	useEffect(() => {
+		const handleCountOnResize = () => {
+			if (window.innerWidth >= 761) {
+				setVisibleCount(6); // планшет
+				setCountStep(6);
+			} else if (window.innerWidth >= 461) {
+				setVisibleCount(4); // мобильный-lg
+				setCountStep(4);
+			} else {
+				setVisibleCount(2); // маленький мобильный
+				setCountStep(2);
+			}
+		};
+
+		handleCountOnResize();
+
+		window.addEventListener('resize', handleCountOnResize);
+
+		return () => window.removeEventListener('resize', handleCountOnResize);
+	}, []);
+
+	useEffect(() => {
+		const observer = new IntersectionObserver(entries => {
+			if (entries[0].isIntersecting && productsStatus !== 'loading') {
+				setVisibleCount(prev => prev + countStep);
+			}
+		});
+
+		if (loaderRef.current) {
+			observer.observe(loaderRef.current);
+		}
+
+		return () => {
+			if (loaderRef.current) {
+				observer.unobserve(loaderRef.current);
+			}
+			observer.disconnect();
+		};
+	}, [productsStatus]);
 
 	let content = null;
 
 	if (productsStatus === 'loading') {
-		content = <ProductsSkeleton count={6} />;
+		content = <ProductsSkeleton count={visibleCount} />;
 	}
 
 	if (productsStatus === 'succeeded' && products.length) {
-		content = products?.map(product => (
-			<ProductCard
-				key={product.id}
-				id={product.id}
-				imgUrl={product.imgUrl}
-				name={product.name}
-				price={product.price}
-				sale={product?.sale}
-			/>
-		));
+		content = products
+			.slice(0, visibleCount)
+			.map(product => (
+				<ProductCard
+					key={product.id}
+					id={product.id}
+					imgUrl={product.imgUrl}
+					name={product.name}
+					price={product.price}
+					sale={product?.sale}
+				/>
+			));
 	}
 
 	if (productsStatus === 'succeeded' && !products.length) {
@@ -108,20 +146,14 @@ function Shop() {
 		<PageWrap>
 			<PageTitleContent children='Магазин' />
 
-			<ProductCategory />
+			<ProductCategory setVisibleCount={setVisibleCount} />
 
-			<div>
-				{products.length !== 0 && (
-					<ShopCountProducts productLength={products.length} />
+			<ul className={s.list}>{content}</ul>
+
+			<div ref={loaderRef}>
+				{productsStatus === 'loading' && (
+					<ProductsSkeleton count={visibleCount} />
 				)}
-
-				<ul className={s.list}>{content}</ul>
-
-				{products.length !== 0 && (
-					<ShopCountProducts productLength={products.length} />
-				)}
-
-				{products.length >= 12 && <ShopPagination className={s._active} />}
 			</div>
 		</PageWrap>
 	);

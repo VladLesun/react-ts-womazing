@@ -83,7 +83,7 @@ function CartForm() {
 					Итого: <span className={s.totalPrice}>${cartTotalPrice}</span>
 				</p>
 
-				<Button children='Оформить заказ' />
+				<Button href={'/order'} children='Оформить заказ' />
 			</div>
 		</form>
 	);

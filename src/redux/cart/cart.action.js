@@ -70,3 +70,13 @@ export const updateCartItemQuantity = createAsyncThunk(
 		return { id, quantity };
 	}
 );
+
+export const clearCart = createAsyncThunk('cart/clearCart', async userId => {
+	const cartRef = collection(doc(db, 'users', userId), 'cart');
+	const snapshot = await getDocs(cartRef);
+
+	const promises = snapshot.docs.map(doc => deleteDoc(doc.ref));
+	await Promise.all(promises);
+
+	return true;
+});

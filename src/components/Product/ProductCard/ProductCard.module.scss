@@ -5,6 +5,21 @@
 .link {
 	display: block;
 	max-width: 350px;
+	// min-height: 545px;
+	min-height: calc(485px + (545 - 485) * ((100vw - 1001px) / (1440 - 1001)));
+
+	@include laptop {
+		min-height: calc(378px + (484 - 378) * ((100vw - 761px) / (1000 - 761)));
+	}
+	@include tablet {
+		min-height: calc(425px + (537 - 425) * ((100vw - 581px) / (760 - 581)));
+	}
+	@include mobile-lg {
+		min-height: calc(373px + (425 - 373) * ((100vw - 461px) / (580 - 461)));
+	}
+	@include mobile {
+		min-height: calc(457px + (537 - 457) * ((100vw - 320px) / (460 - 320)));
+	}
 }
 
 .image {
