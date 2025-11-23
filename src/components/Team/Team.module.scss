@@ -39,11 +39,35 @@
 }
 
 .link {
+	position: relative;
+	display: block;
+	width: max-content;
 	font-weight: 500;
 	font-size: 17px;
 	line-height: 140%;
 	letter-spacing: 0.02em;
 	color: $cta;
+
+	&::before {
+		position: absolute;
+		left: 0;
+		bottom: 0;
+		content: '';
+		width: 100%;
+		height: 1px;
+		background-color: $cta;
+		transform: scaleX(0);
+		transform-origin: center;
+		transition: transform 0.5s ease;
+	}
+
+	@include disable-mob-hover {
+		& {
+		}
+		&::before {
+			transform: scaleX(1);
+		}
+	}
 }
 
 @include laptop {
