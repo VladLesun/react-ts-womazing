@@ -27,6 +27,17 @@
 	letter-spacing: 0.02em;
 }
 
+.phone,
+.mail,
+.category,
+.social {
+	transition: color 0.5s ease;
+
+	@include disable-mob-hover {
+		color: $cta;
+	}
+}
+
 .copyright {
 	grid-row: 2 / 4;
 	align-self: flex-end;
@@ -54,6 +65,12 @@
 	align-self: center;
 	display: flex;
 	gap: 12px;
+}
+
+.social {
+	display: block;
+	width: 21px;
+	height: 21px;
 }
 
 .payment {

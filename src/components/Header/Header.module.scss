@@ -24,6 +24,12 @@
 	margin-right: 9px;
 	background-color: transparent;
 	color: $cta;
+	transition: background-color 0.5s ease, color 0.5s ease;
+
+	@include disable-mob-hover {
+		background-color: $cta;
+		color: $white;
+	}
 }
 
 .phone {
@@ -32,11 +38,21 @@
 	font-size: 15px;
 	line-height: 140%;
 	letter-spacing: 0.02em;
+	transition: color 0.5s ease;
+
+	@include disable-mob-hover {
+		color: $cta;
+	}
 }
 
 .cart {
 	position: relative;
 	flex-shrink: 0;
+	transition: color 0.5s ease;
+
+	@include disable-mob-hover {
+		color: $cta;
+	}
 }
 
 .count {
