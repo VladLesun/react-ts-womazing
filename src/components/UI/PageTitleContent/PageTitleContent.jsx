@@ -8,6 +8,8 @@ const segmentNames = {
 	'about-brand': 'О брэнде',
 	contacts: 'Контакты',
 	cart: 'Корзина',
+	order: 'Оформление заказа',
+	confirmed: 'Заказ получен',
 };
 
 function PageTitleContent({ children }) {
@@ -20,6 +22,7 @@ function PageTitleContent({ children }) {
 		const href = `/${segments.slice(0, index + 1).join('/')}`;
 
 		let label = segmentNames[segment] || segment;
+
 		if (segments[index - 1] === 'shop' && product?.id) {
 			label = product?.name;
 		}

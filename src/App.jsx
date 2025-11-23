@@ -1,9 +1,9 @@
 import { onAuthStateChanged, signInAnonymously } from 'firebase/auth';
+import { collection, doc, onSnapshot } from 'firebase/firestore';
 import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { Route, Routes } from 'react-router-dom';
 
-import { collection, doc, onSnapshot } from 'firebase/firestore';
 import { auth, db } from './API/firebase';
 import Layout from './layouts/Layout';
 import AboutBrand from './pages/AboutBrand/AboutBrand';
@@ -11,6 +11,8 @@ import Cart from './pages/Cart';
 import Contacts from './pages/Contacts';
 import Home from './pages/Home';
 import NotFound from './pages/NotFound';
+import Order from './pages/Order';
+import OrderConfirmed from './pages/OrderConfirmed/OrderConfirmed';
 import Product from './pages/Product';
 import Shop from './pages/Shop/Shop';
 import { selectUserId } from './redux/auth/auth.select';
@@ -59,6 +61,8 @@ function App() {
 				<Route path='/about-brand' element={<AboutBrand />} />
 				<Route path='/contacts' element={<Contacts />} />
 				<Route path='/cart' element={<Cart />} />
+				<Route path='/order' element={<Order />} />
+				<Route path='/confirmed' element={<OrderConfirmed />} />
 				<Route path='*' element={<NotFound />} />
 			</Route>
 		</Routes>

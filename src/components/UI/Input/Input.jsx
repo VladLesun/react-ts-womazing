@@ -10,6 +10,8 @@ function Input({
 	variant,
 	value,
 	placeholder,
+	name,
+	ref,
 }) {
 	if (type === 'radio') {
 		return (
@@ -38,7 +40,11 @@ function Input({
 					}
 					style={{ backgroundColor: value }}
 				>
-					{variant === 'size' && value}
+					{variant === 'size'
+						? value
+						: variant === 'payment'
+						? placeholder
+						: ''}
 				</span>
 			</label>
 		);
@@ -60,9 +66,11 @@ function Input({
 	if (variant === 'textarea') {
 		return (
 			<textarea
+				ref={ref}
+				name={name}
 				value={value}
 				onChange={onChange}
-				className={s.textarea}
+				className={cn(s.textarea, className)}
 				placeholder={placeholder}
 			></textarea>
 		);
@@ -70,9 +78,11 @@ function Input({
 
 	return (
 		<input
+			ref={ref}
+			name={name}
 			value={value}
 			onChange={onChange}
-			className={s.input}
+			className={cn(s.input, className)}
 			type={type}
 			placeholder={placeholder}
 		/>
