@@ -108,3 +108,14 @@ input[type='number'] {
 		width: 100%;
 	}
 }
+
+.error {
+	border-color: $error;
+
+	&__text {
+		display: block;
+		margin-top: 10px;
+		font-size: 14px;
+		color: $error;
+	}
+}

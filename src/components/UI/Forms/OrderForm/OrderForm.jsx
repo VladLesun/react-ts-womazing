@@ -49,9 +49,7 @@ function OrderForm() {
 		['name', 'email', 'phone', 'country', 'city', 'street', 'house']
 	);
 
-	const handleSendOrder = e => {
-		e.preventDefault();
-
+	const handleSendOrder = () => {
 		if (!validate()) return;
 
 		const order = {
@@ -71,7 +69,6 @@ function OrderForm() {
 				dispatch(clearCart(userId));
 				navigate('/confirmed');
 				handleReset();
-				console.log('Заказ успешно отправлен...', order);
 			})
 			.catch(e => {
 				console.log(e);
@@ -88,7 +85,7 @@ function OrderForm() {
 						<div>
 							<Input
 								ref={refs.name}
-								className={cn(s.input, errors.name ? s.error : '')}
+								className={cn(s.input, errors.name ? 'error' : '')}
 								name='name'
 								value={values.name}
 								onChange={handleChange}
@@ -96,13 +93,13 @@ function OrderForm() {
 								placeholder='Имя'
 							/>
 							{errors.name && (
-								<span className={s.errorText}>{errors.name}</span>
+								<span className='error__text'>{errors.name}</span>
 							)}
 						</div>
 						<div>
 							<Input
 								ref={refs.email}
-								className={cn(s.input, errors.email ? s.error : '')}
+								className={cn(s.input, errors.email ? 'error' : '')}
 								name='email'
 								value={values.email}
 								onChange={handleChange}
@@ -110,13 +107,13 @@ function OrderForm() {
 								placeholder='E-mail'
 							/>
 							{errors.email && (
-								<span className={s.errorText}>{errors.email}</span>
+								<span className='error__text'>{errors.email}</span>
 							)}
 						</div>
 						<div>
 							<Input
 								ref={refs.phone}
-								className={cn(s.input, errors.phone ? s.error : '')}
+								className={cn(s.input, errors.phone ? 'error' : '')}
 								name='phone'
 								value={values.phone}
 								onChange={handleChange}
@@ -124,7 +121,7 @@ function OrderForm() {
 								placeholder='Телефон'
 							/>
 							{errors.phone && (
-								<span className={s.errorText}>{errors.phone}</span>
+								<span className='error__text'>{errors.phone}</span>
 							)}
 						</div>
 					</fieldset>
@@ -136,7 +133,7 @@ function OrderForm() {
 						<div>
 							<Input
 								ref={refs.country}
-								className={cn(s.input, errors.country ? s.error : '')}
+								className={cn(s.input, errors.country ? 'error' : '')}
 								name='country'
 								value={values.country}
 								onChange={handleChange}
@@ -144,13 +141,13 @@ function OrderForm() {
 								placeholder='Страна'
 							/>
 							{errors.country && (
-								<span className={s.errorText}>{errors.country}</span>
+								<span className='error__text'>{errors.country}</span>
 							)}
 						</div>
 						<div>
 							<Input
 								ref={refs.city}
-								className={cn(s.input, errors.city ? s.error : '')}
+								className={cn(s.input, errors.city ? 'error' : '')}
 								name='city'
 								value={values.city}
 								onChange={handleChange}
@@ -158,13 +155,13 @@ function OrderForm() {
 								placeholder='Город'
 							/>
 							{errors.city && (
-								<span className={s.errorText}>{errors.city}</span>
+								<span className='error__text'>{errors.city}</span>
 							)}
 						</div>
 						<div>
 							<Input
 								ref={refs.street}
-								className={cn(s.input, errors.street ? s.error : '')}
+								className={cn(s.input, errors.street ? 'error' : '')}
 								name='street'
 								value={values.street}
 								onChange={handleChange}
@@ -172,13 +169,13 @@ function OrderForm() {
 								placeholder='Улица'
 							/>
 							{errors.street && (
-								<span className={s.errorText}>{errors.street}</span>
+								<span className='error__text'>{errors.street}</span>
 							)}
 						</div>
 						<div>
 							<Input
 								ref={refs.house}
-								className={cn(s.input, errors.house ? s.error : '')}
+								className={cn(s.input, errors.house ? 'error' : '')}
 								name='house'
 								value={values.house}
 								onChange={handleChange}
@@ -186,7 +183,7 @@ function OrderForm() {
 								placeholder='Дом'
 							/>
 							{errors.house && (
-								<span className={s.errorText}>{errors.house}</span>
+								<span className='error__text'>{errors.house}</span>
 							)}
 						</div>
 						<Input

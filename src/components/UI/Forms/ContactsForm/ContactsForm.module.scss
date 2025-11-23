@@ -1,4 +1,5 @@
 @use '../../../../styles/media' as *;
+@use '../../../../styles/variables' as *;
 
 .form {
 }
@@ -21,6 +22,30 @@
 	gap: 35px;
 }
 
+.input {
+	@include mobile {
+		width: 100%;
+	}
+}
+
 .btn {
 	width: 190px;
+}
+
+.success {
+	width: 100%;
+	max-width: 437px;
+	margin-top: 65px;
+	padding: 30px 76px;
+	font-weight: 500;
+	font-size: 17px;
+	line-height: 140%;
+	letter-spacing: 0.02em;
+	text-align: center;
+	background-color: $beige;
+
+	@include mobile {
+		margin-top: 30px;
+		padding: 30px;
+	}
 }

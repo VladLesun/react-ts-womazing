@@ -1,5 +1,6 @@
 import { onAuthStateChanged, signInAnonymously } from 'firebase/auth';
 import { collection, doc, onSnapshot } from 'firebase/firestore';
+import 'leaflet/dist/leaflet.css';
 import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { Route, Routes } from 'react-router-dom';

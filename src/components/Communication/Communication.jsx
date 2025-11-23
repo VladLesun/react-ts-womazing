@@ -14,7 +14,6 @@ function Communication() {
 				<a className={s.link} href='mailto:hello@womazing.com'>
 					hello@womazing.com
 				</a>
-				;
 			</li>
 			<li className={s.item}>
 				<p className={s.title}>Адрес</p>
