@@ -94,6 +94,10 @@ input[type='number'] {
 	appearance: none;
 }
 
+.ReactModal__Body--open {
+	overflow: hidden;
+}
+
 .visually-hidden {
 	position: fixed;
 	transform: scale(0);

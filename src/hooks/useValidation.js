@@ -98,7 +98,7 @@ export const useValidation = (initialValues, requiredFields) => {
 
 	const getCleanValues = () =>
 		Object.fromEntries(
-			Object.entries(values).filter((_, value) => value !== '')
+			Object.entries(values).filter(([_, value]) => value !== '')
 		);
 
 	return {

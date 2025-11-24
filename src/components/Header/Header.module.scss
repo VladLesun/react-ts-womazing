@@ -17,21 +17,6 @@
 	margin-left: auto;
 }
 
-.call {
-	flex-shrink: 0;
-	width: 27px;
-	height: 27px;
-	margin-right: 9px;
-	background-color: transparent;
-	color: $cta;
-	transition: background-color 0.5s ease, color 0.5s ease;
-
-	@include disable-mob-hover {
-		background-color: $cta;
-		color: $white;
-	}
-}
-
 .phone {
 	margin-right: 67px;
 	font-weight: 400;

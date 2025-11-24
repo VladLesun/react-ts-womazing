@@ -1,13 +1,20 @@
 import cn from 'classnames';
-import { useState } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
 
 import { useValidation } from '../../../../hooks/useValidation';
+import { selectUserId } from '../../../../redux/auth/auth.select';
+import { sendFeedback } from '../../../../redux/feedback/feedback.action';
+import { selectFeedbackStatus } from '../../../../redux/feedback/feedback.select';
+import { resetStatus } from '../../../../redux/feedback/feedback.slice';
 import Button from '../../Button/Button';
 import Input from '../../Input/Input';
 import s from './ContactsForm.module.scss';
 
 function ContactsForm() {
-	const [successMessage, setSuccessMessage] = useState(null);
+	const dispatch = useDispatch();
+
+	const userId = useSelector(selectUserId);
+	const feedbackStatus = useSelector(selectFeedbackStatus);
 
 	const { values, errors, refs, validate, handleChange, handleReset } =
 		useValidation({ name: '', email: '', phone: '', message: '' }, [
@@ -17,18 +24,29 @@ function ContactsForm() {
 			'message',
 		]);
 
+	let resultMessage = null;
+
+	if (feedbackStatus === 'succeeded') {
+		resultMessage = (
+			<p className={s.resultMessage}>Сообщение успешно отправлено</p>
+		);
+	}
+
+	if (feedbackStatus === 'failed') {
+		resultMessage = (
+			<p className={s.resultMessage}>Произошла ошибка при отправке</p>
+		);
+	}
+
 	const handleSendMessage = () => {
 		if (!validate()) return;
 
-		const message = { customer: values };
-
-		setSuccessMessage(
-			<p className={s.success}>Сообщение успешно отправлено</p>
-		);
-
-		setTimeout(() => setSuccessMessage(null), 5000);
-
-		// handleReset();
+		dispatch(sendFeedback({ userId, message: values, feedback: 'writeUs' }))
+			.unwrap()
+			.then(() => {
+				setTimeout(() => dispatch(resetStatus()), 5000);
+				handleReset();
+			});
 	};
 
 	return (
@@ -93,7 +111,7 @@ function ContactsForm() {
 					className={s.btn}
 					children='Отправить'
 				/>
-				{successMessage}
+				{resultMessage}
 			</fieldset>
 		</form>
 	);
