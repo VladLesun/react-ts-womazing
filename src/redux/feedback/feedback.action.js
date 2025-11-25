@@ -4,12 +4,12 @@ import { db } from '../../API/firebase';
 
 export const sendFeedback = createAsyncThunk(
 	'feedback/sendFeedback',
-	async ({ userId, obj, feedback }) => {
+	async ({ userId, message, feedback }) => {
 		if (!['feedback', 'writeUs'].includes(feedback)) {
 			throw new Error('Invalid feedback type');
 		}
 		const feedbackRef = collection(doc(db, 'users', userId), feedback);
 
-		await addDoc(feedbackRef, obj);
+		await addDoc(feedbackRef, message);
 	}
 );

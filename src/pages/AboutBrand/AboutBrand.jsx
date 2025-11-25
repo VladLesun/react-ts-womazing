@@ -10,11 +10,14 @@ function AboutBrand() {
 			<div>
 				<ul className={s.list}>
 					<li className={s.item}>
-						<img
-							className={s.image}
-							src='./img/about-brand/img1.png'
-							alt='довольная девушка в джинсах и боди'
-						/>
+						<picture className={s.imageWrap}>
+							<source srcSet='./img/about-brand/img1.webp' type='image/webp' />
+							<img
+								className={s.image}
+								src='./img/about-brand/img1.jpg'
+								alt=''
+							/>
+						</picture>
 						<div className={s.content}>
 							<h2 className={s.subtitle}>Идея и женщина</h2>
 							<p className={s.desc}>
@@ -33,11 +36,14 @@ function AboutBrand() {
 						</div>
 					</li>
 					<li className={s.item}>
-						<img
-							className={s.image}
-							src='./img/about-brand/img2.png'
-							alt='девушка в шикарном белом платье'
-						/>
+						<picture className={s.imageWrap}>
+							<source srcSet='./img/about-brand/img2.webp' type='image/webp' />
+							<img
+								className={s.image}
+								src='./img/about-brand/img2.jpg'
+								alt=''
+							/>
+						</picture>
 						<div className={s.content}>
 							<h2 className={s.subtitle}>Магия в деталях</h2>
 							<p className={s.desc}>

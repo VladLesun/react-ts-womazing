@@ -18,6 +18,18 @@
 	}
 }
 
+.imageWrap {
+	flex-shrink: 0;
+
+	@include laptop {
+		width: 49%;
+	}
+
+	@include mobile-lg {
+		width: auto;
+	}
+}
+
 .image {
 	object-fit: cover;
 }
