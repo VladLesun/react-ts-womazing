@@ -9,14 +9,27 @@ const categories = [
 	{ href: '/contacts', title: 'Контакты' },
 ];
 
-function Navigation({ className }) {
+function Navigation({ isOpenBurger, className, onClick, variant }) {
 	return (
-		<ul className={cn(s.list, className)}>
-			{categories?.map(({ href, title }) => (
+		<ul
+			className={cn(
+				s.list,
+				className,
+				isOpenBurger && variant === 'burger' && s.list_burger
+			)}
+		>
+			{categories.map(({ href, title }) => (
 				<li key={title}>
 					<NavLink
+						onClick={onClick}
 						to={href}
-						className={({ isActive }) => cn(s.item, isActive && s.item_active)}
+						className={({ isActive }) =>
+							cn(
+								s.item,
+								isActive && s.item_active,
+								isOpenBurger && variant === 'burger' && s.item_burger
+							)
+						}
 					>
 						{title}
 					</NavLink>

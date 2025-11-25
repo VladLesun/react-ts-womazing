@@ -98,6 +98,10 @@ input[type='number'] {
 	overflow: hidden;
 }
 
+.no-scroll {
+	overflow: hidden;
+}
+
 .visually-hidden {
 	position: fixed;
 	transform: scale(0);

@@ -1,4 +1,5 @@
 import cn from 'classnames';
+import { useEffect, useState } from 'react';
 import { useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
 
@@ -9,21 +10,44 @@ import Navigation from '../UI/Navigation/Navigation';
 import s from './Header.module.scss';
 
 function Header() {
+	const [isOpenBurger, setIsOpenBurger] = useState(false);
 	const cartTotalQuantity = useSelector(selectCartTotalQuantity);
+
+	const toggleOpenBurger = () => {
+		const toggle = !isOpenBurger;
+		setIsOpenBurger(toggle);
+	};
+
+	const closeBurger = () => {
+		setIsOpenBurger(false);
+	};
+
+	useEffect(() => {
+		if (isOpenBurger) {
+			document.body.classList.add('no-scroll');
+		} else {
+			document.body.classList.remove('no-scroll');
+		}
+	}, [isOpenBurger]);
+
+	useEffect(() => {
+		window.addEventListener('orientationchange', closeBurger);
+		return () => window.removeEventListener('orientationchange', closeBurger);
+	}, []);
 
 	return (
 		<header className={s.header}>
 			<div className={cn('container', s.container)}>
 				<Logo />
-				<Navigation className={cn(s.navigation, ``)} />
+
+				<Navigation
+					isOpenBurger={isOpenBurger}
+					onClick={closeBurger}
+					className={cn(s.navigation, isOpenBurger ? s.navigation_open : '')}
+					variant='burger'
+				/>
 
 				<div className={s.actions}>
-					<button className={s.burger} aria-label='открыть/закрыть меню'>
-						<span className={cn(s.line, s.line_top)}></span>
-						<span className={cn(s.line, s.line_middle)}></span>
-						<span className={cn(s.line, s.line_bottom)}></span>
-					</button>
-
 					<Feedback />
 
 					<a href='tel:+74958235412' className={s.phone}>
@@ -46,6 +70,19 @@ function Header() {
 							<span className={s.count}>{cartTotalQuantity}</span>
 						)}
 					</Link>
+
+					<button
+						onClick={toggleOpenBurger}
+						className={cn(
+							s.burger,
+							isOpenBurger ? s.burger_open : s.burger_close
+						)}
+						aria-label='открыть/закрыть меню'
+					>
+						<span className={cn(s.line, s.line_top)}></span>
+						<span className={cn(s.line, s.line_middle)}></span>
+						<span className={cn(s.line, s.line_bottom)}></span>
+					</button>
 				</div>
 			</div>
 		</header>
