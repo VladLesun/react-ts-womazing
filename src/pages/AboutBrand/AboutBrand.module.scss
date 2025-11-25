@@ -77,9 +77,6 @@
 	.subtitle {
 		margin-bottom: 20px;
 	}
-	.link {
-		width: 100%;
-	}
 }
 
 @include mobile {
@@ -95,5 +92,8 @@
 	}
 	.desc {
 		font-size: 14px;
+	}
+	.link {
+		width: 100%;
 	}
 }

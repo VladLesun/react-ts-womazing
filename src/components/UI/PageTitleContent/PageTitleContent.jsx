@@ -5,7 +5,7 @@ import s from './PageTitleContent.module.scss';
 
 const segmentNames = {
 	shop: 'Магазин',
-	'about-brand': 'О брэнде',
+	'about-brand': 'О бренде',
 	contacts: 'Контакты',
 	cart: 'Корзина',
 	order: 'Оформление заказа',
