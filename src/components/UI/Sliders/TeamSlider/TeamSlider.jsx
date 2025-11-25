@@ -1,5 +1,5 @@
 import cn from 'classnames';
-import { useState } from 'react';
+import { useActionSliders } from '../../../../hooks/useActionSliders';
 import SliderBar from '../SliderBar/SliderBar';
 import SliderNavigation from '../SliderNavigation/SliderNavigation';
 import s from './TeamSlider.module.scss';
@@ -11,14 +11,7 @@ const slides = [
 ];
 
 function TeamSlider() {
-	const [activeId, setActiveId] = useState(0);
-
-	const getNextId = () => {
-		return activeId === slides.length - 1 ? 0 : activeId + 1;
-	};
-	const getPrevId = () => {
-		return activeId === 0 ? slides.length - 1 : activeId - 1;
-	};
+	const { activeId, setActiveId, next, prev } = useActionSliders(slides, 5000);
 
 	return (
 		<div className={s.slider}>
@@ -43,8 +36,8 @@ function TeamSlider() {
 
 			<SliderNavigation
 				className={s.sliderNavigation}
-				prevBtn={() => setActiveId(getPrevId())}
-				nextBtn={() => setActiveId(getNextId)}
+				prevBtn={prev}
+				nextBtn={next}
 			/>
 		</div>
 	);

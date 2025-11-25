@@ -1,5 +1,5 @@
 import cn from 'classnames';
-import { useEffect, useState } from 'react';
+import { useActionSliders } from '../../../../hooks/useActionSliders';
 import Button from '../../Button/Button';
 import SliderBar from '../SliderBar/SliderBar';
 import s from './HeroSlider.module.scss';
@@ -20,15 +20,8 @@ const slides = [
 ];
 
 function HeroSlider({ onClick }) {
-	const [activeId, setActiveId] = useState(0);
+	const { activeId, setActiveId } = useActionSliders(slides, 5000);
 
-	useEffect(() => {
-		const interval = setInterval(() => {
-			setActiveId(prev => (prev + 1) % slides.length);
-		}, 5000);
-
-		return () => clearInterval(interval);
-	}, []);
 	return (
 		<div className={s.slider}>
 			{slides?.map((slide, index) => (
