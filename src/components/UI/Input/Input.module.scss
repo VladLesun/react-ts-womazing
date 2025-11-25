@@ -135,6 +135,20 @@
 	@include mobile {
 		width: 290px;
 	}
+}
+
+.input,
+.textarea,
+.count {
+	transition: border-color 0.5s ease;
+
+	@include disable-mob-hover {
+		border-color: $cta;
+	}
+
+	&:focus {
+		border-color: $cta;
+	}
 
 	&::placeholder {
 		transition: opacity 0.5s ease;

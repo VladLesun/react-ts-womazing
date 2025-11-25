@@ -1,24 +1,17 @@
 import cn from 'classnames';
-import { useState } from 'react';
+import { useActionSliders } from '../../../../hooks/useActionSliders';
 import SliderBar from '../SliderBar/SliderBar';
 import SliderNavigation from '../SliderNavigation/SliderNavigation';
 import s from './TeamSlider.module.scss';
 
 const slides = [
-	{ imgUrl: './img/team/img1.png', desc: 'девушки с ножницами' },
-	{ imgUrl: './img/team/img2.png', desc: 'девушки смотрят на закате' },
-	{ imgUrl: './img/team/img3.png', desc: 'девушки в поле' },
+	{ imgUrl: './img/team/img1.png', imgUrlWebP: './img/team/img1.webp' },
+	{ imgUrl: './img/team/img2.png', imgUrlWebP: './img/team/img2.webp' },
+	{ imgUrl: './img/team/img3.png', imgUrlWebP: './img/team/img3.webp' },
 ];
 
 function TeamSlider() {
-	const [activeId, setActiveId] = useState(0);
-
-	const getNextId = () => {
-		return activeId === slides.length - 1 ? 0 : activeId + 1;
-	};
-	const getPrevId = () => {
-		return activeId === 0 ? slides.length - 1 : activeId - 1;
-	};
+	const { activeId, setActiveId, next, prev } = useActionSliders(slides, 5000);
 
 	return (
 		<div className={s.slider}>
@@ -27,7 +20,10 @@ function TeamSlider() {
 					key={index}
 					className={cn(s.slide, { [s.slide_active]: index === activeId })}
 				>
-					<img className={s.image} src={slide.imgUrl} alt={slide.desc} />
+					<picture>
+						<source srcSet={slide.imgUrlWebP} type='image/webp' />
+						<img className={s.image} src={slide.imgUrl} alt='' />
+					</picture>
 				</div>
 			))}
 
@@ -40,8 +36,8 @@ function TeamSlider() {
 
 			<SliderNavigation
 				className={s.sliderNavigation}
-				prevBtn={() => setActiveId(getPrevId())}
-				nextBtn={() => setActiveId(getNextId)}
+				prevBtn={prev}
+				nextBtn={next}
 			/>
 		</div>
 	);

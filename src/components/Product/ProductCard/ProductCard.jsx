@@ -3,10 +3,12 @@ import s from './ProductCard.module.scss';
 
 function ProductCard({ id, imgUrl, name, price, sale }) {
 	return (
-		<li className={s.link}>
-			<Link to={`/shop/${id}`}>
+		<li>
+			<Link className={s.link} to={`/shop/${id}`}>
 				<article>
-					<img className={s.image} src={imgUrl} alt={name} />
+					<div className={s.imageWrap} style={{}}>
+						<img className={s.image} src={imgUrl} alt={name} />
+					</div>
 					<h3 className={s.name}>{name}</h3>
 					{sale ? (
 						<p className={s.price}>

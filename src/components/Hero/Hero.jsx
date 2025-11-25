@@ -10,9 +10,18 @@ function Hero({ onClick }) {
 
 			<div className={s.imagesWrap}>
 				<div className={s.images}>
-					<img src='./img/hero/img-large.png' className={s.largeImg} />
-					<img src='./img/hero/img-left.png' className={s.leftImg} />
-					<img src='./img/hero/img-right.png' className={s.rightImg} />
+					<picture>
+						<source srcSet='./img/hero/img-large.webp' type='image/webp' />
+						<img className={s.largeImg} src='./img/hero/img-large.jpg' alt='' />
+					</picture>
+					<picture>
+						<source srcSet='./img/hero/img-left.webp' type='image/webp' />
+						<img className={s.leftImg} src='./img/hero/img-left.jpg' alt='' />
+					</picture>
+					<picture>
+						<source srcSet='./img/hero/img-right.webp' type='image/webp' />
+						<img className={s.rightImg} src='./img/hero/img-right.jpg' alt='' />
+					</picture>
 				</div>
 			</div>
 		</section>

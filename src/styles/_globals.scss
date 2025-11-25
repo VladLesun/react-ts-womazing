@@ -94,6 +94,14 @@ input[type='number'] {
 	appearance: none;
 }
 
+.ReactModal__Body--open {
+	overflow: hidden;
+}
+
+.no-scroll {
+	overflow: hidden;
+}
+
 .visually-hidden {
 	position: fixed;
 	transform: scale(0);
@@ -106,5 +114,16 @@ input[type='number'] {
 
 	@include laptop-lg {
 		width: 100%;
+	}
+}
+
+.error {
+	border-color: $error;
+
+	&__text {
+		display: block;
+		margin-top: 10px;
+		font-size: 14px;
+		color: $error;
 	}
 }

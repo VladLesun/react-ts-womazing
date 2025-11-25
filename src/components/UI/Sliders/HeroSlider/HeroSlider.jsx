@@ -1,5 +1,5 @@
 import cn from 'classnames';
-import { useState } from 'react';
+import { useActionSliders } from '../../../../hooks/useActionSliders';
 import Button from '../../Button/Button';
 import SliderBar from '../SliderBar/SliderBar';
 import s from './HeroSlider.module.scss';
@@ -20,7 +20,8 @@ const slides = [
 ];
 
 function HeroSlider({ onClick }) {
-	const [activeId, setActiveId] = useState(0);
+	const { activeId, setActiveId } = useActionSliders(slides, 5000);
+
 	return (
 		<div className={s.slider}>
 			{slides?.map((slide, index) => (

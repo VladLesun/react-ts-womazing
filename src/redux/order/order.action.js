@@ -8,7 +8,5 @@ export const sendOrder = createAsyncThunk(
 		const orderRef = collection(doc(db, 'users', userId), 'orders');
 
 		await addDoc(orderRef, order);
-
-		// return { id: docRef.id, ...order };
 	}
 );

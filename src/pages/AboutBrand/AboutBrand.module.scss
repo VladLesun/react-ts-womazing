@@ -18,6 +18,18 @@
 	}
 }
 
+.imageWrap {
+	flex-shrink: 0;
+
+	@include laptop {
+		width: 49%;
+	}
+
+	@include mobile-lg {
+		width: auto;
+	}
+}
+
 .image {
 	object-fit: cover;
 }
@@ -65,9 +77,6 @@
 	.subtitle {
 		margin-bottom: 20px;
 	}
-	.link {
-		width: 100%;
-	}
 }
 
 @include mobile {
@@ -83,5 +92,8 @@
 	}
 	.desc {
 		font-size: 14px;
+	}
+	.link {
+		width: 100%;
 	}
 }

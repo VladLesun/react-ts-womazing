@@ -1,3 +1,4 @@
+import { Link } from 'react-router-dom';
 import TeamSlider from '../UI/Sliders/TeamSlider/TeamSlider';
 import s from './Team.module.scss';
 
@@ -18,9 +19,9 @@ function Team() {
 							Womazing ищет эти мелочи и создает прекрасные вещи, которые
 							выгодно подчеркивают достоинства каждой девушки.
 						</p>
-						<a className={s.link} href='#!'>
+						<Link className={s.link} to='/about-brand'>
 							Подробнее о бренде
-						</a>
+						</Link>
 					</div>
 				</div>
 			</div>
