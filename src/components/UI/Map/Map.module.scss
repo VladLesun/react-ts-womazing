@@ -3,6 +3,7 @@
 @use '../../../styles/variables' as *;
 
 .map {
+	position: relative;
 	width: 100%;
 	height: 476px;
 	margin-bottom: 130px;
