@@ -6,7 +6,7 @@ import SliderBar from '../SliderBar/SliderBar';
 import SliderNavigation from '../SliderNavigation/SliderNavigation';
 import s from './TeamSlider.module.scss';
 
-type TTeamSlidesContent = { imgUrl: string; imgUrlWebP: string };
+export type TTeamSlidesContent = { imgUrl: string; imgUrlWebP: string };
 
 const slides: TTeamSlidesContent[] = [
 	{ imgUrl: './img/team/img1.png', imgUrlWebP: './img/team/img1.webp' },
@@ -15,7 +15,7 @@ const slides: TTeamSlidesContent[] = [
 ];
 
 const TeamSlider = () => {
-	const { activeId, setActiveId, next, prev } = useActionSliders(slides, 5000);
+	const { activeId, setActiveId, next, prev } = useActionSliders(slides);
 
 	return (
 		<div className={s.slider}>

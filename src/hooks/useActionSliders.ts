@@ -1,8 +1,12 @@
-import { useEffect, useRef, useState } from 'react';
+import { useCallback, useEffect, useRef, useState } from 'react';
+import type { THeroSlidesContent } from '../components/UI/Sliders/HeroSlider/HeroSlider';
+import type { TTeamSlidesContent } from '../components/UI/Sliders/TeamSlider/TeamSlider';
 
-export const useActionSliders = (slides, autoplay = 5000) => {
+type TSlidesProps = THeroSlidesContent[] | TTeamSlidesContent[];
+
+export const useActionSliders = (slides: TSlidesProps, autoplay = 5000) => {
 	const [activeId, setActiveId] = useState(0);
-	const intervalRef = useRef(null);
+	const intervalRef = useRef<ReturnType<typeof setInterval> | null>(null);
 
 	const clearTimer = () => {
 		if (intervalRef.current) {
@@ -11,13 +15,13 @@ export const useActionSliders = (slides, autoplay = 5000) => {
 		}
 	};
 
-	const startTimer = () => {
+	const startTimer = useCallback(() => {
 		if (autoplay && slides.length > 1) {
 			intervalRef.current = setInterval(() => {
 				setActiveId(prev => (prev + 1) % slides.length);
 			}, autoplay);
 		}
-	};
+	}, [autoplay, slides.length]);
 
 	const resetTimer = () => {
 		clearTimer();
@@ -27,7 +31,7 @@ export const useActionSliders = (slides, autoplay = 5000) => {
 	useEffect(() => {
 		startTimer();
 		return () => clearTimer();
-	}, [autoplay, slides.length]);
+	}, [startTimer]);
 
 	const getNextId = () => (activeId === slides.length - 1 ? 0 : activeId + 1);
 
@@ -43,7 +47,7 @@ export const useActionSliders = (slides, autoplay = 5000) => {
 		resetTimer();
 	};
 
-	const select = id => {
+	const select = (id: number) => {
 		setActiveId(id);
 		resetTimer();
 	};

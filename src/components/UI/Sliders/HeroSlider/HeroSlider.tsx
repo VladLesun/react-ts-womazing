@@ -6,7 +6,7 @@ import Button from '../../Button/Button';
 import SliderBar from '../SliderBar/SliderBar';
 import s from './HeroSlider.module.scss';
 
-type THeroSlidesContent = { title: string; desc: string };
+export type THeroSlidesContent = { title: string; desc: string };
 
 const slides: THeroSlidesContent[] = [
 	{
@@ -26,7 +26,7 @@ const slides: THeroSlidesContent[] = [
 type TSliderClick = { onClick: () => void };
 
 const HeroSlider = ({ onClick }: TSliderClick) => {
-	const { activeId, setActiveId } = useActionSliders(slides, 5000);
+	const { activeId, setActiveId } = useActionSliders(slides);
 
 	return (
 		<div className={s.slider}>
