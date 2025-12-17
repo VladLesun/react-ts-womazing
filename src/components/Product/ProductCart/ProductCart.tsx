@@ -1,5 +1,5 @@
 import cn from 'classnames';
-import { useCallback, useState, type ChangeEventHandler } from 'react';
+import { useEffect, useMemo, useState, type ChangeEventHandler } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 
 import { selectUserId } from '../../../redux/auth/auth.select';
@@ -8,6 +8,7 @@ import {
 	updateCartItemQuantity,
 } from '../../../redux/cart/cart.action';
 
+import type { AppDispatch } from '../../../redux/store';
 import { debounce } from '../../../util/debounce';
 import Input from '../../UI/Input/Input';
 import s from './ProductCart.module.scss';
@@ -31,18 +32,25 @@ const ProductCart = ({
 	price,
 	quantity,
 }: TProductCartProps) => {
-	const dispatch = useDispatch();
+	const dispatch = useDispatch<AppDispatch>();
 
 	const userId = useSelector(selectUserId);
 
 	const [productQuantity, setProductQuantity] = useState<number | ''>(quantity);
 
-	const updateProductQuantity = useCallback(
-		debounce(str => {
-			dispatch(updateCartItemQuantity({ userId, id, quantity: str }));
-		}, 1000),
+	const updateProductQuantity = useMemo(
+		() =>
+			debounce((num: number) => {
+				if (userId) {
+					dispatch(updateCartItemQuantity({ userId, id, quantity: num }));
+				}
+			}, 500),
 		[dispatch, userId, id]
 	);
+
+	useEffect(() => {
+		return () => updateProductQuantity.cancel();
+	}, [updateProductQuantity]);
 
 	const handleUpdateQuantity: ChangeEventHandler<HTMLInputElement> = e => {
 		const val = e.target.value === '' ? '' : Number(e.target.value);
@@ -53,8 +61,10 @@ const ProductCart = ({
 	};
 
 	const handleItemRemove = () => {
-		if (confirm('Ты действительно хочешь удалить товар из корзины ?')) {
-			dispatch(removeFromCart({ userId, id }));
+		if (userId) {
+			if (confirm('Ты действительно хочешь удалить товар из корзины ?')) {
+				dispatch(removeFromCart({ userId, id }));
+			}
 		}
 	};
 

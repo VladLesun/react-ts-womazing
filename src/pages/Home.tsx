@@ -11,11 +11,13 @@ const Home = () => {
 	const collectionRef = useRef<HTMLElement | null>(null);
 
 	useEffect(() => {
-		window.scrollTo({ top, behavior: 'smooth' });
+		window.scrollTo({ top: 0, behavior: 'smooth' });
 	}, [pathname]);
 
 	const handleScrollToCollection = () => {
-		collectionRef.current.scrollIntoView({ behavior: 'smooth' });
+		if (collectionRef.current) {
+			collectionRef.current.scrollIntoView({ behavior: 'smooth' });
+		}
 	};
 
 	return (

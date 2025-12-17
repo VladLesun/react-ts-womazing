@@ -10,13 +10,14 @@ import {
 } from '../../../../redux/cart/cart.select';
 
 import CartEmpty from '../../../../pages/CartEmpty/CartEmpty';
+import type { AppDispatch } from '../../../../redux/store';
 import ProductCart from '../../../Product/ProductCart/ProductCart';
 import Button from '../../Button/Button';
 import CartSkeleton from '../../Skeletons/CartSkeleton/CartSkeleton';
 import s from './CartForm.module.scss';
 
 const CartForm = () => {
-	const dispatch = useDispatch();
+	const dispatch = useDispatch<AppDispatch>();
 
 	const userId = useSelector(selectUserId);
 	const cartItems = useSelector(selectCartItems);

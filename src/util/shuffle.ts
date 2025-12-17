@@ -1,4 +1,6 @@
-const shuffle = (array: []) => {
+import type { TProduct } from '../redux/products/products.slice';
+
+const shuffle = (array: TProduct[]) => {
 	const arr = [...array];
 
 	for (let i = arr.length - 1; i > 0; i--) {

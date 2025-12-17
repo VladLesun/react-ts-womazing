@@ -1,7 +1,13 @@
 import { createSlice } from '@reduxjs/toolkit';
+
+import type { TStateStatus } from '../../types/types';
 import { sendFeedback } from './feedback.action';
 
-const initialState = {
+interface IFeedbackState {
+	status: TStateStatus;
+}
+
+const initialState: IFeedbackState = {
 	status: 'idle',
 };
 

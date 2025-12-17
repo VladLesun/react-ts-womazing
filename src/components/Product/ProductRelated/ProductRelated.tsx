@@ -9,7 +9,9 @@ type TProducts = {
 	sale?: number;
 };
 
-const ProductRelated = ({ products }: TProducts[]) => {
+type TProductRelated = { products: TProducts[] };
+
+const ProductRelated = ({ products }: TProductRelated) => {
 	return (
 		<div>
 			<h2 className={s.title}>Связанные товары</h2>
@@ -22,7 +24,7 @@ const ProductRelated = ({ products }: TProducts[]) => {
 						imgUrl={product.imgUrl}
 						name={product.name}
 						price={product.price}
-						sale={product?.sale}
+						sale={product.sale}
 					/>
 				))}
 			</ul>

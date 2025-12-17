@@ -1,11 +1,10 @@
 import ContentLoader from 'react-content-loader';
-import s from './ProductsSkeleton.module.scss';
 
 const ProductsSkeleton = ({ count = 6 }) => {
 	return (
 		<>
 			{Array.from({ length: count }).map((_, index) => (
-				<li key={index} className={s.item}>
+				<li key={index}>
 					<ContentLoader
 						speed={2}
 						width='100%'

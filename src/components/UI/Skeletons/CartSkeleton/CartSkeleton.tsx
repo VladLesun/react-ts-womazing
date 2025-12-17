@@ -1,4 +1,5 @@
 import ContentLoader from 'react-content-loader';
+
 import s from './CartSkeleton.module.scss';
 
 const CartSkeleton = () => {

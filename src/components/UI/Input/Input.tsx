@@ -8,14 +8,7 @@ type TInputProps = {
 	onChange?: React.ChangeEventHandler<HTMLInputElement | HTMLTextAreaElement>;
 	className?: string;
 	type: string;
-	variant?:
-		| 'count'
-		| 'textarea'
-		| 'radio'
-		| 'default'
-		| 'color'
-		| 'size'
-		| 'payment';
+	variant?: 'count' | 'textarea' | 'radio' | 'color' | 'size' | 'payment';
 	value: string | number;
 	placeholder?: string;
 	name?: string;

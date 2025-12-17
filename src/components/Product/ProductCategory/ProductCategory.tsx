@@ -4,7 +4,10 @@ import {
 	selectCategoriesArray,
 	selectCategory,
 } from '../../../redux/filter/filter.select';
-import { setCategory } from '../../../redux/filter/filter.slice';
+import {
+	setCategory,
+	type TFilterCategory,
+} from '../../../redux/filter/filter.slice';
 
 import Button from '../../UI/Button/Button';
 import s from './ProductCategory.module.scss';
@@ -16,7 +19,7 @@ const ProductCategory = ({ setVisibleCount }: TProductCategoryProps) => {
 	const categoryObj = useSelector(selectCategory);
 	const categoriesArray = useSelector(selectCategoriesArray);
 
-	const handleSetCategory = (category: string) => {
+	const handleSetCategory = (category: TFilterCategory) => {
 		dispatch(setCategory(category));
 		setVisibleCount(6);
 	};

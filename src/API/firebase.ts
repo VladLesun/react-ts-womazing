@@ -2,7 +2,7 @@ import { initializeApp } from 'firebase/app';
 import { getAuth } from 'firebase/auth';
 import { getFirestore } from 'firebase/firestore';
 
-const firebaseConfig = {
+const firebaseConfig: Record<string, string> = {
 	apiKey: 'AIzaSyDF3oBLW18CwR1gef4xH36RZJE4JXK21Y4',
 	authDomain: 'api-womazing-app.firebaseapp.com',
 	projectId: 'api-womazing-app',

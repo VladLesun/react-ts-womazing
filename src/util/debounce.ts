@@ -1,4 +1,5 @@
-export const debounce = <T extends (...args: unknown[]) => unknown>(
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
+export const debounce = <T extends (...args: any[]) => any>(
 	fn: T,
 	msec: number
 ) => {

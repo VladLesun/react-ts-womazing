@@ -2,11 +2,11 @@ import cn from 'classnames';
 import Modal from 'react-modal';
 import { useDispatch, useSelector } from 'react-redux';
 
-import { useValidation } from '../../hooks/useValidation';
 import { selectUserId } from '../../redux/auth/auth.select';
 import { sendFeedback } from '../../redux/feedback/feedback.action';
 import { selectFeedbackStatus } from '../../redux/feedback/feedback.select';
 
+import { useValidation } from '../../hooks/useValidation';
 import Button from '../UI/Button/Button';
 import Input from '../UI/Input/Input';
 import s from './FeedbackModal.module.scss';

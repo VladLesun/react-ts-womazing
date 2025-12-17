@@ -1,8 +1,10 @@
 import cn from 'classnames';
 import { useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
-import paymentImg from '../../assets/img/payment-cards.png';
+
 import { selectCategoriesArray } from '../../redux/filter/filter.select';
+
+import paymentImg from '../../assets/img/payment-cards.png';
 import Logo from '../UI/Logo/Logo';
 import Navigation from '../UI/Navigation/Navigation';
 import s from './Footer.module.scss';

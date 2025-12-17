@@ -6,7 +6,7 @@ import {
 	selectCategoriesArray,
 	selectCategory,
 } from '../../redux/filter/filter.select';
-import { setFilters } from '../../redux/filter/filter.slice';
+import { setCategory } from '../../redux/filter/filter.slice';
 import { fetchProducts } from '../../redux/products/products.action';
 import {
 	selectProducts,
@@ -17,14 +17,15 @@ import ProductCard from '../../components/Product/ProductCard/ProductCard';
 import ProductCategory from '../../components/Product/ProductCategory/ProductCategory';
 import PageTitleContent from '../../components/UI/PageTitleContent/PageTitleContent';
 import PageWrap from '../../components/UI/PageWrap/PageWrap';
-import ProductsSkeleton from '../../components/UI/Skeletons/ProductsSkeleton/ProductsSkeleton';
+import ProductsSkeleton from '../../components/UI/Skeletons/ProductsSkeleton';
+import type { AppDispatch } from '../../redux/store';
 import s from './Shop.module.scss';
 
 const Shop = () => {
 	const navigate = useNavigate();
 	const [searchParams] = useSearchParams();
 
-	const dispatch = useDispatch();
+	const dispatch = useDispatch<AppDispatch>();
 
 	const products = useSelector(selectProducts);
 	const productsStatus = useSelector(selectProductsStatus);
@@ -34,7 +35,7 @@ const Shop = () => {
 
 	const [visibleCount, setVisibleCount] = useState(6);
 	const [countStep, setCountStep] = useState(6);
-	const loaderRef = useRef(null);
+	const loaderRef = useRef<HTMLDivElement | null>(null);
 
 	const buildParams = useCallback(
 		(): Record<'category', string> => ({
@@ -59,7 +60,7 @@ const Shop = () => {
 				categoriesArray.find(category => category.id === params.category) ||
 				categoriesArray[0];
 
-			dispatch(setFilters(category));
+			dispatch(setCategory(category));
 		}
 	}, [dispatch, searchParams, categoriesArray]);
 
@@ -89,6 +90,8 @@ const Shop = () => {
 	}, []);
 
 	useEffect(() => {
+		const loader = loaderRef.current;
+
 		const observer = new IntersectionObserver(entries => {
 			if (entries[0].isIntersecting && productsStatus !== 'loading') {
 				setVisibleCount(prev => prev + countStep);
@@ -100,8 +103,8 @@ const Shop = () => {
 		}
 
 		return () => {
-			if (loaderRef.current) {
-				observer.unobserve(loaderRef.current);
+			if (loader) {
+				observer.unobserve(loader);
 			}
 			observer.disconnect();
 		};

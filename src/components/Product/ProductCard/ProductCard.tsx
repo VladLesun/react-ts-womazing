@@ -7,7 +7,7 @@ type TProductCardProps = {
 	imgUrl: string;
 	name: string;
 	price: number;
-	sale: number;
+	sale?: number;
 };
 
 const ProductCard = ({ id, imgUrl, name, price, sale }: TProductCardProps) => {

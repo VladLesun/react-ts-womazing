@@ -12,6 +12,7 @@ import {
 import { sendOrder } from '../../../../redux/order/order.action';
 
 import { useValidation } from '../../../../hooks/useValidation';
+import type { AppDispatch } from '../../../../redux/store';
 import Button from '../../Button/Button';
 import Input from '../../Input/Input';
 import OrderSkeleton from '../../Skeletons/OrderSkeleton';
@@ -27,18 +28,17 @@ interface IOrderItem {
 }
 
 type TOrder = {
-	customer: any;
+	customer: string[];
 	products: IOrderItem[];
 	totalPrice: number;
 };
 
 const OrderForm = () => {
 	const navigate = useNavigate();
-	const dispatch = useDispatch();
+	const dispatch = useDispatch<AppDispatch>();
 
 	const userId = useSelector(selectUserId);
 	const cartItems: IOrderItem[] = useSelector(selectCartItems);
-	console.log('cartItems: ', cartItems);
 	const cartStatus = useSelector(selectCartStatus);
 	const cartTotalPrice: number = useSelector(selectTotalPrice);
 
@@ -82,17 +82,19 @@ const OrderForm = () => {
 			totalPrice: cartTotalPrice,
 		};
 
-		dispatch(sendOrder({ userId, order }))
-			.unwrap()
-			.then(() => {
-				dispatch(clearCart(userId));
-				navigate('/confirmed');
-				handleReset();
-			})
-			.catch(e => {
-				console.log(e);
-				alert('Ошибка при отправке заказа');
-			});
+		if (userId) {
+			dispatch(sendOrder({ userId, order }))
+				.unwrap()
+				.then(() => {
+					dispatch(clearCart(userId));
+					navigate('/confirmed');
+					handleReset();
+				})
+				.catch(e => {
+					console.warn(e);
+					alert('Ошибка при отправке заказа');
+				});
+		}
 	};
 
 	return (

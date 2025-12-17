@@ -4,6 +4,8 @@ import { useDispatch, useSelector } from 'react-redux';
 import { selectUserId } from '../../../../redux/auth/auth.select';
 import { addToCart } from '../../../../redux/cart/cart.action';
 
+import type { TCartItem } from '../../../../redux/cart/cart.slice';
+import type { AppDispatch } from '../../../../redux/store';
 import Button from '../../Button/Button';
 import Input from '../../Input/Input';
 import s from './ProductForm.module.scss';
@@ -13,7 +15,7 @@ type TProductFormProps = {
 	imgUrl: string;
 	name: string;
 	price: number;
-	sale: number;
+	sale?: number;
 	size: string[];
 	color: string[];
 };
@@ -27,7 +29,7 @@ const ProductForm = ({
 	size,
 	color,
 }: TProductFormProps) => {
-	const dispatch = useDispatch();
+	const dispatch = useDispatch<AppDispatch>();
 
 	const userId = useSelector(selectUserId);
 
@@ -57,7 +59,7 @@ const ProductForm = ({
 			color: itemColor,
 			price: sale ? sale : price,
 			quantity: itemQuantity,
-		};
+		} as TCartItem;
 
 		dispatch(addToCart({ userId, item }));
 

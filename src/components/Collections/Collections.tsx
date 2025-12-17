@@ -1,27 +1,18 @@
-import { useEffect, useMemo } from 'react';
+import { forwardRef, useEffect, useMemo } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 
 import { fetchProducts } from '../../redux/products/products.action';
 import { selectProducts } from '../../redux/products/products.select';
 
+import type { AppDispatch } from '../../redux/store';
 import shuffle from '../../util/shuffle';
 import ProductCard from '../Product/ProductCard/ProductCard';
 import Button from '../UI/Button/Button';
-import ProductsSkeleton from '../UI/Skeletons/ProductsSkeleton/ProductsSkeleton';
+import ProductsSkeleton from '../UI/Skeletons/ProductsSkeleton';
 import s from './Collections.module.scss';
 
-type TCollectionsProps = { ref: HTMLElement | null };
-
-type TProductCardProps = {
-	id: string;
-	imgUrl: string;
-	name: string;
-	price: number;
-	sale: number;
-};
-
-const Collections = ({ ref }: TCollectionsProps) => {
-	const dispatch = useDispatch();
+const Collections = forwardRef<HTMLElement, object>((_, ref) => {
+	const dispatch = useDispatch<AppDispatch>();
 
 	const products = useSelector(selectProducts);
 
@@ -43,7 +34,7 @@ const Collections = ({ ref }: TCollectionsProps) => {
 					{!products ? (
 						<ProductsSkeleton count={3} />
 					) : (
-						newCollectionProducts.map((product: TProductCardProps) => (
+						newCollectionProducts.map(product => (
 							<ProductCard
 								key={product.id}
 								id={product.id}
@@ -65,6 +56,6 @@ const Collections = ({ ref }: TCollectionsProps) => {
 			</div>
 		</section>
 	);
-};
+});
 
 export default Collections;

@@ -1,17 +1,19 @@
 import cn from 'classnames';
 import { useDispatch, useSelector } from 'react-redux';
 
-import { useValidation } from '../../../../hooks/useValidation';
 import { selectUserId } from '../../../../redux/auth/auth.select';
 import { sendFeedback } from '../../../../redux/feedback/feedback.action';
 import { selectFeedbackStatus } from '../../../../redux/feedback/feedback.select';
 import { resetStatus } from '../../../../redux/feedback/feedback.slice';
+
+import { useValidation } from '../../../../hooks/useValidation';
+import type { AppDispatch } from '../../../../redux/store';
 import Button from '../../Button/Button';
 import Input from '../../Input/Input';
 import s from './ContactsForm.module.scss';
 
 const ContactsForm = () => {
-	const dispatch = useDispatch();
+	const dispatch = useDispatch<AppDispatch>();
 
 	const userId = useSelector(selectUserId);
 	const feedbackStatus = useSelector(selectFeedbackStatus);
@@ -41,12 +43,14 @@ const ContactsForm = () => {
 	const handleSendMessage = () => {
 		if (!validate()) return;
 
-		dispatch(sendFeedback({ userId, message: values, feedback: 'writeUs' }))
-			.unwrap()
-			.then(() => {
-				setTimeout(() => dispatch(resetStatus()), 5000);
-				handleReset();
-			});
+		if (userId) {
+			dispatch(sendFeedback({ userId, message: values, feedback: 'writeUs' }))
+				.unwrap()
+				.then(() => {
+					setTimeout(() => dispatch(resetStatus()), 5000);
+					handleReset();
+				});
+		}
 	};
 
 	return (
@@ -60,7 +64,6 @@ const ContactsForm = () => {
 						value={values.name}
 						onChange={handleChange}
 						className={cn(s.input, errors.name ? 'error' : '')}
-						variant='input'
 						type='text'
 						placeholder='Имя'
 					/>
@@ -73,7 +76,6 @@ const ContactsForm = () => {
 						value={values.email}
 						onChange={handleChange}
 						className={cn(s.input, errors.email ? 'error' : '')}
-						variant='input'
 						type='email'
 						placeholder='E-mail'
 					/>
@@ -86,7 +88,6 @@ const ContactsForm = () => {
 						value={values.phone}
 						onChange={handleChange}
 						className={cn(s.input, errors.phone ? 'error' : '')}
-						variant='input'
 						type='tel'
 						placeholder='Телефон'
 					/>

@@ -13,44 +13,40 @@ import ProductRelated from '../components/Product/ProductRelated/ProductRelated'
 import ProductForm from '../components/UI/Forms/ProductForm/ProductForm';
 import PageTitleContent from '../components/UI/PageTitleContent/PageTitleContent';
 import PageWrap from '../components/UI/PageWrap/PageWrap';
-import ProductSkeleton from '../components/UI/Skeletons/ProductSkeleton/ProductSkeleton';
+import ProductSkeleton from '../components/UI/Skeletons/ProductSkeleton';
+import type { AppDispatch } from '../redux/store';
 import shuffle from '../util/shuffle';
 
 const Product = () => {
-	const dispatch = useDispatch();
+	const dispatch = useDispatch<AppDispatch>();
 
 	const product = useSelector(selectProduct);
-	const products: [] = useSelector(selectProducts);
+	const products = useSelector(selectProducts);
 
 	const productStatus = useSelector(selectProductsStatus);
 
-	const { productId } = useParams();
+	const { productId } = useParams<{ productId: string }>();
 
-	const newProducts = () => {
-		if (!products) return [];
-
-		const categoryProducts = products.filter(
-			item => item.categoryId === product?.categoryId
-		);
-
-		const searchProducts = categoryProducts.filter(
-			item => item.id !== productId
-		);
-
-		return searchProducts;
-	};
+	const newProducts = useMemo(() => {
+		if (!products || !product) return [];
+		return products
+			.filter(item => item.categoryId === product.categoryId)
+			.filter(item => item.id !== productId);
+	}, [products, product, productId]);
 
 	const relatedProducts = useMemo(() => {
-		return shuffle(newProducts()).slice(0, 3);
-	}, [products]);
+		return shuffle(newProducts).slice(0, 3);
+	}, [newProducts]);
 
 	useEffect(() => {
-		dispatch(fetchProduct(productId));
+		if (productId) {
+			dispatch(fetchProduct(productId));
+		}
 	}, [dispatch, productId]);
 
 	useEffect(() => {
 		if (product) {
-			dispatch(fetchProducts(product.categoryId));
+			dispatch(fetchProducts({ id: product.categoryId }));
 		}
 	}, [dispatch, product]);
 
@@ -67,7 +63,7 @@ const Product = () => {
 
 				<ProductForm {...product} />
 
-				{newProducts().length > 0 && (
+				{newProducts.length > 0 && (
 					<ProductRelated products={relatedProducts} />
 				)}
 			</>

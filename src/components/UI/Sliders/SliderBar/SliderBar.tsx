@@ -1,4 +1,5 @@
 import cn from 'classnames';
+
 import s from './SliderBar.module.scss';
 
 type TSliderBarProps<T = unknown> = {

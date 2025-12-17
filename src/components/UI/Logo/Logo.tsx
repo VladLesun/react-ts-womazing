@@ -1,5 +1,6 @@
 import cn from 'classnames';
 import { Link } from 'react-router-dom';
+
 import logoSvg from '../../../assets/img/logo.svg';
 import s from './Logo.module.scss';
 

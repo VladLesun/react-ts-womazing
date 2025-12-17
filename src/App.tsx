@@ -8,7 +8,7 @@ import { auth, db } from './API/firebase';
 
 import { selectUserId } from './redux/auth/auth.select';
 import { setUser } from './redux/auth/auth.slice';
-import { setCartRealTime } from './redux/cart/cart.slice';
+import { setCartRealTime, type TCartItem } from './redux/cart/cart.slice';
 
 import Layout from './layouts/Layout';
 import AboutBrand from './pages/AboutBrand/AboutBrand';
@@ -20,9 +20,10 @@ import Order from './pages/Order';
 import OrderConfirmed from './pages/OrderConfirmed/OrderConfirmed';
 import Product from './pages/Product';
 import Shop from './pages/Shop/Shop';
+import type { AppDispatch } from './redux/store';
 
 const App = () => {
-	const dispatch = useDispatch();
+	const dispatch = useDispatch<AppDispatch>();
 
 	const userId = useSelector(selectUserId);
 
@@ -47,11 +48,14 @@ const App = () => {
 
 		const cartRef = collection(doc(db, 'users', userId), 'cart');
 		const unsubCart = onSnapshot(cartRef, snapshot => {
-			const items = snapshot.docs.map(doc => ({ id: doc.id, ...doc.data() }));
+			const items = snapshot.docs.map(doc => ({
+				id: doc.id,
+				...doc.data(),
+			})) as TCartItem[];
 			dispatch(setCartRealTime(items));
 		});
 
-		return () => unsubCart;
+		return () => unsubCart();
 	}, [dispatch, userId]);
 
 	return (
