@@ -18,7 +18,7 @@ const ContactsForm = () => {
 	const userId = useSelector(selectUserId);
 	const feedbackStatus = useSelector(selectFeedbackStatus);
 
-	const { values, errors, refs, validate, handleChange, handleReset } =
+	const { values, errors, getFieldRef, validate, handleChange, handleReset } =
 		useValidation({ name: '', email: '', phone: '', message: '' }, [
 			'name',
 			'email',
@@ -59,7 +59,7 @@ const ContactsForm = () => {
 			<fieldset className={s.fieldset}>
 				<div>
 					<Input
-						ref={refs.name}
+						ref={getFieldRef('name')}
 						name='name'
 						value={values.name}
 						onChange={handleChange}
@@ -71,7 +71,7 @@ const ContactsForm = () => {
 				</div>
 				<div>
 					<Input
-						ref={refs.email}
+						ref={getFieldRef('email')}
 						name='email'
 						value={values.email}
 						onChange={handleChange}
@@ -83,7 +83,7 @@ const ContactsForm = () => {
 				</div>
 				<div>
 					<Input
-						ref={refs.phone}
+						ref={getFieldRef('phone')}
 						name='phone'
 						value={values.phone}
 						onChange={handleChange}
@@ -95,7 +95,7 @@ const ContactsForm = () => {
 				</div>
 				<div>
 					<Input
-						ref={refs.message}
+						ref={getFieldRef('message')}
 						name='message'
 						value={values.message}
 						onChange={handleChange}

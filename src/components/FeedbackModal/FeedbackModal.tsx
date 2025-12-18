@@ -7,6 +7,7 @@ import { sendFeedback } from '../../redux/feedback/feedback.action';
 import { selectFeedbackStatus } from '../../redux/feedback/feedback.select';
 
 import { useValidation } from '../../hooks/useValidation';
+import type { AppDispatch } from '../../redux/store';
 import Button from '../UI/Button/Button';
 import Input from '../UI/Input/Input';
 import s from './FeedbackModal.module.scss';
@@ -19,13 +20,14 @@ type TModal = {
 };
 
 const FeedbackModal = ({ isOpen, onRequestClose }: TModal) => {
-	const dispatch = useDispatch();
-	const { values, errors, refs, validate, handleChange, handleReset } =
+	const dispatch = useDispatch<AppDispatch>();
+	const { values, errors, getFieldRef, validate, handleChange, handleReset } =
 		useValidation({ name: '', email: '', phone: '' }, [
 			'name',
 			'email',
 			'phone',
 		]);
+	console.log('values: ', values);
 
 	const userId = useSelector(selectUserId);
 	const feedbackStatus = useSelector(selectFeedbackStatus);
@@ -33,7 +35,9 @@ const FeedbackModal = ({ isOpen, onRequestClose }: TModal) => {
 	const handleSendOrder = () => {
 		if (!validate()) return;
 
-		dispatch(sendFeedback({ userId, message: values, feedback: 'feedback' }));
+		if (userId) {
+			dispatch(sendFeedback({ userId, message: values, feedback: 'feedback' }));
+		}
 
 		handleReset();
 	};
@@ -64,7 +68,7 @@ const FeedbackModal = ({ isOpen, onRequestClose }: TModal) => {
 					<legend className={s.title}>Заказать обратный звонок</legend>
 					<div>
 						<Input
-							ref={refs.name}
+							ref={getFieldRef('name')}
 							value={values.name}
 							onChange={handleChange}
 							name='name'
@@ -76,7 +80,7 @@ const FeedbackModal = ({ isOpen, onRequestClose }: TModal) => {
 					</div>
 					<div>
 						<Input
-							ref={refs.email}
+							ref={getFieldRef('email')}
 							value={values.email}
 							onChange={handleChange}
 							name='email'
@@ -90,7 +94,7 @@ const FeedbackModal = ({ isOpen, onRequestClose }: TModal) => {
 					</div>
 					<div>
 						<Input
-							ref={refs.phone}
+							ref={getFieldRef('phone')}
 							value={values.phone}
 							onChange={handleChange}
 							name='phone'

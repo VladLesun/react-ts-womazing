@@ -4,7 +4,7 @@ import { db } from '../../API/firebase';
 
 type TFeedbackMessage = {
 	userId: string;
-	message: string[];
+	message: Record<string, string>;
 	feedback: string;
 };
 

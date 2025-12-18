@@ -7,7 +7,7 @@ type TInputProps = {
 	checked?: boolean;
 	onChange?: React.ChangeEventHandler<HTMLInputElement | HTMLTextAreaElement>;
 	className?: string;
-	type: string;
+	type?: string;
 	variant?: 'count' | 'textarea' | 'radio' | 'color' | 'size' | 'payment';
 	value: string | number;
 	placeholder?: string;

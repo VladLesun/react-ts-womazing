@@ -27,8 +27,8 @@ interface IOrderItem {
 	price: number;
 }
 
-type TOrder = {
-	customer: string[];
+export type TOrder = {
+	customer: Record<string, string>;
 	products: IOrderItem[];
 	totalPrice: number;
 };
@@ -45,7 +45,7 @@ const OrderForm = () => {
 	const {
 		values,
 		errors,
-		refs,
+		getFieldRef,
 		validate,
 		handleChange,
 		handleReset,
@@ -105,7 +105,7 @@ const OrderForm = () => {
 					<fieldset className={s.inputs}>
 						<div>
 							<Input
-								ref={refs.name}
+								ref={getFieldRef('name')}
 								className={cn(s.input, errors.name ? 'error' : '')}
 								name='name'
 								value={values.name}
@@ -119,7 +119,7 @@ const OrderForm = () => {
 						</div>
 						<div>
 							<Input
-								ref={refs.email}
+								ref={getFieldRef('email')}
 								className={cn(s.input, errors.email ? 'error' : '')}
 								name='email'
 								value={values.email}
@@ -133,7 +133,7 @@ const OrderForm = () => {
 						</div>
 						<div>
 							<Input
-								ref={refs.phone}
+								ref={getFieldRef('phone')}
 								className={cn(s.input, errors.phone ? 'error' : '')}
 								name='phone'
 								value={values.phone}
@@ -153,7 +153,7 @@ const OrderForm = () => {
 					<fieldset className={s.inputs}>
 						<div>
 							<Input
-								ref={refs.country}
+								ref={getFieldRef('country')}
 								className={cn(s.input, errors.country ? 'error' : '')}
 								name='country'
 								value={values.country}
@@ -167,7 +167,7 @@ const OrderForm = () => {
 						</div>
 						<div>
 							<Input
-								ref={refs.city}
+								ref={getFieldRef('city')}
 								className={cn(s.input, errors.city ? 'error' : '')}
 								name='city'
 								value={values.city}
@@ -181,7 +181,7 @@ const OrderForm = () => {
 						</div>
 						<div>
 							<Input
-								ref={refs.street}
+								ref={getFieldRef('street')}
 								className={cn(s.input, errors.street ? 'error' : '')}
 								name='street'
 								value={values.street}
@@ -195,7 +195,7 @@ const OrderForm = () => {
 						</div>
 						<div>
 							<Input
-								ref={refs.house}
+								ref={getFieldRef('house')}
 								className={cn(s.input, errors.house ? 'error' : '')}
 								name='house'
 								value={values.house}
@@ -222,6 +222,7 @@ const OrderForm = () => {
 					<legend className={s.subtitle}>Комментарии</legend>
 					<fieldset className={s.inputs}>
 						<Input
+							ref={getFieldRef('comment')}
 							className={s.input}
 							name='comment'
 							value={values.comment}
