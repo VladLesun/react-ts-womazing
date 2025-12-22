@@ -1,11 +1,11 @@
 import { useState, type PointerEventHandler } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
+import { useSelector } from 'react-redux';
 
 import { selectUserId } from '../../../../redux/auth/auth.select';
 import { addToCart } from '../../../../redux/cart/cart.action';
 
 import type { TCartItem } from '../../../../redux/cart/cart.slice';
-import type { AppDispatch } from '../../../../redux/store';
+import { useAppDispatch } from '../../../../redux/store';
 import Button from '../../Button/Button';
 import Input from '../../Input/Input';
 import s from './ProductForm.module.scss';
@@ -29,7 +29,7 @@ const ProductForm = ({
 	size,
 	color,
 }: TProductFormProps) => {
-	const dispatch = useDispatch<AppDispatch>();
+	const dispatch = useAppDispatch();
 
 	const userId = useSelector(selectUserId);
 

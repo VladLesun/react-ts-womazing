@@ -1,5 +1,5 @@
 import cn from 'classnames';
-import { useDispatch, useSelector } from 'react-redux';
+import { useSelector } from 'react-redux';
 
 import { selectUserId } from '../../../../redux/auth/auth.select';
 import { sendFeedback } from '../../../../redux/feedback/feedback.action';
@@ -7,13 +7,13 @@ import { selectFeedbackStatus } from '../../../../redux/feedback/feedback.select
 import { resetStatus } from '../../../../redux/feedback/feedback.slice';
 
 import { useValidation } from '../../../../hooks/useValidation';
-import type { AppDispatch } from '../../../../redux/store';
+import { useAppDispatch } from '../../../../redux/store';
 import Button from '../../Button/Button';
 import Input from '../../Input/Input';
 import s from './ContactsForm.module.scss';
 
 const ContactsForm = () => {
-	const dispatch = useDispatch<AppDispatch>();
+	const dispatch = useAppDispatch();
 
 	const userId = useSelector(selectUserId);
 	const feedbackStatus = useSelector(selectFeedbackStatus);

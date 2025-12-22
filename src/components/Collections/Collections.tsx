@@ -1,10 +1,10 @@
 import { forwardRef, useEffect, useMemo } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
+import { useSelector } from 'react-redux';
 
 import { fetchProducts } from '../../redux/products/products.action';
 import { selectProducts } from '../../redux/products/products.select';
 
-import type { AppDispatch } from '../../redux/store';
+import { useAppDispatch } from '../../redux/store';
 import shuffle from '../../util/shuffle';
 import ProductCard from '../Product/ProductCard/ProductCard';
 import Button from '../UI/Button/Button';
@@ -12,7 +12,7 @@ import ProductsSkeleton from '../UI/Skeletons/ProductsSkeleton';
 import s from './Collections.module.scss';
 
 const Collections = forwardRef<HTMLElement, object>((_, ref) => {
-	const dispatch = useDispatch<AppDispatch>();
+	const dispatch = useAppDispatch();
 
 	const products = useSelector(selectProducts);
 

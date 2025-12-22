@@ -1,13 +1,13 @@
 import cn from 'classnames';
 import Modal from 'react-modal';
-import { useDispatch, useSelector } from 'react-redux';
+import { useSelector } from 'react-redux';
 
 import { selectUserId } from '../../redux/auth/auth.select';
 import { sendFeedback } from '../../redux/feedback/feedback.action';
 import { selectFeedbackStatus } from '../../redux/feedback/feedback.select';
 
 import { useValidation } from '../../hooks/useValidation';
-import type { AppDispatch } from '../../redux/store';
+import { useAppDispatch } from '../../redux/store';
 import Button from '../UI/Button/Button';
 import Input from '../UI/Input/Input';
 import s from './FeedbackModal.module.scss';
@@ -20,7 +20,7 @@ type TModal = {
 };
 
 const FeedbackModal = ({ isOpen, onRequestClose }: TModal) => {
-	const dispatch = useDispatch<AppDispatch>();
+	const dispatch = useAppDispatch();
 	const { values, errors, getFieldRef, validate, handleChange, handleReset } =
 		useValidation({ name: '', email: '', phone: '' }, [
 			'name',

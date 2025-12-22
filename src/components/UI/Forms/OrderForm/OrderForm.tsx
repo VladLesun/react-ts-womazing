@@ -1,5 +1,5 @@
 import cn from 'classnames';
-import { useDispatch, useSelector } from 'react-redux';
+import { useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 
 import { selectUserId } from '../../../../redux/auth/auth.select';
@@ -12,7 +12,7 @@ import {
 import { sendOrder } from '../../../../redux/order/order.action';
 
 import { useValidation } from '../../../../hooks/useValidation';
-import type { AppDispatch } from '../../../../redux/store';
+import { useAppDispatch } from '../../../../redux/store';
 import Button from '../../Button/Button';
 import Input from '../../Input/Input';
 import OrderSkeleton from '../../Skeletons/OrderSkeleton';
@@ -35,7 +35,7 @@ export type TOrder = {
 
 const OrderForm = () => {
 	const navigate = useNavigate();
-	const dispatch = useDispatch<AppDispatch>();
+	const dispatch = useAppDispatch();
 
 	const userId = useSelector(selectUserId);
 	const cartItems: IOrderItem[] = useSelector(selectCartItems);

@@ -1,5 +1,5 @@
 import { useEffect } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
+import { useSelector } from 'react-redux';
 
 import { selectUserId } from '../../../../redux/auth/auth.select';
 import { fetchCart } from '../../../../redux/cart/cart.action';
@@ -10,14 +10,14 @@ import {
 } from '../../../../redux/cart/cart.select';
 
 import CartEmpty from '../../../../pages/CartEmpty/CartEmpty';
-import type { AppDispatch } from '../../../../redux/store';
+import { useAppDispatch } from '../../../../redux/store';
 import ProductCart from '../../../Product/ProductCart/ProductCart';
 import Button from '../../Button/Button';
 import CartSkeleton from '../../Skeletons/CartSkeleton/CartSkeleton';
 import s from './CartForm.module.scss';
 
 const CartForm = () => {
-	const dispatch = useDispatch<AppDispatch>();
+	const dispatch = useAppDispatch();
 
 	const userId = useSelector(selectUserId);
 	const cartItems = useSelector(selectCartItems);

@@ -1,6 +1,6 @@
 import cn from 'classnames';
 import { useEffect, useMemo, useState, type ChangeEventHandler } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
+import { useSelector } from 'react-redux';
 
 import { selectUserId } from '../../../redux/auth/auth.select';
 import {
@@ -8,7 +8,7 @@ import {
 	updateCartItemQuantity,
 } from '../../../redux/cart/cart.action';
 
-import type { AppDispatch } from '../../../redux/store';
+import { useAppDispatch } from '../../../redux/store';
 import { debounce } from '../../../util/debounce';
 import Input from '../../UI/Input/Input';
 import s from './ProductCart.module.scss';
@@ -32,7 +32,7 @@ const ProductCart = ({
 	price,
 	quantity,
 }: TProductCartProps) => {
-	const dispatch = useDispatch<AppDispatch>();
+	const dispatch = useAppDispatch();
 
 	const userId = useSelector(selectUserId);
 

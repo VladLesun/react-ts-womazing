@@ -1,5 +1,5 @@
 import { useCallback, useEffect, useRef, useState } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
+import { useSelector } from 'react-redux';
 import { useNavigate, useSearchParams } from 'react-router-dom';
 
 import {
@@ -18,14 +18,14 @@ import ProductCategory from '../../components/Product/ProductCategory/ProductCat
 import PageTitleContent from '../../components/UI/PageTitleContent/PageTitleContent';
 import PageWrap from '../../components/UI/PageWrap/PageWrap';
 import ProductsSkeleton from '../../components/UI/Skeletons/ProductsSkeleton';
-import type { AppDispatch } from '../../redux/store';
+import { useAppDispatch } from '../../redux/store';
 import s from './Shop.module.scss';
 
 const Shop = () => {
 	const navigate = useNavigate();
 	const [searchParams] = useSearchParams();
 
-	const dispatch = useDispatch<AppDispatch>();
+	const dispatch = useAppDispatch();
 
 	const products = useSelector(selectProducts);
 	const productsStatus = useSelector(selectProductsStatus);

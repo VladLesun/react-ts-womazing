@@ -1,13 +1,13 @@
 import { useState } from 'react';
-import { useDispatch } from 'react-redux';
 
 import { resetStatus } from '../../redux/feedback/feedback.slice';
 
+import { useAppDispatch } from '../../redux/store';
 import FeedbackModal from '../FeedbackModal/FeedbackModal';
 import s from './Feedback.module.scss';
 
 const Feedback = () => {
-	const dispatch = useDispatch();
+	const dispatch = useAppDispatch();
 	const [isOpenModal, setIsOpenModal] = useState(false);
 
 	const handleOpenModal = () => {

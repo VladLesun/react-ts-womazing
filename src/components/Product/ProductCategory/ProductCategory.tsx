@@ -1,4 +1,4 @@
-import { useDispatch, useSelector } from 'react-redux';
+import { useSelector } from 'react-redux';
 
 import {
 	selectCategoriesArray,
@@ -9,13 +9,14 @@ import {
 	type TFilterCategory,
 } from '../../../redux/filter/filter.slice';
 
+import { useAppDispatch } from '../../../redux/store';
 import Button from '../../UI/Button/Button';
 import s from './ProductCategory.module.scss';
 
 type TProductCategoryProps = { setVisibleCount: (count: number) => void };
 
 const ProductCategory = ({ setVisibleCount }: TProductCategoryProps) => {
-	const dispatch = useDispatch();
+	const dispatch = useAppDispatch();
 	const categoryObj = useSelector(selectCategory);
 	const categoriesArray = useSelector(selectCategoriesArray);
 

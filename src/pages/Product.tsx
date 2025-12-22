@@ -1,5 +1,5 @@
 import { useEffect, useMemo } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
+import { useSelector } from 'react-redux';
 import { Link, useParams } from 'react-router-dom';
 
 import { fetchProduct, fetchProducts } from '../redux/products/products.action';
@@ -14,11 +14,11 @@ import ProductForm from '../components/UI/Forms/ProductForm/ProductForm';
 import PageTitleContent from '../components/UI/PageTitleContent/PageTitleContent';
 import PageWrap from '../components/UI/PageWrap/PageWrap';
 import ProductSkeleton from '../components/UI/Skeletons/ProductSkeleton';
-import type { AppDispatch } from '../redux/store';
+import { useAppDispatch } from '../redux/store';
 import shuffle from '../util/shuffle';
 
 const Product = () => {
-	const dispatch = useDispatch<AppDispatch>();
+	const dispatch = useAppDispatch();
 
 	const product = useSelector(selectProduct);
 	const products = useSelector(selectProducts);

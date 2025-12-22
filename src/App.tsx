@@ -2,7 +2,7 @@ import { onAuthStateChanged, signInAnonymously } from 'firebase/auth';
 import { collection, doc, onSnapshot } from 'firebase/firestore';
 import 'leaflet/dist/leaflet.css';
 import { useEffect } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
+import { useSelector } from 'react-redux';
 import { Route, Routes } from 'react-router-dom';
 import { auth, db } from './API/firebase';
 
@@ -20,10 +20,10 @@ import Order from './pages/Order';
 import OrderConfirmed from './pages/OrderConfirmed/OrderConfirmed';
 import Product from './pages/Product';
 import Shop from './pages/Shop/Shop';
-import type { AppDispatch } from './redux/store';
+import { useAppDispatch } from './redux/store';
 
 const App = () => {
-	const dispatch = useDispatch<AppDispatch>();
+	const dispatch = useAppDispatch();
 
 	const userId = useSelector(selectUserId);
 
