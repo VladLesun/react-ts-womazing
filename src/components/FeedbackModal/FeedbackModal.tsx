@@ -27,7 +27,6 @@ const FeedbackModal = ({ isOpen, onRequestClose }: TModal) => {
 			'email',
 			'phone',
 		]);
-	console.log('values: ', values);
 
 	const userId = useSelector(selectUserId);
 	const feedbackStatus = useSelector(selectFeedbackStatus);

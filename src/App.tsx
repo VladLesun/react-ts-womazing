@@ -1,9 +1,10 @@
 import { onAuthStateChanged, signInAnonymously } from 'firebase/auth';
 import { collection, doc, onSnapshot } from 'firebase/firestore';
 import 'leaflet/dist/leaflet.css';
-import { useEffect } from 'react';
+import { lazy, Suspense, useEffect } from 'react';
 import { useSelector } from 'react-redux';
 import { Route, Routes } from 'react-router-dom';
+
 import { auth, db } from './API/firebase';
 
 import { selectUserId } from './redux/auth/auth.select';
@@ -11,16 +12,20 @@ import { setUser } from './redux/auth/auth.slice';
 import { setCartRealTime, type TCartItem } from './redux/cart/cart.slice';
 
 import Layout from './layouts/Layout';
-import AboutBrand from './pages/AboutBrand/AboutBrand';
-import Cart from './pages/Cart';
-import Contacts from './pages/Contacts';
 import Home from './pages/Home';
-import NotFound from './pages/NotFound';
-import Order from './pages/Order';
-import OrderConfirmed from './pages/OrderConfirmed/OrderConfirmed';
-import Product from './pages/Product';
-import Shop from './pages/Shop/Shop';
+
 import { useAppDispatch } from './redux/store';
+
+const AboutBrand = lazy(() => import('./pages/AboutBrand/AboutBrand'));
+const Cart = lazy(() => import('./pages/Cart'));
+const Contacts = lazy(() => import('./pages/Contacts'));
+const NotFound = lazy(() => import('./pages/NotFound'));
+const Order = lazy(() => import('./pages/Order'));
+const OrderConfirmed = lazy(
+	() => import('./pages/OrderConfirmed/OrderConfirmed')
+);
+const Product = lazy(() => import('./pages/Product'));
+const Shop = lazy(() => import('./pages/Shop/Shop'));
 
 const App = () => {
 	const dispatch = useAppDispatch();
@@ -62,14 +67,70 @@ const App = () => {
 		<Routes>
 			<Route path='/' element={<Layout />}>
 				<Route index element={<Home />} />
-				<Route path='/shop' element={<Shop />} />
-				<Route path='/shop/:productId' element={<Product />} />
-				<Route path='/about-brand' element={<AboutBrand />} />
-				<Route path='/contacts' element={<Contacts />} />
-				<Route path='/cart' element={<Cart />} />
-				<Route path='/order' element={<Order />} />
-				<Route path='/confirmed' element={<OrderConfirmed />} />
-				<Route path='*' element={<NotFound />} />
+				<Route
+					path='/shop'
+					element={
+						<Suspense fallback={<div>Loading...</div>}>
+							<Shop />
+						</Suspense>
+					}
+				/>
+				<Route
+					path='/shop/:productId'
+					element={
+						<Suspense fallback={<div>Loading...</div>}>
+							<Product />
+						</Suspense>
+					}
+				/>
+				<Route
+					path='/about-brand'
+					element={
+						<Suspense fallback={<div>Loading...</div>}>
+							<AboutBrand />
+						</Suspense>
+					}
+				/>
+				<Route
+					path='/contacts'
+					element={
+						<Suspense fallback={<div>Loading...</div>}>
+							<Contacts />
+						</Suspense>
+					}
+				/>
+				<Route
+					path='/cart'
+					element={
+						<Suspense fallback={<div>Loading...</div>}>
+							<Cart />
+						</Suspense>
+					}
+				/>
+				<Route
+					path='/order'
+					element={
+						<Suspense fallback={<div>Loading...</div>}>
+							<Order />
+						</Suspense>
+					}
+				/>
+				<Route
+					path='/confirmed'
+					element={
+						<Suspense fallback={<div>Loading...</div>}>
+							<OrderConfirmed />
+						</Suspense>
+					}
+				/>
+				<Route
+					path='*'
+					element={
+						<Suspense fallback={<div>Loading...</div>}>
+							<NotFound />
+						</Suspense>
+					}
+				/>
 			</Route>
 		</Routes>
 	);

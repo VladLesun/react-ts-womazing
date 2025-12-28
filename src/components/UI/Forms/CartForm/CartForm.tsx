@@ -9,8 +9,9 @@ import {
 	selectTotalPrice,
 } from '../../../../redux/cart/cart.select';
 
-import CartEmpty from '../../../../pages/CartEmpty/CartEmpty';
 import { useAppDispatch } from '../../../../redux/store';
+
+import CartEmpty from '../../../CartEmpty/CartEmpty';
 import ProductCart from '../../../Product/ProductCart/ProductCart';
 import Button from '../../Button/Button';
 import CartSkeleton from '../../Skeletons/CartSkeleton/CartSkeleton';
