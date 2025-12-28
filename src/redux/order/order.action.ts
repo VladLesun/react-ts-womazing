@@ -1,7 +1,7 @@
 import { createAsyncThunk } from '@reduxjs/toolkit';
 import { addDoc, collection, doc } from 'firebase/firestore';
 import { db } from '../../API/firebase';
-import type { TOrder } from '../../components/UI/Forms/OrderForm/OrderForm';
+import type { TOrder } from '../../components/ui/Forms/OrderForm';
 
 type TSendOrder = {
 	userId: string;

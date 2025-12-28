@@ -1,8 +1,8 @@
-import Communication from '../components/Communication/Communication';
-import ContactsForm from '../components/UI/Forms/ContactsForm/ContactsForm';
-import Map from '../components/UI/Map/Map';
-import PageTitleContent from '../components/UI/PageTitleContent/PageTitleContent';
-import PageWrap from '../components/UI/PageWrap/PageWrap';
+import Communication from '../components/features/Communication';
+import Map from '../components/shared/Map';
+import PageTitleContent from '../components/shared/PageTitleContent';
+import PageWrap from '../components/shared/PageWrap';
+import ContactsForm from '../components/ui/Forms/ContactsForm';
 
 const Contacts = () => {
 	return (

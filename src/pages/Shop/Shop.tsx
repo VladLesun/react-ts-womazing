@@ -15,9 +15,9 @@ import {
 
 import ProductCard from '../../components/Product/ProductCard/ProductCard';
 import ProductCategory from '../../components/Product/ProductCategory/ProductCategory';
-import PageTitleContent from '../../components/UI/PageTitleContent/PageTitleContent';
-import PageWrap from '../../components/UI/PageWrap/PageWrap';
-import ProductsSkeleton from '../../components/UI/Skeletons/ProductsSkeleton';
+import PageTitleContent from '../../components/shared/PageTitleContent';
+import PageWrap from '../../components/shared/PageWrap';
+import ProductsSkeleton from '../../components/ui/Skeletons/ProductsSkeleton';
 import { useAppDispatch } from '../../redux/store';
 import s from './Shop.module.scss';
 

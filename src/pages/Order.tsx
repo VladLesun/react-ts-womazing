@@ -1,6 +1,6 @@
-import OrderForm from '../components/UI/Forms/OrderForm/OrderForm';
-import PageTitleContent from '../components/UI/PageTitleContent/PageTitleContent';
-import PageWrap from '../components/UI/PageWrap/PageWrap';
+import PageTitleContent from '../components/shared/PageTitleContent';
+import PageWrap from '../components/shared/PageWrap';
+import OrderForm from '../components/ui/Forms/OrderForm';
 
 const Order = () => {
 	return (

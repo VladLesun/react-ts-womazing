@@ -1,6 +1,6 @@
 import { useCallback, useEffect, useRef, useState } from 'react';
-import type { THeroSlidesContent } from '../components/UI/Sliders/HeroSlider/HeroSlider';
-import type { TTeamSlidesContent } from '../components/UI/Sliders/TeamSlider/TeamSlider';
+import type { THeroSlidesContent } from '../components/shared/Sliders/HeroSlider';
+import type { TTeamSlidesContent } from '../components/shared/Sliders/TeamSlider';
 
 type TSlidesProps = THeroSlidesContent[] | TTeamSlidesContent[];
 

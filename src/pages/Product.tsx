@@ -10,10 +10,10 @@ import {
 } from '../redux/products/products.select';
 
 import ProductRelated from '../components/Product/ProductRelated/ProductRelated';
-import ProductForm from '../components/UI/Forms/ProductForm/ProductForm';
-import PageTitleContent from '../components/UI/PageTitleContent/PageTitleContent';
-import PageWrap from '../components/UI/PageWrap/PageWrap';
-import ProductSkeleton from '../components/UI/Skeletons/ProductSkeleton';
+import PageTitleContent from '../components/shared/PageTitleContent';
+import PageWrap from '../components/shared/PageWrap';
+import ProductForm from '../components/ui/Forms/ProductForm';
+import ProductSkeleton from '../components/ui/Skeletons/ProductSkeleton';
 import { useAppDispatch } from '../redux/store';
 import shuffle from '../util/shuffle';
 
