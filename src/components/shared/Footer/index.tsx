@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom';
 
 import { selectCategoriesArray } from '../../../redux/filter/filter.select';
 
-import paymentImg from '../../assets/img/payment-cards.png';
+import paymentImg from '../../../assets/img/payment-cards.png';
 
 import { Logo, Navigation } from '../../../components';
 
