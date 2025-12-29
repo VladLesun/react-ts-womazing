@@ -1,6 +1,5 @@
-import PageTitleContent from '../../components/shared/PageTitleContent';
-import PageWrap from '../../components/shared/PageWrap';
-import Button from '../../components/ui/Button';
+import { Button, PageTitleContent, PageWrap } from '../../components';
+
 import s from './AboutBrand.module.scss';
 
 const AboutBrand = () => {

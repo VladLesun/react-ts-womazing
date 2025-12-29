@@ -13,11 +13,14 @@ import {
 	selectProductsStatus,
 } from '../../redux/products/products.select';
 
-import ProductCard from '../../components/Product/ProductCard/ProductCard';
-import ProductCategory from '../../components/Product/ProductCategory/ProductCategory';
-import PageTitleContent from '../../components/shared/PageTitleContent';
-import PageWrap from '../../components/shared/PageWrap';
-import ProductsSkeleton from '../../components/ui/Skeletons/ProductsSkeleton';
+import {
+	PageTitleContent,
+	PageWrap,
+	ProductCard,
+	ProductCategory,
+	ProductsSkeleton,
+} from '../../components';
+
 import { useAppDispatch } from '../../redux/store';
 import s from './Shop.module.scss';
 

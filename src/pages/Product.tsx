@@ -9,11 +9,14 @@ import {
 	selectProductsStatus,
 } from '../redux/products/products.select';
 
-import ProductRelated from '../components/Product/ProductRelated/ProductRelated';
-import PageTitleContent from '../components/shared/PageTitleContent';
-import PageWrap from '../components/shared/PageWrap';
-import ProductForm from '../components/ui/Forms/ProductForm';
-import ProductSkeleton from '../components/ui/Skeletons/ProductSkeleton';
+import {
+	PageTitleContent,
+	PageWrap,
+	ProductForm,
+	ProductRelated,
+	ProductSkeleton,
+} from '../components';
+
 import { useAppDispatch } from '../redux/store';
 import shuffle from '../util/shuffle';
 

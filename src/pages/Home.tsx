@@ -1,10 +1,7 @@
 import { useEffect, useRef } from 'react';
 import { useLocation } from 'react-router-dom';
 
-import Collections from '../components/features/Collections';
-import Hero from '../components/features/Hero';
-import Important from '../components/features/Important';
-import Team from '../components/features/Team';
+import { Collections, Hero, Important, Team } from '../components';
 
 const Home = () => {
 	const { pathname } = useLocation();

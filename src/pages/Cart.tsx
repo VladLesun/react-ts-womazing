@@ -1,6 +1,4 @@
-import PageTitleContent from '../components/shared/PageTitleContent';
-import PageWrap from '../components/shared/PageWrap';
-import CartForm from '../components/ui/Forms/CartForm';
+import { CartForm, PageTitleContent, PageWrap } from '../components';
 
 const Cart = () => {
 	return (

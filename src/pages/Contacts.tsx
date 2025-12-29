@@ -1,8 +1,10 @@
-import Communication from '../components/features/Communication';
-import Map from '../components/shared/Map';
-import PageTitleContent from '../components/shared/PageTitleContent';
-import PageWrap from '../components/shared/PageWrap';
-import ContactsForm from '../components/ui/Forms/ContactsForm';
+import {
+	Communication,
+	ContactsForm,
+	Map,
+	PageTitleContent,
+	PageWrap,
+} from '../components';
 
 const Contacts = () => {
 	return (
