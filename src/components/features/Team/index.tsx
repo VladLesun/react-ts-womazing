@@ -1,6 +1,7 @@
 import { Link } from 'react-router-dom';
 
 import { TeamSlider } from '../../../components';
+
 import s from './Team.module.scss';
 
 const Team = () => {

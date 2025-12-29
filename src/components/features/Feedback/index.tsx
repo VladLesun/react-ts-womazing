@@ -1,9 +1,9 @@
 import { useState } from 'react';
 
-import { resetStatus } from '../../../redux/feedback/feedback.slice';
-
 import { FeedbackModal } from '../../../components';
-import { useAppDispatch } from '../../../redux/store';
+import { resetStatus } from '../../../redux';
+import { useAppDispatch } from '../../../redux/redux.types';
+
 import s from './Feedback.module.scss';
 
 const Feedback = () => {

@@ -1,7 +1,7 @@
 import { useSelector } from 'react-redux';
 import { Link, useLocation } from 'react-router-dom';
 
-import { selectProduct } from '../../../redux/products/products.select';
+import { selectProduct } from '../../../redux';
 
 import s from './PageTitleContent.module.scss';
 

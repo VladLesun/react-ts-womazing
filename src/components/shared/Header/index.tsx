@@ -4,7 +4,8 @@ import { useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
 
 import { Feedback, Logo, Navigation } from '../../../components';
-import { selectCartTotalQuantity } from '../../../redux/cart/cart.select';
+import { selectCartTotalQuantity } from '../../../redux';
+
 import s from './Header.module.scss';
 
 const Header = () => {

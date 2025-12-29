@@ -1,8 +1,8 @@
 import cn from 'classnames';
 
+import { SliderBar, SliderNavigation } from '../../../../components';
 import { useActionSliders } from '../../../../hooks/useActionSliders';
 
-import { SliderBar, SliderNavigation } from '../../../../components';
 import s from './TeamSlider.module.scss';
 
 export type TTeamSlidesContent = { imgUrl: string; imgUrlWebP: string };

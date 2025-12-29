@@ -1,4 +1,5 @@
 import type { TImportant } from '../Important.types';
+
 import s from './ImportantItem.module.scss';
 
 const ImportantItem = ({ imgUrl, title, desc }: TImportant) => {

@@ -2,18 +2,18 @@ import cn from 'classnames';
 import { useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 
-import { selectUserId } from '../../../../redux/auth/auth.select';
-import { clearCart } from '../../../../redux/cart/cart.action';
+import { Button, Input, OrderSkeleton } from '../../../../components';
+import { useValidation } from '../../../../hooks/useValidation';
 import {
+	clearCart,
 	selectCartItems,
 	selectCartStatus,
 	selectTotalPrice,
-} from '../../../../redux/cart/cart.select';
-import { sendOrder } from '../../../../redux/order/order.action';
-
-import { Button, Input, OrderSkeleton } from '../../../../components';
-import { useValidation } from '../../../../hooks/useValidation';
+	selectUserId,
+	sendOrder,
+} from '../../../../redux';
 import { useAppDispatch } from '../../../../redux/redux.types';
+
 import s from './OrderForm.module.scss';
 
 interface IOrderItem {

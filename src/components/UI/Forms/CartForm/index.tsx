@@ -1,15 +1,13 @@
 import { useEffect } from 'react';
 import { useSelector } from 'react-redux';
 
-import { selectUserId } from '../../../../redux/auth/auth.select';
-import { fetchCart } from '../../../../redux/cart/cart.action';
 import {
+	fetchCart,
 	selectCartItems,
 	selectCartStatus,
 	selectTotalPrice,
-} from '../../../../redux/cart/cart.select';
-
-import { useAppDispatch } from '../../../../redux/store';
+	selectUserId,
+} from '../../../../redux';
 
 import {
 	Button,
@@ -19,6 +17,8 @@ import {
 } from '../../../../components';
 
 import s from './CartForm.module.scss';
+
+import { useAppDispatch } from '../../../../redux/redux.types';
 
 const CartForm = () => {
 	const dispatch = useAppDispatch();

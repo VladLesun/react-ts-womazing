@@ -1,14 +1,16 @@
 import cn from 'classnames';
 import { useSelector } from 'react-redux';
 
-import { selectUserId } from '../../../../redux/auth/auth.select';
-import { sendFeedback } from '../../../../redux/feedback/feedback.action';
-import { selectFeedbackStatus } from '../../../../redux/feedback/feedback.select';
-import { resetStatus } from '../../../../redux/feedback/feedback.slice';
-
 import { Button, Input } from '../../../../components';
 import { useValidation } from '../../../../hooks/useValidation';
-import { useAppDispatch } from '../../../../redux/store';
+import {
+	resetStatus,
+	selectFeedbackStatus,
+	selectUserId,
+	sendFeedback,
+} from '../../../../redux';
+import { useAppDispatch } from '../../../../redux/redux.types';
+
 import s from './ContactsForm.module.scss';
 
 const ContactsForm = () => {

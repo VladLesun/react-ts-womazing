@@ -1,16 +1,15 @@
 import { useSelector } from 'react-redux';
 
 import { Button } from '../../../../components';
+import type { TFilterCategory } from '../../../../redux';
 import {
 	selectCategoriesArray,
 	selectCategory,
-} from '../../../../redux/filter/filter.select';
-import {
 	setCategory,
-	type TFilterCategory,
-} from '../../../../redux/filter/filter.slice';
-import { useAppDispatch } from '../../../../redux/store';
+} from '../../../../redux';
+import { useAppDispatch } from '../../../../redux/redux.types';
 import type { TProductCategoryProps } from '../product.types';
+
 import s from './ProductCategory.module.scss';
 
 const ProductCategory = ({ setVisibleCount }: TProductCategoryProps) => {

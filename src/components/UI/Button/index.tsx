@@ -1,6 +1,7 @@
 import cn from 'classnames';
 import type { PointerEventHandler } from 'react';
 import { Link } from 'react-router-dom';
+
 import s from './Button.module.scss';
 
 type TButtonProps = {

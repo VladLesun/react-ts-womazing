@@ -1,4 +1,5 @@
 import { HeroSlider } from '../../../components';
+
 import s from './Hero.module.scss';
 
 type THeroProp = { onClick: () => void };

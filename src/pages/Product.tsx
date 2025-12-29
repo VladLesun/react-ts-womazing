@@ -2,13 +2,6 @@ import { useEffect, useMemo } from 'react';
 import { useSelector } from 'react-redux';
 import { Link, useParams } from 'react-router-dom';
 
-import { fetchProduct, fetchProducts } from '../redux/products/products.action';
-import {
-	selectProduct,
-	selectProducts,
-	selectProductsStatus,
-} from '../redux/products/products.select';
-
 import {
 	PageTitleContent,
 	PageWrap,
@@ -18,6 +11,15 @@ import {
 } from '../components';
 
 import { useAppDispatch } from '../redux/redux.types';
+
+import {
+	fetchProduct,
+	fetchProducts,
+	selectProduct,
+	selectProducts,
+	selectProductsStatus,
+} from '../redux';
+
 import shuffle from '../util/shuffle';
 
 const Product = () => {

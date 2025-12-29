@@ -1,5 +1,6 @@
 import { ProductCard } from '../../../../components';
 import type { TProductRelated } from '../product.types';
+
 import s from './ProductRelated.module.scss';
 
 const ProductRelated = ({ products }: TProductRelated) => {

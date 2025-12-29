@@ -3,15 +3,15 @@ import { useEffect, useMemo, useState, type ChangeEventHandler } from 'react';
 import { useSelector } from 'react-redux';
 
 import { Input } from '../../../../components';
-
-import { selectUserId } from '../../../../redux/auth/auth.select';
 import {
 	removeFromCart,
+	selectUserId,
 	updateCartItemQuantity,
-} from '../../../../redux/cart/cart.action';
-import { useAppDispatch } from '../../../../redux/store';
+} from '../../../../redux';
+import { useAppDispatch } from '../../../../redux/redux.types';
 import { debounce } from '../../../../util/debounce';
 import type { TProductCartProps } from '../product.types';
+
 import s from './ProductCart.module.scss';
 
 const ProductCart = ({

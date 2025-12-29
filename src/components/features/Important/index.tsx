@@ -1,6 +1,7 @@
 import { ImportantItem } from '../../../components';
-import s from './Important.module.scss';
 import type { TImportant } from './Important.types';
+
+import s from './Important.module.scss';
 
 const importantItems: TImportant[] = [
 	{

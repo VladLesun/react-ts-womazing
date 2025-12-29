@@ -3,12 +3,14 @@ import Modal from 'react-modal';
 import { useSelector } from 'react-redux';
 
 import { Button, Input } from '../../../components';
-
 import { useValidation } from '../../../hooks/useValidation';
-import { selectUserId } from '../../../redux/auth/auth.select';
-import { sendFeedback } from '../../../redux/feedback/feedback.action';
-import { selectFeedbackStatus } from '../../../redux/feedback/feedback.select';
-import { useAppDispatch } from '../../../redux/store';
+import {
+	selectFeedbackStatus,
+	selectUserId,
+	sendFeedback,
+} from '../../../redux';
+import { useAppDispatch } from '../../../redux/redux.types';
+
 import s from './FeedbackModal.module.scss';
 
 Modal.setAppElement('#root');

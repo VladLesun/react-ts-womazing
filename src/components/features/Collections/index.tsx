@@ -1,13 +1,10 @@
 import { forwardRef, useEffect, useMemo } from 'react';
 import { useSelector } from 'react-redux';
 
-import { fetchProducts } from '../../../redux/products/products.action';
-import { selectProducts } from '../../../redux/products/products.select';
-
-import { useAppDispatch } from '../../../redux/store';
-import shuffle from '../../../util/shuffle';
-
 import { Button, ProductCard, ProductsSkeleton } from '../../../components';
+import { fetchProducts, selectProducts } from '../../../redux';
+import { useAppDispatch } from '../../../redux/redux.types';
+import shuffle from '../../../util/shuffle';
 
 import s from './Collections.module.scss';
 

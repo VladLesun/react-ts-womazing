@@ -1,8 +1,9 @@
 import cn from 'classnames';
 import { NavLink } from 'react-router-dom';
 
-import s from './Navigation.module.scss';
 import type { TCategory, TNavigation } from './Navigation.types';
+
+import s from './Navigation.module.scss';
 
 const categories: TCategory[] = [
 	{ href: '/', title: 'Главная' },

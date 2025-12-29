@@ -1,6 +1,6 @@
 import cn from 'classnames';
-
 import { forwardRef, type ChangeEventHandler, type Ref } from 'react';
+
 import s from './Input.module.scss';
 
 type TInputProps = {

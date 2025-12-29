@@ -3,15 +3,13 @@ import { useSelector } from 'react-redux';
 import { useNavigate, useSearchParams } from 'react-router-dom';
 
 import {
+	fetchProducts,
 	selectCategoriesArray,
 	selectCategory,
-} from '../../redux/filter/filter.select';
-import { setCategory } from '../../redux/filter/filter.slice';
-import { fetchProducts } from '../../redux/products/products.action';
-import {
 	selectProducts,
 	selectProductsStatus,
-} from '../../redux/products/products.select';
+	setCategory,
+} from '../../redux';
 
 import {
 	PageTitleContent,

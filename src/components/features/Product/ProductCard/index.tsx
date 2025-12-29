@@ -1,6 +1,7 @@
 import { Link } from 'react-router-dom';
 
 import type { TProductCardProps } from '../product.types';
+
 import s from './ProductCard.module.scss';
 
 const ProductCard = ({ id, imgUrl, name, price, sale }: TProductCardProps) => {

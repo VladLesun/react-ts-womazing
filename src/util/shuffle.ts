@@ -1,4 +1,4 @@
-import type { TProduct } from '../redux/products/products.slice';
+import type { TProduct } from '../redux';
 
 const shuffle = (array: TProduct[]) => {
 	const arr = [...array];
