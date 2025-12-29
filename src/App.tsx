@@ -9,12 +9,12 @@ import { auth, db } from './API/firebase';
 
 import { selectUserId } from './redux/auth/auth.select';
 import { setUser } from './redux/auth/auth.slice';
-import { setCartRealTime, type TCartItem } from './redux/cart/cart.slice';
+import { setCartRealTime } from './redux/cart/cart.slice';
 
 import Layout from './layouts/Layout';
 import Home from './pages/Home';
-
-import { useAppDispatch } from './redux/store';
+import type { TCartItem } from './redux/cart/cart.types';
+import { useAppDispatch } from './redux/redux.types';
 
 const AboutBrand = lazy(() => import('./pages/AboutBrand/AboutBrand'));
 const Cart = lazy(() => import('./pages/Cart'));

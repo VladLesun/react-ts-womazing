@@ -10,7 +10,7 @@ import {
 	where,
 } from 'firebase/firestore';
 import { db } from '../../API/firebase';
-import type { TCartItem } from './cart.slice';
+import type { TCartItem } from './cart.types';
 
 export const fetchCart = createAsyncThunk(
 	'cart/fetchCart',

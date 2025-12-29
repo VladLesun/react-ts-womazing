@@ -1,6 +1,5 @@
 import { createSlice, type PayloadAction } from '@reduxjs/toolkit';
 
-import type { TStateStatus } from '../../types/types';
 import {
 	addToCart,
 	clearCart,
@@ -9,22 +8,7 @@ import {
 	updateCartItemQuantity,
 } from './cart.action';
 
-export type TCartItem = {
-	id: string;
-	imgUrl: string;
-	productId: string;
-	size: string;
-	name: string;
-	quantity: number;
-	price: number;
-	color: string;
-};
-
-interface ICartState {
-	totalPrice: number;
-	items: TCartItem[];
-	status: TStateStatus;
-}
+import type { ICartState, TCartItem } from './cart.types';
 
 const initialState: ICartState = {
 	totalPrice: 0,

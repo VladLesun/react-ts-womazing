@@ -1,24 +1,5 @@
 import { createSlice, type PayloadAction } from '@reduxjs/toolkit';
-
-type TFilterCategoryId = 'all' | 'coat' | 'sweatshirt' | 'cardigan' | 'hoodie';
-type TFilterCategoryName =
-	| 'Все'
-	| 'Пальто'
-	| 'Свитшоты'
-	| 'Кардиганы'
-	| 'Толстовки';
-
-export type TFilterCategory = {
-	id: TFilterCategoryId;
-	name: TFilterCategoryName;
-};
-
-type TFilterCategories = TFilterCategory[];
-
-interface IFilterState {
-	category: TFilterCategory;
-	categories: TFilterCategories;
-}
+import type { IFilterState, TFilterCategory } from './filter.types';
 
 const initialState: IFilterState = {
 	category: {

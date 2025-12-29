@@ -1,4 +1,4 @@
-import type { RootState } from '../store';
+import type { RootState } from '../redux.types';
 
 export const selectCartItems = (state: RootState) => state.cart.items;
 export const selectCartStatus = (state: RootState) => state.cart.status;

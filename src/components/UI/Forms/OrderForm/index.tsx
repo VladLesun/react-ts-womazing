@@ -13,7 +13,7 @@ import { sendOrder } from '../../../../redux/order/order.action';
 
 import { Button, Input, OrderSkeleton } from '../../../../components';
 import { useValidation } from '../../../../hooks/useValidation';
-import { useAppDispatch } from '../../../../redux/store';
+import { useAppDispatch } from '../../../../redux/redux.types';
 import s from './OrderForm.module.scss';
 
 interface IOrderItem {

@@ -21,7 +21,7 @@ import {
 	ProductsSkeleton,
 } from '../../components';
 
-import { useAppDispatch } from '../../redux/store';
+import { useAppDispatch } from '../../redux/redux.types';
 import s from './Shop.module.scss';
 
 const Shop = () => {

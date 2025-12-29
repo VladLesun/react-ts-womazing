@@ -1,10 +1,6 @@
 import { createSlice } from '@reduxjs/toolkit';
-import type { TStateStatus } from '../../types/types';
 import { sendOrder } from './order.action';
-
-interface IOrderState {
-	status: TStateStatus;
-}
+import type { IOrderState } from './order.types';
 
 const initialState: IOrderState = {
 	status: 'idle',
@@ -27,7 +23,5 @@ const orderSlice = createSlice({
 			});
 	},
 });
-
-// export const {} = orderSlice.actions;
 
 export default orderSlice.reducer;

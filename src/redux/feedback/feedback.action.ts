@@ -1,12 +1,7 @@
 import { createAsyncThunk } from '@reduxjs/toolkit';
 import { addDoc, collection, doc } from 'firebase/firestore';
 import { db } from '../../API/firebase';
-
-type TFeedbackMessage = {
-	userId: string;
-	message: Record<string, string>;
-	feedback: string;
-};
+import type { TFeedbackMessage } from './feedback.types';
 
 export const sendFeedback = createAsyncThunk<void, TFeedbackMessage>(
 	'feedback/sendFeedback',

@@ -1,4 +1,4 @@
-import type { RootState } from '../store';
+import type { RootState } from '../redux.types';
 
 export const selectCategory = (state: RootState) => state.filter.category;
 export const selectCategoriesArray = (state: RootState) =>

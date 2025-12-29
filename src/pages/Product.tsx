@@ -17,7 +17,7 @@ import {
 	ProductSkeleton,
 } from '../components';
 
-import { useAppDispatch } from '../redux/store';
+import { useAppDispatch } from '../redux/redux.types';
 import shuffle from '../util/shuffle';
 
 const Product = () => {

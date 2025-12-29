@@ -8,7 +8,7 @@ import {
 	where,
 } from 'firebase/firestore';
 import { db } from '../../API/firebase';
-import type { TProduct } from './products.slice';
+import type { TProduct } from './products.types';
 
 export const fetchProducts = createAsyncThunk<
 	TProduct[],

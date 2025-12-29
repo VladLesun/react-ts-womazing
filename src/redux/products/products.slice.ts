@@ -1,26 +1,7 @@
 import { createSlice, type PayloadAction } from '@reduxjs/toolkit';
 
-import type { TStateStatus } from '../../types/types';
 import { fetchProduct, fetchProducts } from './products.action';
-
-type TProductSize = 'xs' | 's' | 'm' | 'l' | 'xl' | 'xxl';
-
-export type TProduct = {
-	categoryId: string;
-	id: string;
-	imgUrl: string;
-	name: string;
-	color: string[];
-	size: TProductSize[];
-	price: number;
-	sale?: number;
-};
-
-interface IProductsState {
-	item: null | TProduct;
-	items: TProduct[];
-	status: TStateStatus;
-}
+import type { IProductsState, TProduct } from './products.types';
 
 const initialState: IProductsState = {
 	item: null,
