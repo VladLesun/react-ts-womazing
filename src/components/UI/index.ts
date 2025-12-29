@@ -1,6 +1,7 @@
 export { default as Button } from './Button';
 export { default as Input } from './Input';
 export { default as Logo } from './Logo';
+export { default as Preloader } from './Preloader';
 
 export { default as CartForm } from './Forms/CartForm';
 export { default as ContactsForm } from './Forms/ContactsForm';

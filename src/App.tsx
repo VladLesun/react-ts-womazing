@@ -12,6 +12,7 @@ import { selectUserId, setCartRealTime, setUser } from './redux';
 
 import { useAppDispatch } from './redux/redux.types';
 
+import { Preloader } from './components';
 import Layout from './layouts/Layout';
 import Home from './pages/Home';
 
@@ -69,7 +70,7 @@ const App = () => {
 				<Route
 					path='/shop'
 					element={
-						<Suspense fallback={<div>Loading...</div>}>
+						<Suspense fallback={<Preloader />}>
 							<Shop />
 						</Suspense>
 					}
@@ -77,7 +78,7 @@ const App = () => {
 				<Route
 					path='/shop/:productId'
 					element={
-						<Suspense fallback={<div>Loading...</div>}>
+						<Suspense fallback={<Preloader />}>
 							<Product />
 						</Suspense>
 					}
@@ -85,7 +86,7 @@ const App = () => {
 				<Route
 					path='/about-brand'
 					element={
-						<Suspense fallback={<div>Loading...</div>}>
+						<Suspense fallback={<Preloader />}>
 							<AboutBrand />
 						</Suspense>
 					}
@@ -93,7 +94,7 @@ const App = () => {
 				<Route
 					path='/contacts'
 					element={
-						<Suspense fallback={<div>Loading...</div>}>
+						<Suspense fallback={<Preloader />}>
 							<Contacts />
 						</Suspense>
 					}
@@ -101,7 +102,7 @@ const App = () => {
 				<Route
 					path='/cart'
 					element={
-						<Suspense fallback={<div>Loading...</div>}>
+						<Suspense fallback={<Preloader />}>
 							<Cart />
 						</Suspense>
 					}
@@ -109,7 +110,7 @@ const App = () => {
 				<Route
 					path='/order'
 					element={
-						<Suspense fallback={<div>Loading...</div>}>
+						<Suspense fallback={<Preloader />}>
 							<Order />
 						</Suspense>
 					}
@@ -117,7 +118,7 @@ const App = () => {
 				<Route
 					path='/confirmed'
 					element={
-						<Suspense fallback={<div>Loading...</div>}>
+						<Suspense fallback={<Preloader />}>
 							<OrderConfirmed />
 						</Suspense>
 					}
@@ -125,7 +126,7 @@ const App = () => {
 				<Route
 					path='*'
 					element={
-						<Suspense fallback={<div>Loading...</div>}>
+						<Suspense fallback={<Preloader />}>
 							<NotFound />
 						</Suspense>
 					}
