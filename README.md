@@ -55,6 +55,7 @@ src/
  ├── layouts/        # Статичная страница приложения
  ├── pages/          # Страницы приложения
  ├── redux/          # Redux Toolkit (slices, selectors, actions)
+ ├── styles/         # Scss-файлы, стили проекта
  └── utils/          # Общие утилиты (debounce, shuffle)
 
 ---
