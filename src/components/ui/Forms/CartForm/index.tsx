@@ -14,7 +14,7 @@ import {
 	CartEmpty,
 	CartSkeleton,
 	ProductCart,
-} from '../../../../components';
+} from '../../..';
 
 import s from './CartForm.module.scss';
 

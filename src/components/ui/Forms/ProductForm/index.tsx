@@ -1,7 +1,7 @@
 import { useState, type ChangeEvent, type PointerEventHandler } from 'react';
 import { useSelector } from 'react-redux';
 
-import { Button, Input } from '../../../../components';
+import { Button, Input } from '../../..';
 import type { TCartItem } from '../../../../redux';
 import { addToCart, selectUserId } from '../../../../redux';
 import { useAppDispatch } from '../../../../redux/redux.types';

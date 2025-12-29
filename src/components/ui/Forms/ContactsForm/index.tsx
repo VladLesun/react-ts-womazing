@@ -1,7 +1,7 @@
 import cn from 'classnames';
 import { useSelector } from 'react-redux';
 
-import { Button, Input } from '../../../../components';
+import { Button, Input } from '../../..';
 import { useValidation } from '../../../../hooks/useValidation';
 import {
 	resetStatus,

@@ -1,4 +1,4 @@
-import type { TOrder } from '../../components/ui_temp/Forms/OrderForm';
+import type { TOrder } from '../../components/ui/Forms/OrderForm';
 import type { TStateStatus } from '../redux.types';
 
 export type TSendOrder = {

@@ -2,7 +2,7 @@ import cn from 'classnames';
 import { useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 
-import { Button, Input, OrderSkeleton } from '../../../../components';
+import { Button, Input, OrderSkeleton } from '../../..';
 import { useValidation } from '../../../../hooks/useValidation';
 import {
 	clearCart,
