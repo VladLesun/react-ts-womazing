@@ -1,4 +1,4 @@
-export * from './features';
-export * from './shared';
-export * from './ui';
+export * from './features/index';
+export * from './shared/index';
+export * from './ui/index';
 
