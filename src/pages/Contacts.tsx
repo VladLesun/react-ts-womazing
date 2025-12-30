@@ -1,16 +1,18 @@
+import { lazy } from 'react';
 import {
 	Communication,
 	ContactsForm,
-	Map,
 	PageTitleContent,
 	PageWrap,
 } from '../components';
+
+const MapWidget = lazy(() => import('../components/shared/Map'));
 
 const Contacts = () => {
 	return (
 		<PageWrap>
 			<PageTitleContent children='Контакты' />
-			<Map />
+			<MapWidget />
 			<Communication />
 			<ContactsForm />
 		</PageWrap>
