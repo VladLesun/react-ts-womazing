@@ -1,4 +1,4 @@
-import { useState, type PointerEventHandler } from 'react';
+import { useState, type ChangeEvent, type PointerEventHandler } from 'react';
 import { useSelector } from 'react-redux';
 
 import { Button, Input } from '../../../../components';
@@ -116,7 +116,7 @@ const ProductForm = ({
 						type='number'
 						variant='count'
 						value={itemQuantity}
-						onChange={e => {
+						onChange={(e: ChangeEvent<HTMLInputElement>) => {
 							const val = e.target.value;
 							setItemQuantity(val === '' ? '' : Number(val));
 						}}
