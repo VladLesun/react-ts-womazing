@@ -1,0 +1,96 @@
+@use '../../../../styles/variables' as *;
+@use '../../../../styles/media' as *;
+@use '../../../../styles/mixins' as *;
+
+.link {
+	position: relative;
+	display: block;
+	max-width: 350px;
+	min-height: calc(485px + (545 - 485) * ((100vw - 1001px) / (1440 - 1001)));
+
+	@include disable-mob-hover {
+		& .imageWrap::before {
+			opacity: 1;
+		}
+	}
+
+	@include laptop {
+		min-height: calc(378px + (484 - 378) * ((100vw - 761px) / (1000 - 761)));
+	}
+	@include tablet {
+		min-height: calc(425px + (537 - 425) * ((100vw - 581px) / (760 - 581)));
+	}
+	@include mobile-lg {
+		min-height: calc(373px + (425 - 373) * ((100vw - 461px) / (580 - 461)));
+	}
+	@include mobile {
+		min-height: calc(457px + (537 - 457) * ((100vw - 320px) / (460 - 320)));
+	}
+}
+
+.imageWrap {
+	position: relative;
+	margin-bottom: 24px;
+
+	.image {
+		width: 100%;
+		aspect-ratio: 3/4;
+		object-fit: cover;
+	}
+
+	&:before {
+		position: absolute;
+		inset: 0;
+		content: '';
+		background-image: url('../../../assets/img/arrow.svg');
+		background-repeat: no-repeat;
+		background-position: center;
+		background-color: rgba($cta, 0.77);
+		opacity: 0;
+		transition: opacity 0.5s ease;
+		z-index: 1;
+	}
+}
+
+.name {
+	margin-bottom: 7px;
+	font-weight: 500;
+	font-size: 20px;
+	line-height: 140%;
+	letter-spacing: 0.02em;
+	text-align: center;
+}
+
+.price {
+	color: $price;
+	font-weight: 500;
+	font-size: 15px;
+	line-height: 140%;
+	letter-spacing: 0.02em;
+	text-align: center;
+}
+
+.sale {
+	margin-right: 10px;
+	text-decoration: line-through;
+	color: $price-gray;
+}
+
+@include tablet {
+	.image {
+		margin-bottom: 15px;
+	}
+	.title {
+		margin-bottom: 5px;
+		font-size: 18px;
+	}
+	.price {
+		font-size: 15px;
+	}
+	.sale {
+		margin-right: 5px;
+	}
+}
+
+@include mobile {
+}

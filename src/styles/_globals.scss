@@ -13,14 +13,22 @@ html {
 }
 
 body {
-	position: relative;
 	background-color: $white;
 	color: $black;
 	font-family: $font-family;
 }
 
 #root {
+	position: relative;
+	display: flex;
+	flex-direction: column;
+	justify-content: space-between;
 	min-width: 320px;
+	min-height: 100vh;
+}
+
+main {
+	flex-shrink: 0;
 }
 
 img,
@@ -50,8 +58,12 @@ a {
 }
 
 input,
-textarea {
+textarea,
+fieldset {
+	margin: 0;
+	padding: 0;
 	outline: none;
+	border: none;
 }
 
 ul {
@@ -70,17 +82,48 @@ fieldset {
 	margin: 0;
 }
 
+input[type='number']::-webkit-outer-spin-button,
+input[type='number']::-webkit-inner-spin-button {
+	appearance: none;
+	margin: 0;
+}
+
+input[type='number'] {
+	-webkit-appearance: none;
+	-moz-appearance: none;
+	appearance: none;
+}
+
+.ReactModal__Body--open {
+	overflow: hidden;
+}
+
+.no-scroll {
+	overflow: hidden;
+}
+
 .visually-hidden {
 	position: fixed;
 	transform: scale(0);
 }
 
 .container {
-	max-width: 1080px;
+	max-width: 1140px;
 	padding: 0 15px;
 	margin: 0 auto;
 
 	@include laptop-lg {
 		width: 100%;
+	}
+}
+
+.error {
+	border-color: $error;
+
+	&__text {
+		display: block;
+		margin-top: 10px;
+		font-size: 14px;
+		color: $error;
 	}
 }

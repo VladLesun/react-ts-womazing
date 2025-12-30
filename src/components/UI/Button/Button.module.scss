@@ -1,17 +1,68 @@
 @use '../../../styles/variables' as *;
 @use '../../../styles/mixins' as *;
+@use '../../../styles/media' as *;
 
 .btn {
-	@include button;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	flex-shrink: 0;
+	padding: 22px 20px;
+	border: 1px solid transparent;
+	font-weight: 400;
+	font-size: 17px;
+	line-height: 139%;
+	letter-spacing: 0.02em;
+	transition-property: background-color, color, border-color;
+	transition-duration: 0.5s;
+	transition-timing-function: ease;
+
+	@include laptop {
+		padding: 22px 10px;
+		font-size: 15px;
+	}
 
 	&_primary {
 		color: $white;
 		background-color: $cta;
+
+		@include disable-mob-hover {
+			background-color: $dark-cta;
+		}
 	}
 
 	&_secondary {
 		color: $cta;
 		background-color: transparent;
-		border: 1px solid $cta;
+		border-color: $cta;
+
+		@include disable-mob-hover {
+			color: $white;
+			background-color: $cta;
+		}
+	}
+
+	&_category {
+		padding: 22px 65px;
+		color: $black;
+		background-color: transparent;
+		border-color: $black;
+
+		@include disable-mob-hover {
+			color: $white;
+			background-color: $black;
+		}
+	}
+
+	&_pagination {
+		width: 41px;
+		height: 41px;
+		padding: 8px;
+		border-color: $black;
+
+		@include disable-mob-hover {
+			color: $white;
+			background-color: $black;
+		}
 	}
 }

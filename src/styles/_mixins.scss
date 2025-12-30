@@ -32,15 +32,15 @@
 	align-items: center;
 	justify-content: center;
 	flex-shrink: 0;
-	width: 243px;
-	height: 68px;
+	// width: 243px;
+	// height: 68px;
 	font-weight: 400;
 	font-size: 17px;
 	line-height: 139%;
 	letter-spacing: 0.02em;
 
 	@include laptop {
-		width: 200px;
+		// width: 200px;
 		font-size: 15px;
 	}
 }

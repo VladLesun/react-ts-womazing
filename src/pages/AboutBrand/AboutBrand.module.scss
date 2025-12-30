@@ -1,0 +1,99 @@
+@use '../../styles/media' as *;
+
+.list {
+	display: flex;
+	flex-direction: column;
+	gap: 130px;
+	margin-bottom: 130px;
+}
+
+.item {
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+	gap: 20px;
+
+	&:nth-child(2n) {
+		flex-direction: row-reverse;
+	}
+}
+
+.imageWrap {
+	flex-shrink: 0;
+
+	@include laptop {
+		width: 49%;
+	}
+
+	@include mobile-lg {
+		width: auto;
+	}
+}
+
+.image {
+	object-fit: cover;
+}
+
+.content {
+	max-width: 542px;
+}
+
+.subtitle {
+	margin-bottom: 46px;
+	font-weight: 500;
+	font-size: 25px;
+	line-height: 140%;
+	letter-spacing: 0.02em;
+}
+
+.desc {
+	font-weight: 500;
+	font-size: 17px;
+	line-height: 140%;
+	letter-spacing: 0.02em;
+}
+
+.link {
+	width: 260px;
+	margin: 0 auto;
+}
+
+@include tablet {
+	.list {
+		gap: 65px;
+		margin-bottom: 65px;
+	}
+	.item {
+		flex-direction: column;
+		gap: 30px;
+
+		&:nth-child(2n) {
+			flex-direction: column;
+		}
+	}
+	.content {
+		max-width: 100%;
+	}
+	.subtitle {
+		margin-bottom: 20px;
+	}
+}
+
+@include mobile {
+	.list {
+		gap: 30px;
+		margin-bottom: 30px;
+	}
+	.image {
+		max-width: 100%;
+	}
+	.subtitle {
+		font-size: 18px;
+	}
+	.desc {
+		font-size: 14px;
+	}
+	.link {
+		width: 100%;
+	}
+}

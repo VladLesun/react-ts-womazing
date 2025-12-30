@@ -1,0 +1,14 @@
+@use '../../../styles/variables' as *;
+@use '../../../styles/media' as *;
+@use '../../../styles/mixins' as *;
+
+.wrap {
+	padding: 130px 0;
+
+	@include tablet {
+		padding: 65px 0;
+	}
+	@include mobile {
+		padding: 30px 0;
+	}
+}

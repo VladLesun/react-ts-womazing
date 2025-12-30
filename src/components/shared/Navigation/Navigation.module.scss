@@ -1,0 +1,41 @@
+@use '../../../styles/variables' as *;
+@use '../../../styles/media' as *;
+@use '../../../styles/mixins' as *;
+
+.list {
+	display: flex;
+	align-items: center;
+	gap: 45px;
+
+	&_burger {
+		flex-direction: column;
+		align-items: center;
+		gap: 45px;
+		margin: auto; // центрирование внутри .navigation
+	}
+}
+
+.item {
+	font-weight: 400;
+	font-size: 15px;
+	line-height: 140%;
+	letter-spacing: 0.02em;
+	transition: color 0.5s ease, font-weight 0.5s ease;
+
+	&_active {
+		color: $cta;
+		font-weight: 700;
+		&.item_burger {
+			color: $white;
+		}
+	}
+
+	&_burger {
+		font-size: 20px;
+	}
+
+	@include disable-mob-hover {
+		color: $cta;
+		font-weight: 700;
+	}
+}

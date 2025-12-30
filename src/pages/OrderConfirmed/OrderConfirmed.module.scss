@@ -1,0 +1,59 @@
+@use '../../styles/media' as *;
+
+.content {
+	display: flex;
+	justify-content: space-between;
+	gap: 20px;
+
+	@include tablet {
+		flex-direction: column;
+		justify-content: center;
+	}
+}
+
+.wrap {
+	max-width: 500px;
+	display: flex;
+	align-items: center;
+	gap: 44px;
+
+	@include tablet {
+		margin: 0 auto;
+	}
+
+	@include mobile-lg {
+		gap: 20px;
+	}
+
+	@include mobile {
+		flex-direction: column;
+		text-align: center;
+	}
+}
+
+.title {
+	font-weight: 500;
+	font-size: 25px;
+	line-height: 140%;
+	letter-spacing: 0.02em;
+	margin-bottom: 17px;
+
+	@include mobile-lg {
+		font-size: 20px;
+	}
+}
+
+.desc {
+	font-weight: 500;
+	font-size: 17px;
+	line-height: 140%;
+	letter-spacing: 0.02em;
+
+	@include mobile-lg {
+		font-size: 15px;
+	}
+}
+
+.link {
+	align-self: center;
+}

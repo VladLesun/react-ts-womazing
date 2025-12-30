@@ -1,0 +1,28 @@
+@use '../../../../styles/variables' as *;
+@use '../../../../styles/media' as *;
+@use '../../../../styles/mixins' as *;
+
+.title {
+	@include main-page-title;
+}
+
+.list {
+	display: grid;
+	grid-template-columns: repeat(3, 1fr);
+	gap: 30px;
+}
+
+@include tablet {
+	.list {
+		grid-template-columns: repeat(2, 1fr);
+		gap: 20px;
+	}
+}
+
+@include mobile {
+	.list {
+		grid-template-columns: 1fr;
+		gap: 30px;
+		justify-self: center;
+	}
+}

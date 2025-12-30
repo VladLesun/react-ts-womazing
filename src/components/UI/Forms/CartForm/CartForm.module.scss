@@ -1,0 +1,113 @@
+@use '../../../../styles/variables' as *;
+@use '../../../../styles/media' as *;
+@use '../../../../styles/mixins' as *;
+
+.form {
+	display: flex;
+	flex-direction: column;
+	gap: 80px;
+}
+
+.table {
+	width: 100%;
+	border-collapse: separate;
+	border-spacing: 0;
+}
+
+.head {
+	position: relative;
+	height: 54px;
+
+	&::after {
+		position: absolute;
+		bottom: 0;
+		left: 0;
+		content: '';
+		display: block;
+		width: 100%;
+		height: 1px;
+		background-color: $gray;
+	}
+}
+
+.th {
+	font-weight: 500;
+	font-size: 20px;
+	line-height: 140%;
+	letter-spacing: 0.02em;
+	text-align: start;
+}
+
+.promoWrap {
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+	gap: 20px;
+}
+
+.promo {
+	display: flex;
+	align-items: end;
+	gap: 15px;
+}
+
+.order {
+	display: flex;
+	align-items: center;
+	justify-content: end;
+	gap: 15px;
+}
+
+.total {
+	padding: 18px 36px;
+	background-color: $beige;
+	font-weight: 500;
+	font-size: 25px;
+	line-height: 140%;
+	letter-spacing: 0.02em;
+}
+
+.totalPrice {
+	margin-left: 70px;
+}
+
+@include laptop {
+	.tableMobile {
+		width: 100%;
+		overflow-x: auto;
+		-webkit-overflow-scrolling: touch;
+	}
+	.table {
+		min-width: 1000px;
+	}
+	.total {
+		padding: 23px;
+		font-size: 15px;
+	}
+	.totalPrice {
+		margin-left: 35px;
+	}
+}
+
+@include tablet {
+	.form {
+		gap: 60px;
+	}
+	.promoWrap {
+		flex-direction: column;
+		align-items: end;
+	}
+}
+
+@include mobile-lg {
+	.form {
+		gap: 40px;
+	}
+	.promo {
+		flex-direction: column;
+	}
+	.order {
+		flex-direction: column;
+		align-items: end;
+	}
+}

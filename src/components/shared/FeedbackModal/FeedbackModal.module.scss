@@ -1,0 +1,95 @@
+@use '../../../styles/variables' as *;
+@use '../../../styles/media' as *;
+@use '../../../styles/mixins' as *;
+
+.overlay {
+	position: fixed;
+	inset: 0;
+	display: flex;
+	padding: 20px;
+	background-color: rgba($cta, 0.95);
+	overflow-y: auto;
+	z-index: 10;
+	opacity: 0;
+	transition: opacity 0.5s ease;
+	cursor: pointer;
+}
+
+.overlayOpen {
+	opacity: 1;
+}
+
+.overlayClose {
+	opacity: 0;
+}
+
+.modal {
+	position: relative;
+	width: 100%;
+	max-width: 491px;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	justify-content: center;
+	margin: auto;
+	padding: 70px;
+	background-color: $white;
+	outline: none;
+	overflow: hidden;
+	cursor: auto;
+	transform: scale(0);
+	transition: transform 0.5s ease;
+}
+
+.modalWidth {
+	max-width: 600px;
+}
+
+.modalOpen {
+	transform: scale(1);
+}
+
+.modalClose {
+	transform: scale(0);
+}
+
+.close {
+	position: absolute;
+	top: 32px;
+	right: 32px;
+}
+
+.wrap {
+	display: flex;
+	flex-direction: column;
+	gap: 35px;
+}
+
+.title {
+	margin-bottom: 35px;
+	font-weight: 500;
+	font-size: 25px;
+	line-height: 140%;
+	letter-spacing: 0.02em;
+	text-align: center;
+}
+
+.btn {
+	width: 168px;
+}
+
+@include mobile-lg {
+	.modal {
+		padding: 70px 20px;
+	}
+	.input {
+		width: 100%;
+	}
+	.close {
+		top: 15px;
+		right: 15px;
+	}
+	.title {
+		font-size: 20px;
+	}
+}

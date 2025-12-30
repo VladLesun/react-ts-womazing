@@ -1,0 +1,17 @@
+@use '../../../styles/variables' as *;
+
+.wrap {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+}
+
+.desc {
+	text-align: center;
+	font-size: 24px;
+}
+
+.link {
+	font-weight: 700;
+	color: $cta;
+}

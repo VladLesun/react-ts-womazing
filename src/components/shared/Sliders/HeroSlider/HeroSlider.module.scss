@@ -1,0 +1,157 @@
+@use '../../../../styles/variables' as *;
+@use '../../../../styles/media' as *;
+@use '../../../../styles/mixins' as *;
+
+.slider {
+	position: relative;
+	max-width: 565px;
+	padding-top: 145px;
+}
+
+.slide {
+	display: none;
+	flex-direction: column;
+	opacity: 0;
+	visibility: hidden;
+	transition: opacity 0.5s ease;
+
+	&_active {
+		display: flex;
+		opacity: 1;
+		visibility: visible;
+	}
+}
+
+.title {
+	margin-bottom: 45px;
+	font-weight: 500;
+	font-size: 55px;
+	line-height: 110%;
+	letter-spacing: 0.02em;
+}
+
+.desc {
+	max-width: 385px;
+	margin-bottom: 52px;
+	font-weight: 400;
+	font-size: 20px;
+	line-height: 140%;
+	letter-spacing: 0.02em;
+	text-align: right;
+}
+
+.actions {
+	display: flex;
+	align-items: center;
+	margin-left: 75px;
+	margin-bottom: 125px;
+}
+
+.anchor {
+	flex-shrink: 0;
+	color: $cta;
+}
+
+.link {
+	width: 260px;
+}
+
+.btns {
+	margin-left: 270px;
+}
+
+@include laptop-lg {
+	.slider {
+		max-width: 465px;
+		padding-top: 120px;
+	}
+	.title {
+		margin-bottom: 35px;
+		font-size: 45px;
+	}
+	.desc {
+		max-width: 385px;
+		margin-bottom: 40px;
+		font-size: 18px;
+	}
+	.actions {
+		margin-left: 75px;
+		margin-bottom: 100px;
+	}
+}
+
+@include laptop {
+	.slider {
+		width: 49%;
+		padding-top: 80px;
+	}
+	.slide {
+		align-items: end;
+	}
+	.title {
+		margin-bottom: 30px;
+		font-size: 30px;
+		text-align: end;
+	}
+	.actions {
+		justify-content: end;
+		margin-left: 100px;
+		margin-bottom: 60px;
+	}
+	.btns {
+		margin-left: auto;
+	}
+}
+
+@include tablet {
+	.slider {
+		padding-top: 40px;
+	}
+	.title {
+		margin-bottom: 20px;
+		font-size: 25px;
+	}
+	.actions {
+		margin-left: 0;
+		margin-bottom: 30px;
+	}
+	.link {
+		width: 200px;
+	}
+	.btns {
+		margin: 0 auto;
+	}
+}
+
+@include mobile-lg {
+	.slider {
+		position: absolute;
+		top: 50%;
+		left: 50%;
+		transform: translate(-50%, -50%);
+		width: 100%;
+		max-width: 410px;
+		padding-top: 0;
+		z-index: 5;
+	}
+	.slide {
+		align-items: center;
+	}
+	.title,
+	.desc {
+		color: $white;
+		text-align: center;
+	}
+	.actions {
+		justify-content: center;
+	}
+	.btns {
+		margin-left: auto;
+	}
+}
+
+@include mobile {
+	.slider {
+		width: 90%;
+	}
+}

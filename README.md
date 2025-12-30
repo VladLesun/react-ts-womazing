@@ -1,69 +1,71 @@
-# React + TypeScript + Vite
+# ✨ Womazing — Магия в деталях
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+SPA‑приложение женской дизайнерской одежды.  
+Проект демонстрирует современный подход к фронтенд‑разработке: архитектура, производительность и внимание к деталям.
 
-Currently, two official plugins are available:
+---
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+## 🛠️ Стек технологий
+- **TypeScript**
+- **React** + **React Router**
+- **Redux Toolkit**
+- **Firebase**
+- **SASS (SCSS)**
+- **Vite**
+- **Bun** (как пакет‑менеджер)
 
-## Expanding the ESLint configuration
+---
 
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
+## 🚀 Основные возможности
+- 9 страниц с **бессшовной навигацией** через `Outlet`
+- Статические **Header** и **Footer**
+- **Анонимная авторизация** для сохранения корзины
+- Работа с **Firebase**:
+  - товары
+  - ключ авторизации пользователя
+  - корзина
+  - заказы
+  - комментарии
+  - сообщения об обратном звонке
+- Стилизация через **SCSS**
+- Вынесенные функции: `debounce`, `shuffle`
+- 2 кастомных хука:
+  - для слайдеров
+  - для валидации форм
 
-```js
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
+---
 
-      // Remove tseslint.configs.recommended and replace with this
-      tseslint.configs.recommendedTypeChecked,
-      // Alternatively, use this for stricter rules
-      tseslint.configs.strictTypeChecked,
-      // Optionally, add this for stylistic rules
-      tseslint.configs.stylisticTypeChecked,
+## ⚡ Оптимизация
+- **Lazy loading** страниц → приложение разбивается на чанки  
+  - вес бандла уменьшен с `841.14 kB │ gzip: 267.09 kB`  
+  - до `278.64 kB │ gzip:  93.79 kB`
+- Использование тега `<picture>` для адаптивных изображений
+- Предварительное сжатие картинок без потери качества
+- Оптимизированные **re‑exports** компонентов и Redux для удобства масштабирования
 
-      // Other configs...
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
+---
+
+## 📂 Архитектура проекта
+```plaintext
+src/
+ ├── API/            # Работа с Firebase (Auth, Firestore)
+ ├── assets/         # Статические ресурсы
+ ├── components/     # UI-компоненты
+ ├── hooks/          # Кастомные хуки (useActionSliders, useValidation)
+ ├── layouts/        # Статичная страница приложения
+ ├── pages/          # Страницы приложения
+ ├── redux/          # Redux Toolkit (slices, selectors, actions)
+ ├── styles/         # Scss-файлы, стили проекта
+ └── utils/          # Общие утилиты (debounce, shuffle)
 ```
 
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
+---
 
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
+## ✨ Автор
 
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-      // Enable lint rules for React
-      reactX.configs['recommended-typescript'],
-      // Enable lint rules for React DOM
-      reactDom.configs.recommended,
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
-```
+**Владислав Лесун** — Frontend Developer  
+
+🔗 [LinkedIn](https://linkedin.com/in/vladlesun)  
+💬 [Telegram](https://t.me/vladlesun)  
+📧 [Email](mailto:vladlesunmma@gmail.com)
+

@@ -1,0 +1,34 @@
+@use '../../../styles/variables' as *;
+@use '../../../styles/media' as *;
+@use '../../../styles/mixins' as *;
+
+.wrap {
+	flex-shrink: 0;
+	width: 27px;
+	height: 27px;
+	margin-right: 9px;
+
+	@include laptop {
+		width: 35px;
+		height: 35px;
+		margin: 0;
+	}
+}
+
+.btn {
+	width: 100%;
+	height: 100%;
+	background-color: transparent;
+	color: $cta;
+	transition: background-color 0.5s ease, color 0.5s ease;
+
+	@include disable-mob-hover {
+		background-color: $cta;
+		color: $white;
+	}
+
+	& svg {
+		width: 100%;
+		height: 100%;
+	}
+}

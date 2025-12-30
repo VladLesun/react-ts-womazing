@@ -1,0 +1,74 @@
+@use '../../../styles/variables' as *;
+@use '../../../styles/media' as *;
+@use '../../../styles/mixins' as *;
+
+.wrap {
+	margin-bottom: 100px;
+
+	@include tablet {
+		margin-bottom: 65px;
+	}
+
+	@include mobile {
+		margin-bottom: 30px;
+	}
+}
+
+.title {
+	margin-bottom: 26px;
+	font-weight: 500;
+	font-size: 55px;
+	line-height: 110%;
+	letter-spacing: 0.02em;
+}
+
+.list {
+	display: flex;
+	flex-wrap: wrap;
+	gap: 13px;
+}
+
+.item {
+	font-weight: 500;
+	font-size: 17px;
+	line-height: 140%;
+	letter-spacing: 0.02em;
+
+	&:not(:first-child) {
+		&::before {
+			content: '—';
+			margin-right: 13px;
+			color: $black;
+		}
+	}
+}
+
+.link {
+	transition: color 0.5s ease;
+
+	@include disable-mob-hover {
+		color: $cta;
+	}
+}
+
+.label {
+	color: $gray;
+}
+
+@include laptop-lg {
+	.title {
+		font-size: 45px;
+	}
+}
+
+@include laptop {
+	.title {
+		font-size: 30px;
+	}
+}
+
+@include tablet {
+	.title {
+		font-size: 25px;
+	}
+}

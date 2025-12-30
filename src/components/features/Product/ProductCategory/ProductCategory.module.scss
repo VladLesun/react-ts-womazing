@@ -1,0 +1,24 @@
+@use '../../../../styles/variables' as *;
+@use '../../../../styles/media' as *;
+@use '../../../../styles/mixins' as *;
+
+.categories {
+	display: flex;
+	align-items: center;
+	flex-wrap: wrap;
+	gap: 10px;
+	margin-bottom: 90px;
+}
+
+._active {
+	color: $white;
+	background-color: $black;
+}
+
+@include mobile-lg {
+	.categories {
+		flex-direction: column;
+		align-items: stretch;
+		margin-bottom: 50px;
+	}
+}
